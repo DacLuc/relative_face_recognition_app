@@ -9,16 +9,16 @@ class SignUpWindow(QMainWindow):
     def __init__(self):
         super(SignUpWindow, self).__init__()
 
-        self.setWindowTitle("Finding People")
+        # self.setWindowTitle("Finding People")
 
         layout = QVBoxLayout()
         username_label = QLabel("Username: ")
-        username = QLineEdit()
+        self.username = QLineEdit()
         email_label = QLabel("Email: ")
-        email = QLineEdit()
+        self.email = QLineEdit()
         password_label = QLabel("Password: ")
-        password = QLineEdit()
-        password.setEchoMode(QLineEdit.EchoMode.Password)
+        self.password = QLineEdit()
+        self.password.setEchoMode(QLineEdit.EchoMode.Password)
 
         # btn_layout = QHBoxLayout()
         # cancel_btn = QPushButton("Cancel")
@@ -29,11 +29,11 @@ class SignUpWindow(QMainWindow):
         # btn_layout.addWidget(submit_btn)
 
         layout.addWidget(username_label)
-        layout.addWidget(username)
+        layout.addWidget(self.username)
         layout.addWidget(email_label)
-        layout.addWidget(email)
+        layout.addWidget(self.email)
         layout.addWidget(password_label)
-        layout.addWidget(password)
+        layout.addWidget(self.password)
         # layout.addLayout(btn_layout)
 
         widget = QWidget()
