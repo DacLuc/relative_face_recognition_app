@@ -1,6 +1,7 @@
 # from client.signup import SignUpWindow
 from PyQt6.QtWidgets import QApplication, QWidget, QLineEdit, QVBoxLayout, QMainWindow, QLabel, QHBoxLayout, QPushButton, QButtonGroup, QFrame, QFileDialog
 from PyQt6 import QtCore
+from sqlmodel import Field, Session, SQLModel, create_engine
 import requests
 
 # Only needed for access to command line arguments
@@ -9,6 +10,8 @@ sys.path.append("../../relative_face_recognition_app")
 from client.login import LoginWindow
 from client.signup import SignUpWindow
 from client.home import HomeWindow
+from models.user import User
+from database.engine import engine
 
 
 class MainWindow(QMainWindow):
@@ -63,6 +66,11 @@ class MainWindow(QMainWindow):
             signup_email = self.signup_wd.email.text()
             signup_password = self.signup_wd.password.text()
             print(signup_username, signup_email, signup_password)
+            new_user = User(username=signup_username, email=signup_email, password=signup_password)
+            session = Session(engine)
+            session.add(new_user)
+            session.commit()
+            session.close()
         else:
             login_username = self.login_wd.username.text()
             login_password = self.login_wd.password.text()
