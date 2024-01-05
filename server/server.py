@@ -16,3 +16,11 @@ def read_user(user_id: int):
         if not found_user:
             raise HTTPException(status_code=404, detail="User not found")
         return found_user
+
+@app.get("/auth/login")
+def login(username, password):
+    pass
+
+@app.post("/auth/register")
+def register(username, email, password):
+    pass

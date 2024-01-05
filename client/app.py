@@ -12,7 +12,7 @@ from client.signup import SignUpWindow
 from client.home import HomeWindow
 from models.user import User
 from database.engine import engine
-
+from controllers.auth import UserAuth
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -67,14 +67,23 @@ class MainWindow(QMainWindow):
             signup_password = self.signup_wd.password.text()
             print(signup_username, signup_email, signup_password)
             new_user = User(username=signup_username, email=signup_email, password=signup_password)
-            session = Session(engine)
-            session.add(new_user)
-            session.commit()
-            session.close()
+            # session = Session(engine)
+            # session.add(new_user)
+            # session.commit()
+            # session.close()
+
+            # backend
+            with Session(engine) as session:
+                session.add(new_user)
+                session.commit()
         else:
             login_username = self.login_wd.username.text()
             login_password = self.login_wd.password.text()
             print(login_username, login_password)
+            user = User(login_username, login_password)
+            
+
+            # controller
             URL = "http://localhost:8080/users/1"
             data = requests.get(url=URL)
             json_data = data.json()
@@ -101,7 +110,7 @@ class MainWindow(QMainWindow):
             self.register_label.show()
 
     def upload_image_clicked(self):
-        self.upload_file = QFileDialog.getOpenFileNames(self, "Upload image", ".")
+        self.upload_file = QFileDialog.getOpenFileNames(self, "Select image", ".")
         print(self.upload_file)
 
 
