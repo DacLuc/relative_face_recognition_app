@@ -1,4 +1,14 @@
-from PyQt6.QtWidgets import QApplication, QWidget, QLineEdit, QVBoxLayout, QMainWindow, QLabel, QHBoxLayout, QPushButton, QButtonGroup
+from PyQt6.QtWidgets import (
+    QApplication,
+    QWidget,
+    QLineEdit,
+    QVBoxLayout,
+    QMainWindow,
+    QLabel,
+    QHBoxLayout,
+    QPushButton,
+    QButtonGroup,
+)
 from PyQt6 import QtCore
 
 # Only needed for access to command line arguments
@@ -9,7 +19,7 @@ class SignUpWindow(QMainWindow):
     def __init__(self):
         super(SignUpWindow, self).__init__()
 
-        # self.setWindowTitle("Finding People")
+        self.setWindowTitle("Finding People")
 
         layout = QVBoxLayout()
         username_label = QLabel("Username: ")
@@ -20,13 +30,13 @@ class SignUpWindow(QMainWindow):
         self.password = QLineEdit()
         self.password.setEchoMode(QLineEdit.EchoMode.Password)
 
-        # btn_layout = QHBoxLayout()
-        # cancel_btn = QPushButton("Cancel")
-        # cancel_btn.clicked.connect(self.cancel_btn_clicked)
-        # submit_btn = QPushButton("Sumbit")
-        # submit_btn.clicked.connect(self.submit_btn_clicked)
-        # btn_layout.addWidget(cancel_btn)
-        # btn_layout.addWidget(submit_btn)
+        btn_layout = QHBoxLayout()
+        cancel_btn = QPushButton("Cancel")
+        cancel_btn.clicked.connect(self.cancel_btn_clicked)
+        submit_btn = QPushButton("Sumbit")
+        submit_btn.clicked.connect(self.submit_btn_clicked)
+        btn_layout.addWidget(cancel_btn)
+        btn_layout.addWidget(submit_btn)
 
         layout.addWidget(username_label)
         layout.addWidget(self.username)
@@ -40,16 +50,16 @@ class SignUpWindow(QMainWindow):
         widget.setLayout(layout)
         self.setCentralWidget(widget)
 
-    # def cancel_btn_clicked(self):
-    #     print("cancel btn clicked")
+    def cancel_btn_clicked(self):
+        print("cancel btn clicked")
 
-    # def submit_btn_clicked(self):
-    #     print("submit btn clicked")
+    def submit_btn_clicked(self):
+        print("submit btn clicked")
 
 
-# app = QApplication(sys.argv)
+app = QApplication(sys.argv)
 
-# signup_window = SignUpWindow()
-# signup_window.show()
+signup_window = SignUpWindow()
+signup_window.show()
 
-# app.exec()
+app.exec()

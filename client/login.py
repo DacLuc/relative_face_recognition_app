@@ -1,10 +1,22 @@
-from PyQt6.QtWidgets import QApplication, QWidget, QLineEdit, QVBoxLayout, QMainWindow, QLabel, QHBoxLayout, QPushButton, QButtonGroup
+from PyQt6.QtWidgets import (
+    QApplication,
+    QWidget,
+    QLineEdit,
+    QVBoxLayout,
+    QMainWindow,
+    QLabel,
+    QHBoxLayout,
+    QPushButton,
+    QButtonGroup,
+)
 from PyQt6 import QtCore
 
 # Only needed for access to command line arguments
 import sys
+
 sys.path.append("../../relative_face_recognition_app")
 from client.signup import SignUpWindow
+
 
 class LoginWindow(QMainWindow):
     def __init__(self):

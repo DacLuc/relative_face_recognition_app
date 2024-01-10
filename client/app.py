@@ -1,11 +1,24 @@
 # from client.signup import SignUpWindow
-from PyQt6.QtWidgets import QApplication, QWidget, QLineEdit, QVBoxLayout, QMainWindow, QLabel, QHBoxLayout, QPushButton, QButtonGroup, QFrame, QFileDialog
+from PyQt6.QtWidgets import (
+    QApplication,
+    QWidget,
+    QLineEdit,
+    QVBoxLayout,
+    QMainWindow,
+    QLabel,
+    QHBoxLayout,
+    QPushButton,
+    QButtonGroup,
+    QFrame,
+    QFileDialog,
+)
 from PyQt6 import QtCore
 from sqlmodel import Field, Session, SQLModel, create_engine
 import requests
 
 # Only needed for access to command line arguments
 import sys
+
 sys.path.append("../../relative_face_recognition_app")
 from client.login import LoginWindow
 from client.signup import SignUpWindow
@@ -14,10 +27,12 @@ from models.user import User
 from database.engine import engine
 from controllers.auth import UserAuth
 
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
 
+        # set window title
         self.setWindowTitle("Finding People")
         self.login_wd = LoginWindow()
         self.signup_wd = SignUpWindow()
@@ -35,13 +50,13 @@ class MainWindow(QMainWindow):
         self.btn_layout.addWidget(self.cancel_btn)
         self.btn_layout.addWidget(self.submit_btn)
 
-        self.register_label = QLabel("Don't have an account? Register now!")
+        self.register_label = QLabel("Don't have an account? Register now !!!")
         self.register_label.mousePressEvent = self.register_label_clicked
 
         self.btn_frame.setLayout(self.btn_layout)
 
         self.home_wd.upload_image.clicked.connect(self.upload_image_clicked)
-        
+
         # layout.addLayout(self.login_wd)
         layout.addWidget(self.login_wd)
         layout.addWidget(self.signup_wd)
@@ -66,7 +81,9 @@ class MainWindow(QMainWindow):
             signup_email = self.signup_wd.email.text()
             signup_password = self.signup_wd.password.text()
             print(signup_username, signup_email, signup_password)
-            new_user = User(username=signup_username, email=signup_email, password=signup_password)
+            new_user = User(
+                username=signup_username, email=signup_email, password=signup_password
+            )
             # session = Session(engine)
             # session.add(new_user)
             # session.commit()
@@ -81,14 +98,13 @@ class MainWindow(QMainWindow):
             login_password = self.login_wd.password.text()
             print(login_username, login_password)
             user = User(login_username, login_password)
-            
 
             # controller
             URL = "http://localhost:8080/users/1"
             data = requests.get(url=URL)
             json_data = data.json()
-            username = json_data['username']
-            password = json_data['password']
+            username = json_data["username"]
+            password = json_data["password"]
             if (login_username == username) & (login_password == password):
                 self.home_wd.show()
                 self.login_wd.hide()
