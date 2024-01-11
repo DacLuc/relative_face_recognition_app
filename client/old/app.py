@@ -20,9 +20,9 @@ import requests
 import sys
 
 sys.path.append("../../relative_face_recognition_app")
-from client.login import LoginWindow
-from client.signup import SignUpWindow
-from client.home import HomeWindow
+from client.old.login import LoginWindow
+from client.old.signup import SignUpWindow
+from client.old.home import HomeWindow
 from models.user import User
 from database.engine import engine
 from controllers.auth import UserAuth

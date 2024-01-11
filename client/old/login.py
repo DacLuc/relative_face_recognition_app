@@ -15,7 +15,7 @@ from PyQt6 import QtCore
 import sys
 
 sys.path.append("../../relative_face_recognition_app")
-from client.signup import SignUpWindow
+from client.old.signup import SignUpWindow
 
 
 class LoginWindow(QMainWindow):

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>Info_Users_Page</class>
+ <widget class="QMainWindow" name="Info_Users_Page">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1006</width>
-    <height>637</height>
+    <width>1049</width>
+    <height>615</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,8 +20,8 @@
    <widget class="QLabel" name="title_label">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>10</y>
+      <x>330</x>
+      <y>20</y>
       <width>371</width>
       <height>41</height>
      </rect>
@@ -64,19 +64,26 @@ color: rgb(0, 0, 0);</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QGroupBox" name="groupBox">
+   <widget class="QGroupBox" name="users_info">
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>70</y>
-      <width>925</width>
-      <height>431</height>
+      <y>80</y>
+      <width>1001</width>
+      <height>401</height>
      </rect>
     </property>
     <property name="font">
      <font>
+      <family>Segoe UI</family>
+      <pointsize>9</pointsize>
+      <italic>false</italic>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(170, 0, 0);
+font: 700 9pt &quot;Segoe UI&quot;;</string>
     </property>
     <property name="title">
      <string>THÔNG TIN NGƯỜI DÙNG</string>
@@ -87,9 +94,9 @@ color: rgb(0, 0, 0);</string>
     <widget class="QWidget" name="horizontalLayoutWidget_2">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>150</y>
-       <width>128</width>
+       <x>510</x>
+       <y>50</y>
+       <width>134</width>
        <height>30</height>
       </rect>
      </property>
@@ -98,9 +105,15 @@ color: rgb(0, 0, 0);</string>
        <widget class="QLabel" name="gioi_tinh_label">
         <property name="font">
          <font>
+          <family>Segoe UI</family>
           <pointsize>9</pointsize>
-          <bold>false</bold>
+          <italic>false</italic>
+          <bold>true</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+font: 700 9pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="text">
          <string>Giới tính</string>
@@ -108,12 +121,18 @@ color: rgb(0, 0, 0);</string>
        </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="gioi_tinh">
+       <widget class="QComboBox" name="gioi_tinh_box">
         <property name="font">
          <font>
+          <family>Segoe UI</family>
           <pointsize>9</pointsize>
+          <italic>false</italic>
           <bold>false</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+font: 9pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="insertPolicy">
          <enum>QComboBox::NoInsert</enum>
@@ -145,18 +164,24 @@ color: rgb(0, 0, 0);</string>
       <rect>
        <x>10</x>
        <y>100</y>
-       <width>905</width>
+       <width>982</width>
        <height>28</height>
       </rect>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QLabel" name="label_3">
+       <widget class="QLabel" name="age_landmark">
         <property name="font">
          <font>
+          <family>Segoe UI</family>
           <pointsize>9</pointsize>
-          <bold>false</bold>
+          <italic>false</italic>
+          <bold>true</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+font: 700 9pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="text">
          <string>Mốc tuổi</string>
@@ -164,12 +189,37 @@ color: rgb(0, 0, 0);</string>
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="check_1">
+       <widget class="QRadioButton" name="age_1">
         <property name="font">
          <font>
+          <family>Segoe UI</family>
           <pointsize>9</pointsize>
+          <italic>false</italic>
           <bold>false</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+font: 9pt &quot;Segoe UI&quot;;</string>
+        </property>
+        <property name="text">
+         <string>0 - 10</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="age_2">
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <pointsize>9</pointsize>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+font: 9pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="text">
          <string>10 - 20</string>
@@ -177,12 +227,18 @@ color: rgb(0, 0, 0);</string>
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="check_5">
+       <widget class="QRadioButton" name="age_3">
         <property name="font">
          <font>
+          <family>Segoe UI</family>
           <pointsize>9</pointsize>
+          <italic>false</italic>
           <bold>false</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+font: 9pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="text">
          <string>21 - 30</string>
@@ -190,12 +246,18 @@ color: rgb(0, 0, 0);</string>
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="check_4">
+       <widget class="QRadioButton" name="age_4">
         <property name="font">
          <font>
+          <family>Segoe UI</family>
           <pointsize>9</pointsize>
+          <italic>false</italic>
           <bold>false</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+font: 9pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="text">
          <string>31 - 40</string>
@@ -203,12 +265,18 @@ color: rgb(0, 0, 0);</string>
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="check_3">
+       <widget class="QRadioButton" name="age_5">
         <property name="font">
          <font>
+          <family>Segoe UI</family>
           <pointsize>9</pointsize>
+          <italic>false</italic>
           <bold>false</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+font: 9pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="text">
          <string>41 - 50</string>
@@ -216,12 +284,18 @@ color: rgb(0, 0, 0);</string>
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="check_2">
+       <widget class="QRadioButton" name="age_6">
         <property name="font">
          <font>
+          <family>Segoe UI</family>
           <pointsize>9</pointsize>
+          <italic>false</italic>
           <bold>false</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+font: 9pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="text">
          <string>51 - 60</string>
@@ -229,12 +303,18 @@ color: rgb(0, 0, 0);</string>
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="check_6">
+       <widget class="QRadioButton" name="age_7">
         <property name="font">
          <font>
+          <family>Segoe UI</family>
           <pointsize>9</pointsize>
+          <italic>false</italic>
           <bold>false</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+font: 9pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="text">
          <string>61 - 70</string>
@@ -242,12 +322,18 @@ color: rgb(0, 0, 0);</string>
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="check_7">
+       <widget class="QRadioButton" name="age_8">
         <property name="font">
          <font>
+          <family>Segoe UI</family>
           <pointsize>9</pointsize>
+          <italic>false</italic>
           <bold>false</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+font: 9pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="text">
          <string>71 - 80</string>
@@ -255,12 +341,18 @@ color: rgb(0, 0, 0);</string>
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="check_8">
+       <widget class="QRadioButton" name="age_9">
         <property name="font">
          <font>
+          <family>Segoe UI</family>
           <pointsize>9</pointsize>
+          <italic>false</italic>
           <bold>false</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+font: 9pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="text">
          <string>81 - 90</string>
@@ -268,12 +360,18 @@ color: rgb(0, 0, 0);</string>
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="check_9">
+       <widget class="QRadioButton" name="age_10">
         <property name="font">
          <font>
+          <family>Segoe UI</family>
           <pointsize>9</pointsize>
+          <italic>false</italic>
           <bold>false</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+font: 9pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="text">
          <string>91 - 100</string>
@@ -281,12 +379,18 @@ color: rgb(0, 0, 0);</string>
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="check_10">
+       <widget class="QRadioButton" name="age_11">
         <property name="font">
          <font>
+          <family>Segoe UI</family>
           <pointsize>9</pointsize>
+          <italic>false</italic>
           <bold>false</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+font: 9pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="text">
          <string>101 - 110</string>
@@ -309,9 +413,15 @@ color: rgb(0, 0, 0);</string>
        <widget class="QLabel" name="ho_ten_label">
         <property name="font">
          <font>
+          <family>Segoe UI</family>
           <pointsize>9</pointsize>
-          <bold>false</bold>
+          <italic>false</italic>
+          <bold>true</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+font: 700 9pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="text">
          <string>Họ và Tên</string>
@@ -319,7 +429,12 @@ color: rgb(0, 0, 0);</string>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="ho_ten"/>
+       <widget class="QLineEdit" name="ho_ten">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+font: 9pt &quot;Segoe UI&quot;;</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -327,18 +442,25 @@ color: rgb(0, 0, 0);</string>
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>270</y>
+       <y>220</y>
        <width>289</width>
-       <height>30</height>
+       <height>87</height>
       </rect>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <layout class="QHBoxLayout" name="face_feature">
       <item>
-       <widget class="QLabel" name="dac_diem_nhan_dang">
+       <widget class="QLabel" name="info_face_label">
         <property name="font">
          <font>
-          <bold>false</bold>
+          <family>Segoe UI</family>
+          <pointsize>9</pointsize>
+          <italic>false</italic>
+          <bold>true</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+font: 700 9pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="text">
          <string>Đặc điểm nhận dạng</string>
@@ -346,7 +468,7 @@ color: rgb(0, 0, 0);</string>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="info_face"/>
+       <widget class="QTextEdit" name="info_face_text"/>
       </item>
      </layout>
     </widget>
@@ -354,18 +476,25 @@ color: rgb(0, 0, 0);</string>
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>390</y>
-       <width>402</width>
+       <y>340</y>
+       <width>421</width>
        <height>28</height>
       </rect>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <layout class="QHBoxLayout" name="allowed_finding">
       <item>
        <widget class="QLabel" name="allowed_label">
         <property name="font">
          <font>
-          <bold>false</bold>
+          <family>Segoe UI</family>
+          <pointsize>9</pointsize>
+          <italic>false</italic>
+          <bold>true</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+font: 700 9pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="text">
          <string>Cho phép người dùng khác tìm kiếm thông tin </string>
@@ -376,8 +505,15 @@ color: rgb(0, 0, 0);</string>
        <widget class="QCheckBox" name="is_allowed">
         <property name="font">
          <font>
-          <bold>false</bold>
+          <family>Segoe UI</family>
+          <pointsize>9</pointsize>
+          <italic>false</italic>
+          <bold>true</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+font: 700 9pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="text">
          <string>Allowed</string>
@@ -389,19 +525,26 @@ color: rgb(0, 0, 0);</string>
     <widget class="QWidget" name="horizontalLayoutWidget_6">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>340</y>
+       <x>510</x>
+       <y>250</y>
        <width>284</width>
        <height>31</height>
       </rect>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_6">
+     <layout class="QHBoxLayout" name="pic">
       <item>
        <widget class="QLabel" name="upload_avatar_label">
         <property name="font">
          <font>
-          <bold>false</bold>
+          <family>Segoe UI</family>
+          <pointsize>9</pointsize>
+          <italic>false</italic>
+          <bold>true</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+font: 700 9pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="text">
          <string>Upload hình ảnh cá nhân</string>
@@ -412,8 +555,15 @@ color: rgb(0, 0, 0);</string>
        <widget class="QPushButton" name="download_pic">
         <property name="font">
          <font>
+          <family>Segoe UI</family>
+          <pointsize>9</pointsize>
+          <italic>false</italic>
           <bold>false</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 9pt &quot;Segoe UI&quot;;
+color: rgb(0, 0, 0);</string>
         </property>
         <property name="text">
          <string>Download </string>
@@ -426,19 +576,25 @@ color: rgb(0, 0, 0);</string>
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>210</y>
-       <width>711</width>
+       <y>160</y>
+       <width>729</width>
        <height>30</height>
       </rect>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_9">
+     <layout class="QHBoxLayout" name="place">
       <item>
-       <widget class="QLabel" name="nation">
+       <widget class="QLabel" name="nation_label">
         <property name="font">
          <font>
+          <family>Segoe UI</family>
           <pointsize>9</pointsize>
-          <bold>false</bold>
+          <italic>false</italic>
+          <bold>true</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+font: 700 9pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="text">
          <string>Quốc gia</string>
@@ -446,15 +602,26 @@ color: rgb(0, 0, 0);</string>
        </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="nation_box"/>
+       <widget class="QComboBox" name="nation_box">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+font: 9pt &quot;Segoe UI&quot;;</string>
+        </property>
+       </widget>
       </item>
       <item>
-       <widget class="QLabel" name="city">
+       <widget class="QLabel" name="city_label">
         <property name="font">
          <font>
+          <family>Segoe UI</family>
           <pointsize>9</pointsize>
-          <bold>false</bold>
+          <italic>false</italic>
+          <bold>true</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+font: 700 9pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="text">
          <string>Thành phố</string>
@@ -462,15 +629,26 @@ color: rgb(0, 0, 0);</string>
        </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="city_box"/>
+       <widget class="QComboBox" name="city_box">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+font: 9pt &quot;Segoe UI&quot;;</string>
+        </property>
+       </widget>
       </item>
       <item>
-       <widget class="QLabel" name="district">
+       <widget class="QLabel" name="district_label">
         <property name="font">
          <font>
+          <family>Segoe UI</family>
           <pointsize>9</pointsize>
-          <bold>false</bold>
+          <italic>false</italic>
+          <bold>true</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+font: 700 9pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="text">
          <string>Quận / Huyện</string>
@@ -478,15 +656,26 @@ color: rgb(0, 0, 0);</string>
        </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="district_box"/>
+       <widget class="QComboBox" name="district_box">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+font: 9pt &quot;Segoe UI&quot;;</string>
+        </property>
+       </widget>
       </item>
       <item>
-       <widget class="QLabel" name="ward">
+       <widget class="QLabel" name="ward_label">
         <property name="font">
          <font>
+          <family>Segoe UI</family>
           <pointsize>9</pointsize>
-          <bold>false</bold>
+          <italic>false</italic>
+          <bold>true</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+font: 700 9pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="text">
          <string>Phường / Xã</string>
@@ -494,7 +683,12 @@ color: rgb(0, 0, 0);</string>
        </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="ward_box"/>
+       <widget class="QComboBox" name="ward_box">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+font: 9pt &quot;Segoe UI&quot;;</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -502,15 +696,25 @@ color: rgb(0, 0, 0);</string>
    <widget class="QWidget" name="horizontalLayoutWidget_7">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>520</y>
+      <x>410</x>
+      <y>500</y>
       <width>221</width>
       <height>41</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_7">
+    <layout class="QHBoxLayout" name="exit_page">
      <item>
       <widget class="QPushButton" name="apply_button">
+       <property name="font">
+        <font>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(85, 255, 255);
+color: rgb(0, 0, 127);
+background-color: rgb(255, 255, 255);</string>
+       </property>
        <property name="text">
         <string>APPLY</string>
        </property>
@@ -518,6 +722,15 @@ color: rgb(0, 0, 0);</string>
      </item>
      <item>
       <widget class="QPushButton" name="cancel_button">
+       <property name="font">
+        <font>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(170, 0, 0);
+background-color: rgb(255, 255, 255);</string>
+       </property>
        <property name="text">
         <string>CANCEL</string>
        </property>
@@ -531,7 +744,7 @@ color: rgb(0, 0, 0);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1006</width>
+     <width>1049</width>
      <height>25</height>
     </rect>
    </property>
