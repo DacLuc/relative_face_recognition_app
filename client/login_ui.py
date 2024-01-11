@@ -63,9 +63,11 @@ class Ui_Sign_In_Page(object):
         self.account_name.setObjectName("account_name")
         self.verticalLayout_2.addWidget(self.account_name)
         self.account_password = QtWidgets.QLineEdit(parent=self.verticalLayoutWidget_2)
+        self.account_password.setMouseTracking(True)
         self.account_password.setStyleSheet(
             "color: rgb(0, 0, 0);\n" "background-color: rgb(255, 255, 255);"
         )
+        self.account_password.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
         self.account_password.setObjectName("account_password")
         self.verticalLayout_2.addWidget(self.account_password)
         self.horizontalLayoutWidget = QtWidgets.QWidget(parent=self.info_login)
@@ -167,6 +169,10 @@ class Ui_Sign_In_Page(object):
                 '<html><head/><body><p><span style=" font-weight:700;">MẬT KHẨU</span></p></body></html>',
             )
         )
+        self.account_name.setPlaceholderText(
+            _translate("Sign_In_Page", "Ten Dang Nhap")
+        )
+        self.account_password.setPlaceholderText(_translate("Sign_In_Page", "Password"))
         self.mov_register.setText(
             _translate("Sign_In_Page", "Nếu bạn chưa đăng ký tài khoản, hãy")
         )

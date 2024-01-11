@@ -6,7 +6,7 @@ import check_signup
 class Ui_Sign_Up_Page(object):
     def setupUi(self, Sign_Up_Page):
         Sign_Up_Page.setObjectName("Sign_Up_Page")
-        Sign_Up_Page.resize(616, 467)
+        Sign_Up_Page.resize(599, 470)
         self.centralwidget = QtWidgets.QWidget(parent=Sign_Up_Page)
         self.centralwidget.setObjectName("centralwidget")
         self.info_account = QtWidgets.QGroupBox(parent=self.centralwidget)
@@ -99,6 +99,7 @@ class Ui_Sign_Up_Page(object):
             "background-color: rgb(255, 255, 255);\n"
             'font: 9pt "Segoe UI";'
         )
+        self.confirm_password.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
         self.confirm_password.setObjectName("confirm_password")
         self.verticalLayout_2.addWidget(self.confirm_password)
         self.horizontalLayoutWidget = QtWidgets.QWidget(parent=self.info_account)
@@ -166,7 +167,7 @@ class Ui_Sign_Up_Page(object):
         self.horizontalLayout_4.addWidget(self.cancel_button)
         Sign_Up_Page.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(parent=Sign_Up_Page)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 616, 25))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 599, 25))
         self.menubar.setObjectName("menubar")
         Sign_Up_Page.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(parent=Sign_Up_Page)
@@ -211,6 +212,14 @@ class Ui_Sign_Up_Page(object):
                 "Sign_Up_Page",
                 '<html><head/><body><p><span style=" font-weight:700;">XÁC NHẬN MẬT KHẨU</span></p></body></html>',
             )
+        )
+        self.account_name.setPlaceholderText(_translate("Sign_Up_Page", "Ten Dang Ky"))
+        self.account_email.setPlaceholderText(
+            _translate("Sign_Up_Page", "Tai khoan Email")
+        )
+        self.account_password.setPlaceholderText(_translate("Sign_Up_Page", "Password"))
+        self.confirm_password.setPlaceholderText(
+            _translate("Sign_Up_Page", "Confirm Password")
         )
         self.label_6.setText(
             _translate(

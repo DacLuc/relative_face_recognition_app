@@ -119,13 +119,25 @@ color: rgb(170, 0, 0);</string>
          <string notr="true">background-color: rgb(255, 255, 255);
 color: rgb(0, 0, 0);</string>
         </property>
+        <property name="placeholderText">
+         <string>Ten Dang Nhap</string>
+        </property>
        </widget>
       </item>
       <item>
        <widget class="QLineEdit" name="account_password">
+        <property name="mouseTracking">
+         <bool>true</bool>
+        </property>
         <property name="styleSheet">
          <string notr="true">color: rgb(0, 0, 0);
 background-color: rgb(255, 255, 255);</string>
+        </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Password</enum>
+        </property>
+        <property name="placeholderText">
+         <string>Password</string>
         </property>
        </widget>
       </item>

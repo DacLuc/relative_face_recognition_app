@@ -133,6 +133,9 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
 background-color: rgb(255, 255, 255);
 font: 9pt &quot;Segoe UI&quot;;</string>
         </property>
+        <property name="placeholderText">
+         <string>Ten Dang Ky</string>
+        </property>
        </widget>
       </item>
       <item>
@@ -141,6 +144,9 @@ font: 9pt &quot;Segoe UI&quot;;</string>
          <string notr="true">color: rgb(0, 0, 0);
 background-color: rgb(255, 255, 255);
 font: 9pt &quot;Segoe UI&quot;;</string>
+        </property>
+        <property name="placeholderText">
+         <string>Tai khoan Email</string>
         </property>
        </widget>
       </item>
@@ -151,6 +157,9 @@ font: 9pt &quot;Segoe UI&quot;;</string>
 background-color: rgb(255, 255, 255);
 font: 9pt &quot;Segoe UI&quot;;</string>
         </property>
+        <property name="placeholderText">
+         <string>Password</string>
+        </property>
        </widget>
       </item>
       <item>
@@ -159,6 +168,12 @@ font: 9pt &quot;Segoe UI&quot;;</string>
          <string notr="true">color: rgb(0, 0, 0);
 background-color: rgb(255, 255, 255);
 font: 9pt &quot;Segoe UI&quot;;</string>
+        </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Password</enum>
+        </property>
+        <property name="placeholderText">
+         <string>Confirm Password</string>
         </property>
        </widget>
       </item>
