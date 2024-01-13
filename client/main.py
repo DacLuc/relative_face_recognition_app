@@ -1,6 +1,12 @@
 from PyQt6 import QtCore, QtWidgets, QtQuick
 import sys
 import home_page, signup_ui, login_ui, main_win, found_users, user_info, credit_ui
+from controllers.auth import UserAuthController
+
+user_auth_controller = UserAuthController()
+
+
+
 
 # xu ly nut
 ui = ""
@@ -20,7 +26,7 @@ def home_page_ui():
 
 def signup_ui_load():
     global ui
-    ui = signup_ui.Ui_Sign_Up_Page()
+    ui = signup_ui.Ui_Sign_Up_Page(user_auth_controller)
     ui.setupUi(Mainwindow)
     ui.cancel_button.clicked.connect(home_page_ui)
     ui.apply_button.clicked.connect(login_ui_load)
@@ -29,7 +35,7 @@ def signup_ui_load():
 
 def login_ui_load():
     global ui
-    ui = login_ui.Ui_Sign_In_Page()
+    ui = login_ui.Ui_Sign_In_Page(user_auth_controller)
     ui.setupUi(Mainwindow)
     ui.cancel_button.clicked.connect(home_page_ui)
     ui.apply_button.clicked.connect(main_win_ui)

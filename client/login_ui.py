@@ -2,8 +2,14 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 
 import check_login
 
+from controllers.auth import UserAuthController
+from models.user_validators import *
 
 class Ui_Sign_In_Page(object):
+
+    def __init__(self, user_auth_controller: UserAuthController):
+        self.user_auth_controller = user_auth_controller
+
     def setupUi(self, Sign_In_Page):
         Sign_In_Page.setObjectName("Sign_In_Page")
         Sign_In_Page.resize(590, 370)
@@ -143,7 +149,17 @@ class Ui_Sign_In_Page(object):
         ui = check_login.Ui_check_login()
         ui.setupUi(dlg)
         dlg.exec()
-        return ui.exit_button.clicked.connect(self.check_login)
+        username = self.account_name.text()
+        password = self.account_password.text()
+        new_user = UserSignIn(
+            username=username, password=password)
+        # if new_user:
+        isLoggedInSuccessfully = self.user_auth_controller.log_in(username, password)
+        print("isLoggedInSuccessfully: ", isLoggedInSuccessfully)
+        if isLoggedInSuccessfully:
+            return ui.exit_button.clicked.connect(self.check_login)
+        else:
+            return "LOGIN FAILED"
 
     def retranslateUi(self, Sign_In_Page):
         _translate = QtCore.QCoreApplication.translate

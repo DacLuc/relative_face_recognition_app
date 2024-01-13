@@ -1,9 +1,19 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 import check_signup
-
+# import sys
+# sys.path.append("../../relative_face_recognition_app")
+# sys.path.append("../../relative_face_recognition_app/client")
+# from controllers.auth import UserAuth
+# from models.user import User
+from controllers.auth import UserAuthController
+from models.user_validators import *
 
 class Ui_Sign_Up_Page(object):
+
+    def __init__(self, user_auth_controller: UserAuthController):
+        self.user_auth_controller = user_auth_controller
+
     def setupUi(self, Sign_Up_Page):
         Sign_Up_Page.setObjectName("Sign_Up_Page")
         Sign_Up_Page.resize(599, 470)
@@ -182,6 +192,15 @@ class Ui_Sign_Up_Page(object):
         ui = check_signup.Ui_check_signup()
         ui.setupUi(dlg)
         dlg.exec()
+        # print("===Register btn clicked!")
+        username = self.account_name.text()
+        email = self.account_email.text()
+        password = self.account_password.text()
+        new_user = UserSignUp(username=username, email=email, password=password)
+        # if new_user:
+        self.user_auth_controller.register(username, email, password)
+        
+
         return ui.exit_button.clicked.connect(self.check_signup)
 
     def retranslateUi(self, Sign_Up_Page):
