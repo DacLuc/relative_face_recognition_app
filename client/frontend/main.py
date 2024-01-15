@@ -1,7 +1,7 @@
 from PyQt6 import QtCore, QtWidgets, QtQuick
 import sys
-
 sys.path.append("../../client")
+
 import home_page, signup_ui, login_ui, menu, found_users, user_info, credit_ui, check_login, check_upload_pic, check_signup, cities_districts_wards
 from models.user_validators import *
 from controllers.auth import user_auth_controller
@@ -26,18 +26,13 @@ def home_page_ui():
     Mainwindow.show()
 
 
-def check_login_ui():
+def check_login_ui(username: str, password: str):
     dlg = QtWidgets.QDialog()
     ui = check_login.Ui_check_login()
-    login_ui_instance = login_ui.Ui_Sign_In_Page(
-        user_auth_controller
-    )  # Create an instance
-
     ui.setupUi(dlg)
-    user_name = login_ui_instance.account_name.text()  # Access through the instance
-    password = login_ui_instance.account_password.text()
-    new_user = UserSignUp(username=user_name, password=password)
-    is_logged_in_successfully = user_auth_controller.log_in(user_name, password)
+
+    new_user = UserSignIn(username=username, password=password)
+    is_logged_in_successfully = user_auth_controller.log_in(username, password)
     dlg.exec()
     print("is_logged_in_successfully: ", is_logged_in_successfully)
 
@@ -47,22 +42,14 @@ def check_login_ui():
         return ui.exit_button.rejected.connect(check_login_ui)
 
 
-def check_signup_ui():
+def check_signup_ui(username: str, email: str, password: str):
     dlg = QtWidgets.QDialog()
-    signup_ui_instance = signup_ui.Ui_Sign_Up_Page(user_auth_controller)
     ui = check_signup.Ui_check_signup()
     ui.setupUi(dlg)
-
-    user_name = signup_ui_instance.account_name.text()
-    email = signup_ui_instance.account_email.text()
-    password = signup_ui_instance.account_password.text()
-
-    print("user_name: ", user_name)
-    print("email: ", email)
-    print("password: ", password)
-
-    new_user = UserSignUp(username=user_name, email=email, password=password)
-    user_auth_controller.register(user_name, email, password)
+    # dlg.exec()
+    
+    new_user = UserSignUp(username=username, email=email, password=password)
+    user_auth_controller.register(username, email, password)
 
     dlg.exec()
     return ui.exit_button.accepted.connect(check_signup_ui)
@@ -70,10 +57,12 @@ def check_signup_ui():
 
 def signup_ui_load():
     global ui
-    ui = signup_ui.Ui_Sign_Up_Page(user_auth_controller)
+    # ui = signup_ui.Ui_Sign_Up_Page(user_auth_controller)
+    ui = signup_ui.Ui_Sign_Up_Page()
     ui.setupUi(Mainwindow)
     ui.cancel_button.clicked.connect(home_page_ui)
-    ui.apply_button.clicked.connect(check_signup_ui)
+    ui.apply_button.clicked.connect(
+        lambda: check_signup_ui(ui.account_name.text(), ui.account_email.text(), ui.account_password.text()))
     ui.apply_button.clicked.connect(login_ui_load)
     Mainwindow.show()
 
@@ -83,7 +72,7 @@ def login_ui_load():
     ui = login_ui.Ui_Sign_In_Page(user_auth_controller)
     ui.setupUi(Mainwindow)
     ui.cancel_button.clicked.connect(home_page_ui)
-    ui.apply_button.clicked.connect(check_login_ui)
+    ui.apply_button.clicked.connect(lambda: check_login_ui(ui.account_name.text(), ui.account_password.text()))
     ui.apply_button.clicked.connect(main_win_ui)
     Mainwindow.show()
 

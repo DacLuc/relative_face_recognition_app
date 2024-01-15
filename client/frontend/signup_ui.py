@@ -17,11 +17,6 @@ from models.user_validators import *
 
 
 class Ui_Sign_Up_Page(object):
-    def __init__(self, user_auth_controller: user_auth_controller):
-        self.user_auth_controller = user_auth_controller
-        self.account_name = QtWidgets.QLineEdit()
-        self.account_email = QtWidgets.QLineEdit()
-        self.account_password = QtWidgets.QLineEdit()
 
     def setupUi(self, Sign_Up_Page):
         Sign_Up_Page.setObjectName("Sign_Up_Page")
