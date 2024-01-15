@@ -7,8 +7,6 @@ from models.user_validators import *
 user_auth_controller = UserAuthController()
 
 
-
-
 # xu ly nut
 ui = ""
 app = QtWidgets.QApplication(sys.argv)

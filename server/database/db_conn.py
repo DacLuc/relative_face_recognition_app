@@ -1,5 +1,6 @@
 import psycopg2
 
+
 class PostgreSQLConnection:
     def __init__(self, dbname, user, password, host, port):
         self.dbname = dbname
@@ -17,7 +18,7 @@ class PostgreSQLConnection:
                 user=self.user,
                 password=self.password,
                 host=self.host,
-                port=self.port
+                port=self.port,
             )
             self.cursor = self.connection.cursor()
             print("Connected to the database.")
