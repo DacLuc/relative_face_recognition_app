@@ -8,16 +8,8 @@
 
 from PyQt6 import QtCore, QtGui, QtWidgets
 
-import sys
-
-sys.path.append("../../client")
-
-from controllers.auth import user_auth_controller
-from models.user_validators import *
-
 
 class Ui_Sign_Up_Page(object):
-
     def setupUi(self, Sign_Up_Page):
         Sign_Up_Page.setObjectName("Sign_Up_Page")
         Sign_Up_Page.resize(1074, 555)

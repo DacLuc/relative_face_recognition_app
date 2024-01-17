@@ -1,5 +1,7 @@
 from typing import Optional
 from sqlmodel import Field, Session, SQLModel, create_engine, select
+import uuid
+
 
 class User_Info(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
@@ -8,7 +10,10 @@ class User_Info(SQLModel, table=True):
     country_id: Optional[int] = Field(default=None, foreign_key="country.id")
     city_id: Optional[int] = Field(default=None, foreign_key="city.id")
     district_id: Optional[int] = Field(default=None, foreign_key="district.id")
-    ward_id: Optional[int] = Field(default=None, foreign_key="ward.id")
+    ward_id: uuid.UUID = Field(
+        index=True,
+        nullable=False,
+    )
     name: str = Field(index=True)
     age: str = Field(index=True)
     gender: bool
