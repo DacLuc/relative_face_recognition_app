@@ -34,7 +34,7 @@ async def read_user(username: str, password: str):
 async def create_user(req: Request):
     data = await req.json()
     print("User from /users: ", data)
-    new_user = user.User(
+    new_user = user_credentials.User(
         username=data["signup_username"],
         email=data["signup_email"],
         password=data["signup_password"],

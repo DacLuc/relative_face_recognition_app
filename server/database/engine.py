@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from sqlmodel import Field, Session, SQLModel, create_engine
+from sqlmodel import create_engine
 
 from db_conn import PostgreSQLConnection
 

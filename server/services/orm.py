@@ -3,7 +3,7 @@ import sys
 
 sys.path.append("../../../../relative_face_recognition_app/server")
 from database.engine import engine
-from models.user import User
+from server.models.user_credentials import User
 
 
 def select_users(username, password):

@@ -1,10 +1,16 @@
 from typing import Optional
-from sqlmodel import Field, Session, SQLModel, create_engine, select
-from sqlalchemy.dialects.postgresql import UUID
+from sqlmodel import Field, SQLModel
+from sqlalchemy.sql.expression import func
 import uuid
 
 
 class City(SQLModel, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
-    name: str = Field(index=True)
-    country_id: int = Field(index=True)
+    id: Optional[uuid.UUID] = Field(
+        default_factory=uuid.uuid4,
+        primary_key=True,
+        index=True,
+        nullable=False,
+        sa_column_kwargs=dict(server_default=func.gen_random_uuid()),
+    )
+    name_city: str = Field(index=True, nullable=False)
+    id_country: uuid.UUID = Field(index=True, nullable=True, foreign_key="country.id")

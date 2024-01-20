@@ -1,8 +1,9 @@
 from PyQt6 import QtCore, QtWidgets, QtQuick
 import sys
+
 sys.path.append("../../client")
 
-import home_page, signup_ui, login_ui, menu, found_users, user_info, credit_ui, check_login, check_upload_pic, check_signup, cities_districts_wards
+import home_page, signup_ui, login_ui, menu, found_users, user_info, credit_ui, check_login, check_upload_pic, check_signup, cities_districts_wards, check_wrong_login
 from models.user_validators import *
 from controllers.auth import user_auth_controller
 import os
@@ -46,8 +47,7 @@ def check_signup_ui(username: str, email: str, password: str):
     dlg = QtWidgets.QDialog()
     ui = check_signup.Ui_check_signup()
     ui.setupUi(dlg)
-    # dlg.exec()
-    
+
     new_user = UserSignUp(username=username, email=email, password=password)
     user_auth_controller.register(username, email, password)
 
@@ -57,12 +57,14 @@ def check_signup_ui(username: str, email: str, password: str):
 
 def signup_ui_load():
     global ui
-    # ui = signup_ui.Ui_Sign_Up_Page(user_auth_controller)
     ui = signup_ui.Ui_Sign_Up_Page()
     ui.setupUi(Mainwindow)
     ui.cancel_button.clicked.connect(home_page_ui)
     ui.apply_button.clicked.connect(
-        lambda: check_signup_ui(ui.account_name.text(), ui.account_email.text(), ui.account_password.text()))
+        lambda: check_signup_ui(
+            ui.account_name.text(), ui.account_email.text(), ui.account_password.text()
+        )
+    )
     ui.apply_button.clicked.connect(login_ui_load)
     Mainwindow.show()
 
@@ -72,9 +74,19 @@ def login_ui_load():
     ui = login_ui.Ui_Sign_In_Page(user_auth_controller)
     ui.setupUi(Mainwindow)
     ui.cancel_button.clicked.connect(home_page_ui)
-    ui.apply_button.clicked.connect(lambda: check_login_ui(ui.account_name.text(), ui.account_password.text()))
+    ui.apply_button.clicked.connect(
+        lambda: check_login_ui(ui.account_name.text(), ui.account_password.text())
+    )
     ui.apply_button.clicked.connect(main_win_ui)
     Mainwindow.show()
+
+
+def check_wrong_login_ui():
+    dlg = QtWidgets.QDialog()
+    ui = check_wrong_login.Ui_Dialog()
+    ui.setupUi(dlg)
+    dlg.exec()
+    return ui.exit_button.accepted.connect(dlg.accept)
 
 
 def credit_ui_load():

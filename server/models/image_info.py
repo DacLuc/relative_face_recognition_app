@@ -5,7 +5,7 @@ from sqlalchemy import Column, DateTime, func
 from datetime import datetime
 
 
-class FoundImage(SQLModel, table=True):
+class ImageInfo(SQLModel, table=True):
     id: Optional[uuid.UUID] = Field(
         default_factory=uuid.uuid4,
         primary_key=True,
@@ -13,20 +13,11 @@ class FoundImage(SQLModel, table=True):
         nullable=False,
         sa_column_kwargs=dict(server_default=func.gen_random_uuid()),
     )
-    id_request_image: uuid.UUID = Field(
-        default=None, nullable=True, index=True, foreign_key="requestimage.id"
-    )
-    id_found_image: uuid.UUID = Field(
-        default=None, nullable=True, index=True, foreign_key="imageinfo.id"
-    )
-    found_time: float = Field(default=None, nullable=True)
-    similarity_faces: float = Field(default=None, nullable=True)
+    name_imagee: str = Field(index=True, nullable=False)
+    image_path: str = Field(index=True, nullable=False)
     created_at: Optional[datetime] = Column(
         DateTime, server_default=func.now(), nullable=False
     )
     updated_at: Optional[datetime] = Column(
         DateTime, server_default=func.now(), nullable=False
-    )
-    id_user_info: uuid.UUID = Field(
-        default=None, nullable=True, index=True, foreign_key="userinfo.id"
     )

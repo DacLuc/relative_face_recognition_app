@@ -3,4 +3,6 @@
 
 A GUI-supported app for finding people based on basic personal information.
 
-Run main.py in folder client
+Description of DataBase:
+
+
