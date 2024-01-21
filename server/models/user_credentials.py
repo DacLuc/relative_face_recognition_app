@@ -37,12 +37,18 @@ class UserCredentials(SQLModel, table=True):
         index=True, nullable=False, max_length=50, min_length=3, regex="^[a-zA-Z0-9_]*$"
     )
     # created_at: la thoi diem ma user dang ky tai khoan thanh cong (luu ca ngay/thang/nam gio:phut:giay)
-    created_at: Optional[datetime] = Column(
-        DateTime, server_default=func.now(), nullable=False
+    # created_at: Optional[datetime] = Column(
+    #     DateTime, server_default=func.now(), nullable=False
+    # )
+    created_at: Optional[datetime] = Field(
+        default=func.now(), nullable=False
     )
     # last_login: la thoi diem ma user dang nhap vao tai khoan (luu ca ngay/thang/nam gio:phut:giay)
-    last_login: Optional[datetime] = Column(
-        DateTime, server_default=func.now(), nullable=False
+    # last_login: Optional[datetime] = Column(
+    #     DateTime, server_default=func.now(), nullable=False
+    # )
+    last_login: Optional[datetime] = Field(
+        default=func.now(), nullable=False
     )
     # login_count: la so lan ma user dang nhap vao tai khoan
     login_count: int = Field(default=0, nullable=False)

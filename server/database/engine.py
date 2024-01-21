@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 from sqlmodel import create_engine
 
-from db_conn import PostgreSQLConnection
+from database.db_conn import PostgreSQLConnection
 
 load_dotenv()
 

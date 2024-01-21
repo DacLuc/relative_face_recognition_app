@@ -121,40 +121,119 @@ def get_response_upload_pic():
         filter=file_filter,
         initialFilter="Image File (*.png *.jpg)",
     )
-    return response
+    # print("!!! response from get_response_upload_pic: ", response)
+    return response[0]
 
 
-def launch_upload_pic_ui(response=None):
-    response = get_response_upload_pic()
+def launch_upload_pic_ui(response):
+    user_uploaded_img = get_response_upload_pic()
     dlg = QtWidgets.QDialog()
     ui = check_upload_pic.Ui_Dialog()
     ui.setupUi(dlg)
     ui.exit_box.accepted.connect(dlg.accept)
     ui.exit_box.rejected.connect(dlg.reject)
-    if response[0] != "":
+    if user_uploaded_img[0] != "":
         dlg.exec()
+        print("!!! response from launch_upload_pic_ui: ", user_uploaded_img)
+        response.append(user_uploaded_img)
 
+
+def check_user_info_ui(user_info_name = None, user_info_gender = None, user_info_age = None, user_info_country = None, user_info_city = None, user_info_district = None, user_info_ward = None, user_info_feature = None, user_info_allowed = None, user_info_img = None):
+    print("      ===---=== BIG DATA ===---===      ")
+    print("- user_info_name: ", user_info_name)
+    print("- user_info_gender: ", user_info_gender)
+    print("- user_info_age: ", user_info_age)
+    print("- user_info_country: ", user_info_country)
+    print("- user_info_city: ", user_info_city)
+    print("- user_info_district: ", user_info_district)
+    print("- user_info_ward: ", user_info_ward)
+    print("- user_info_feature: ", user_info_feature)
+    print("- user_info_allowed: ", user_info_allowed)
+    print("- user_info_img: ", user_info_img)
+    print("________________________________________")
+    user_auth_controller.update_user_info(
+        user_info_name, user_info_age, user_info_gender)
 
 def user_info_ui():
     global ui
     ui = user_info.Ui_Info_Users_Page()
     ui.setupUi(Mainwindow)
-    ui.download_pic.clicked.connect(launch_upload_pic_ui)
+    # ui.download_pic.clicked.connect(launch_upload_pic_ui)
+    user_info_img = []
+    ui.download_pic.clicked.connect(
+        lambda: launch_upload_pic_ui(user_info_img))
     ui.cancel_button.clicked.connect(main_win_ui)
     ui.location_app = cities_districts_wards.LocationApp(
         ui.nation_box, ui.city_box, ui.district_box, ui.ward_box
     )
+    # user_info_name = ui.ho_ten.text()
+    # user_info_gender = str(ui.gioi_tinh_box.currentText())
+    # user_info_age = ui.age_1.isChecked()
+    # user_info_country = str(ui.nation_box.currentText())
+    # user_info_city = str(ui.city_box.currentText())
+    # user_info_district = str(ui.district_box.currentText())
+    # user_info_ward = str(ui.ward_box.currentText())
+    # user_info_feature = ui.info_face_text.toPlainText()
+    # user_info_upload = ui.download_pic.clicked()
+    # user_info_img = get_response_upload_pic()
+    # user_info_allowed = ui.is_allowed.isChecked()
+    
+    ui.apply_button.clicked.connect(
+        lambda: check_user_info_ui(
+            ui.ho_ten.text(),
+            str(ui.gioi_tinh_box.currentText()),
+            ui.age_1.isChecked(),
+            str(ui.nation_box.currentText()),
+            str(ui.city_box.currentText()),
+            str(ui.district_box.currentText()),
+            str(ui.ward_box.currentText()),
+            ui.info_face_text.toPlainText(),
+            ui.is_allowed.isChecked(),
+            user_info_img
+        )
+    )
+    # ui.apply_button.clicked.connect(main_win_ui)
+    # ui.cancel_button.clicked.connect(home_page_ui)
     Mainwindow.show()
 
+def check_found_user_ui(user_info_name = None, user_info_gender = None, user_info_age = None, user_info_country = None, user_info_city = None, user_info_district = None, user_info_ward = None, user_info_feature = None, user_info_img = None):
+    print("      ===---=== BIG DATA from check_found_user_ui ===---===      ")
+    print("- user_info_name: ", user_info_name)
+    print("- user_info_gender: ", user_info_gender)
+    print("- user_info_age: ", user_info_age)
+    print("- user_info_country: ", user_info_country)
+    print("- user_info_city: ", user_info_city)
+    print("- user_info_district: ", user_info_district)
+    print("- user_info_ward: ", user_info_ward)
+    print("- user_info_feature: ", user_info_feature)
+    print("- user_info_img: ", user_info_img)
+    print("________________________________________")
+    user_auth_controller.find_people(user_info_name, user_info_gender, user_info_age, user_info_country, user_info_city, user_info_district, user_info_ward, user_info_feature, user_info_img)
 
 def found_users_ui():
     global ui
     ui = found_users.Ui_Found_Users_Page()
     ui.setupUi(Mainwindow)
-    ui.pushButton.clicked.connect(launch_upload_pic_ui)
+    # ui.pushButton.clicked.connect(launch_upload_pic_ui)
+    found_user_img = []
+    ui.pushButton.clicked.connect(
+        lambda: launch_upload_pic_ui(found_user_img))
     ui.cancel_button.clicked.connect(main_win_ui)
     ui.location_app = cities_districts_wards.LocationApp(
         ui.nation_box, ui.city_box, ui.district_box, ui.ward_box
+    )
+    ui.apply_button.clicked.connect(
+        lambda: check_found_user_ui(
+            ui.ho_ten_box.text(),
+            str(ui.gioi_tinh.currentText()),
+            ui.age_1.isChecked(),
+            str(ui.nation_box.currentText()),
+            str(ui.city_box.currentText()),
+            str(ui.district_box.currentText()),
+            str(ui.ward_box.currentText()),
+            ui.info_face.toPlainText(),
+            found_user_img
+        )
     )
     Mainwindow.show()
 

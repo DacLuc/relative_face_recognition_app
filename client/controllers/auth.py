@@ -36,3 +36,25 @@ class user_auth_controller:
             return {"status": 200, "message": "Successfully added a new user."}
         else:
             return {"status": 400, "message": "Something went wrong."}
+
+    def update_user_info(self, full_name, age, gender):
+        data = {
+            "full_name": full_name,
+            "age": 16,
+            "gender":  gender == "Nam",
+        }
+        URL = "http://localhost:8080/user_info/"
+        req = requests.post(url=URL, json=data)
+        # print(signup_username, signup_email, signup_password)
+        if req.status_code == 200:
+            return {"status": 200, "message": "Successfully updated user info."}
+        else:
+            return {"status": 400, "message": "Something went wrong."}
+
+    def find_people(self, user_info_name = None, user_info_gender = None, user_info_age = None, user_info_country = None, user_info_city = None, user_info_district = None, user_info_ward = None, user_info_feature = None, user_info_img = None):
+        # filter based on basic info
+        URL = f"http://localhost:8080/user_info?name={user_info_name}&gender={user_info_gender}&age={user_info_age}&country={user_info_country}&city={user_info_city}&district={user_info_district}&ward={user_info_ward}&feature={user_info_feature}"
+        data = requests.get(url=URL)
+        json_data = data.json()
+        print("---> json_data: ", json_data)
+

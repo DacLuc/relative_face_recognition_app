@@ -1,9 +1,9 @@
 # from fastapi_jwt_auth import AuthJWT
+import uuid
 import sys
 
 sys.path.append("../../../relative_face_recognition_app/server")
 from database.engine import engine
-
 
 from models import *
 
@@ -29,13 +29,41 @@ async def read_user(username: str, password: str):
     else:
         return {"status": 400, "message": "Login failed!"}
 
+@app.post("/user_info")
+async def update_user_info(req: Request):
+    data = await req.json()
+    info = user_info.UserInfo(
+        id_user=uuid.UUID("ee516811-03f5-4ad8-aeb9-db2bb2953caa").hex,
+        full_name=data["full_name"],
+        age=data["age"],
+        gender=data["gender"],
+        id_image=None,
+        id_country=None,
+        id_city=None,
+        id_district=None,
+        id_ward=None,
+        is_finding_user=False,
+        is_allowed=True,
+        is_searched_user=False
+    )
+    with Session(engine) as session:
+        session.add(info)
+        session.commit()
+    return {"status": 200, "message": "Successfully updated user info"}
+
+@app.get("/user_info")
+async def read_user_info(name: str, gender: str, age: str, country: str, city: str, district: str, ward: str, feature: str):
+    print(name, gender, age, country, city, district, ward, feature)
+    result = filter_users(name = name, gender = gender, age = 10)
+    print("* ******* * result from filter_users: ", result)
+    return {"status": 200, "message": "Successfully queried user info"}
 
 @app.post("/users")
 async def create_user(req: Request):
     data = await req.json()
     print("User from /users: ", data)
-    new_user = user_credentials.User(
-        username=data["signup_username"],
+    new_user = user_credentials.UserCredentials(
+        user_name=data["signup_username"],
         email=data["signup_email"],
         password=data["signup_password"],
     )
@@ -43,7 +71,6 @@ async def create_user(req: Request):
         session.add(new_user)
         session.commit()
     return {"status": 200, "message": "Successfully created a new user"}
-
 
 @app.get("/auth/login")
 def login(username, password):
