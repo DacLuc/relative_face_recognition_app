@@ -136,7 +136,6 @@ def set_global_user_id(id_user):
 
 
 @app.post("/token")
-@app.post("/token")
 async def login_for_access_token(form_data: TokenRequest):
     db = SessionLocal()
     user = db.execute(
