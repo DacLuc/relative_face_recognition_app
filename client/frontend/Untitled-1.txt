@@ -1,6 +1,0 @@
-- Cac tinh nang:
-+ Dang nhap, dang ky
-+ Nhap thong tin nguoi dung
-+ Nhap thong tin nguoi can tim
-+ Tim kiem nguoi can tim
-+ Lich su tim kiem

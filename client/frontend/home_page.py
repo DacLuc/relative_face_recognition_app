@@ -33,7 +33,7 @@ class Ui_Home_Page(object):
         self.home_page_box.setStyleSheet("color: rgb(170, 0, 0);")
         self.home_page_box.setObjectName("home_page_box")
         self.verticalLayoutWidget = QtWidgets.QWidget(parent=self.home_page_box)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 50, 336, 173))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(60, 50, 258, 171))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -84,9 +84,6 @@ class Ui_Home_Page(object):
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1074, 25))
         self.menubar.setObjectName("menubar")
         Home_Page.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(parent=Home_Page)
-        self.statusbar.setObjectName("statusbar")
-        Home_Page.setStatusBar(self.statusbar)
 
         self.retranslateUi(Home_Page)
         QtCore.QMetaObject.connectSlotsByName(Home_Page)

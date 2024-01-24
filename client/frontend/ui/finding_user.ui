@@ -682,9 +682,9 @@ font: 9pt &quot;Segoe UI&quot;;</string>
     <widget class="QWidget" name="horizontalLayoutWidget_10">
      <property name="geometry">
       <rect>
-       <x>790</x>
+       <x>764</x>
        <y>180</y>
-       <width>205</width>
+       <width>231</width>
        <height>30</height>
       </rect>
      </property>
@@ -742,9 +742,9 @@ font: 9pt &quot;Segoe UI&quot;;</string>
     <widget class="QWidget" name="horizontalLayoutWidget_8">
      <property name="geometry">
       <rect>
-       <x>530</x>
+       <x>500</x>
        <y>180</y>
-       <width>223</width>
+       <width>261</width>
        <height>30</height>
       </rect>
      </property>

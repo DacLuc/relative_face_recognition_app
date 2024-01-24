@@ -1,8 +1,11 @@
 import os
 from dotenv import load_dotenv
+from sqlmodel import SQLModel
 from sqlmodel import create_engine
+import sys
 
-from db_conn import PostgreSQLConnection
+sys.path.append("../../../face_recognition_app/server")
+from .db_conn import PostgreSQLConnection
 
 load_dotenv()
 
@@ -22,3 +25,5 @@ engine = create_engine(
     f"postgresql+psycopg2://{db_connection.user}:{db_connection.password}@{db_connection.host}:{db_connection.port}/{db_connection.dbname}",
     echo=True,
 )
+
+SQLModel.metadata.create_all(engine)

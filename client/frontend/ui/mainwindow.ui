@@ -73,9 +73,9 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
      <property name="geometry">
       <rect>
        <x>60</x>
-       <y>110</y>
+       <y>100</y>
        <width>220</width>
-       <height>171</height>
+       <height>201</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="menu_box">

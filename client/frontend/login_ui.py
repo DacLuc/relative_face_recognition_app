@@ -1,6 +1,10 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
-from controllers.auth import user_auth_controller
-from models.user_validators import *
+import sys
+import os
+
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/../..")
+from server.services.auth import user_auth_controller
+from server.services.user_validators import *
 
 
 class Ui_Sign_In_Page(object):

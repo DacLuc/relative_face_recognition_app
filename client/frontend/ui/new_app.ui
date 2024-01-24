@@ -593,6 +593,9 @@ color: rgb(0, 0, 0);</string>
       </rect>
      </property>
      <layout class="QHBoxLayout" name="nation_place">
+      <property name="spacing">
+       <number>2</number>
+      </property>
       <item>
        <widget class="QLabel" name="nation_label">
         <property name="font">
@@ -633,13 +636,16 @@ font: 9pt &quot;Segoe UI&quot;;</string>
     <widget class="QWidget" name="horizontalLayoutWidget_11">
      <property name="geometry">
       <rect>
-       <x>780</x>
+       <x>750</x>
        <y>160</y>
-       <width>210</width>
+       <width>251</width>
        <height>30</height>
       </rect>
      </property>
      <layout class="QHBoxLayout" name="ward_place">
+      <property name="spacing">
+       <number>2</number>
+      </property>
       <item>
        <widget class="QLabel" name="ward_label">
         <property name="font">
@@ -678,13 +684,16 @@ font: 9pt &quot;Segoe UI&quot;;</string>
     <widget class="QWidget" name="horizontalLayoutWidget_10">
      <property name="geometry">
       <rect>
-       <x>520</x>
+       <x>497</x>
        <y>160</y>
-       <width>228</width>
+       <width>231</width>
        <height>30</height>
       </rect>
      </property>
      <layout class="QHBoxLayout" name="district_place">
+      <property name="spacing">
+       <number>2</number>
+      </property>
       <item>
        <widget class="QLabel" name="district_label">
         <property name="font">
@@ -730,6 +739,9 @@ font: 9pt &quot;Segoe UI&quot;;</string>
       </rect>
      </property>
      <layout class="QHBoxLayout" name="city_place">
+      <property name="spacing">
+       <number>2</number>
+      </property>
       <item>
        <widget class="QLabel" name="city_label">
         <property name="font">

@@ -26,7 +26,7 @@ class UserCredentials(SQLModel, table=True):
         max_length=50,
         min_length=3,
         regex="^[a-zA-Z0-9_]*$",
-        description="Username must be between 3 and 50 characters long and can only contain letters, numbers and underscores.",
+        description="The username of the user",
     )
     # emailL la email cua user khi dang ky (check xem co email nay trong database chua, neu chua thi cho dang ky, nguoc lai thi bao loi va yeu cau user nhap lai email khac)
     email: str = Field(
@@ -37,12 +37,8 @@ class UserCredentials(SQLModel, table=True):
         index=True, nullable=False, max_length=50, min_length=3, regex="^[a-zA-Z0-9_]*$"
     )
     # created_at: la thoi diem ma user dang ky tai khoan thanh cong (luu ca ngay/thang/nam gio:phut:giay)
-    created_at: Optional[datetime] = Column(
-        DateTime, server_default=func.now(), nullable=False
-    )
+    created_at: Optional[datetime] = Field(default=func.now(), nullable=False)
     # last_login: la thoi diem ma user dang nhap vao tai khoan (luu ca ngay/thang/nam gio:phut:giay)
-    last_login: Optional[datetime] = Column(
-        DateTime, server_default=func.now(), nullable=False
-    )
+    last_login: Optional[datetime] = Field(default=func.now(), nullable=False)
     # login_count: la so lan ma user dang nhap vao tai khoan
     login_count: int = Field(default=0, nullable=False)
