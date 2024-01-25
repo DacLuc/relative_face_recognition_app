@@ -1,16 +1,7 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
-import sys
-import os
-
-sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/../..")
-from server.services.auth import user_auth_controller
-from server.services.user_validators import *
 
 
 class Ui_Sign_In_Page(object):
-    def __init__(self, user_auth_controller: user_auth_controller):
-        self.user_auth_controller = user_auth_controller
-
     def setupUi(self, Sign_In_Page):
         Sign_In_Page.setObjectName("Sign_In_Page")
         Sign_In_Page.resize(1074, 555)

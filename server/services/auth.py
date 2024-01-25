@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import requests
 import os
-from datetime import datetime, timedelta
+import json
 
 
 class user_auth_controller:
@@ -33,7 +33,14 @@ class user_auth_controller:
         }
         URL = "http://localhost:8080/token"
         response = requests.post(url=URL, json=data)
-        json_data = response.json()
+        print("response: ", response.status_code)
+        try:
+            json_data = response.json()
+            # Xử lý dữ liệu JSON ở đây
+            print("JSON response:", json_data)
+        except json.decoder.JSONDecodeError:
+            # Xử lý trường hợp response.text không phải là JSON hợp lệ
+            print("Invalid JSON response:", response.text)
         if response.status_code == 200:
             access_token = json_data["access_token"]
             self.save_token(access_token)

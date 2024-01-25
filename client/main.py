@@ -2,9 +2,8 @@ from PyQt6 import QtWidgets
 import sys
 import os
 
-sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/../..")
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/../")
 import frontend.home_page, frontend.signup_ui, frontend.login_ui, frontend.menu, frontend.found_users, frontend.user_info, frontend.credit_ui, frontend.check_login, frontend.check_upload_pic, frontend.check_signup, frontend.check_wrong_login, frontend.results, frontend.check_wrong_signup, frontend.check_fill_info
-from server.services.user_validators import *
 from server.services.auth import user_auth_controller
 from client.controllers.cities_districts_wards import LocationApp
 
@@ -50,7 +49,6 @@ def signup_ui_load():
     ui = frontend.signup_ui.Ui_Sign_Up_Page()
     ui.setupUi(Mainwindow)
     ui.apply_button.clicked.connect(check_signup_user_auth_controller)
-    # ui.apply_button.clicked.connect(login_ui_load)
     ui.cancel_button.clicked.connect(home_page_ui)
 
     Mainwindow.show()
@@ -87,6 +85,7 @@ def check_signup_user_auth_controller():
     elif user_auth_controller.register(account_name, account_email, account_password):
         # Thuc hien day du khi dang ky thanh cong (tra ve cho client)
         check_right_signup_ui()
+        login_ui_load()
     else:
         # Thuc hien bao loi (tra ve cho client) do khong the dang ky duoc tai khoan do da ton tai trong database
         check_wrong_signup_ui()
@@ -97,7 +96,7 @@ def check_signup_user_auth_controller():
 # Login UI (Step Page 03)
 def login_ui_load():
     global ui
-    ui = frontend.login_ui.Ui_Sign_In_Page(user_auth_controller)
+    ui = frontend.login_ui.Ui_Sign_In_Page()
     ui.setupUi(Mainwindow)
     ui.apply_button.clicked.connect(check_login_user_auth_controller)
     ui.signup_button.clicked.connect(signup_ui_load)
@@ -106,7 +105,7 @@ def login_ui_load():
 
 
 # check right login dialog
-def check_right_login_ui(username: str, password: str):
+def check_right_login_ui():
     dlg = QtWidgets.QDialog()
     ui = frontend.check_login.Ui_check_login()
     ui.setupUi(dlg)
@@ -134,7 +133,8 @@ def check_login_user_auth_controller():
         check_fill_info_ui()
     elif user_auth_controller.log_in(username, password):
         # Thuc hien day du khi dang nhap thanh cong (tra ve cho client)
-        check_right_login_ui(username, password)
+        check_right_login_ui()
+        menu_ui()
     else:
         # Thuc hien bao loi (tra ve cho client) do khong the dang nhap duoc tai khoan do khong ton tai trong database
         check_wrong_login_ui()

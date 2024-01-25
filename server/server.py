@@ -4,30 +4,40 @@ import os
 sys.path.append("../../../face_recognition_app/server")
 from database.engine import engine
 from models import *
-
 from fastapi import FastAPI, HTTPException, Depends, status
 from fastapi.security import OAuth2PasswordBearer
-from sqlmodel import Session, select
 from services.orm import *
 from jose import JWTError, jwt
 from datetime import datetime, timedelta
 from passlib.context import CryptContext
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.exc import IntegrityError
+from sqlalchemy.orm import sessionmaker, Session
 from dotenv import load_dotenv
-from services.user_validators import TokenRequest, RegisterRequest, LoginRequest
+from services.user_validators import RegisterRequest, LoginRequest
 
 load_dotenv()
 
-
+# Khởi tạo FastAPI
 app = FastAPI()
+# Khởi tạo session để truy vấn CSDL
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+# Khởi tạo biến toàn cục để lưu id người dùng
 global_id_user = None
+
 # OAuth2 để xác thực người dùng
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 # Password hashing
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+
+# get db session from orm.py
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
 
 # Function để tạo token
@@ -42,21 +52,12 @@ def create_access_token(data: dict, expires_delta: timedelta):
 
 
 # Function để xác thực người dùng
-def get_user(db: Session, username: str, password: str):
-    return db.exec(
-        select(UserCredentials).where(
-            UserCredentials.user_name == username
-            and UserCredentials.password == password
-        )
-    ).first()
-
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+def get_user(db: Session, form_data: LoginRequest):
+    result_proxy = db.execute(
+        select(UserCredentials).where(UserCredentials.user_name == form_data.username)
+    )
+    user = result_proxy.fetchone()
+    return user
 
 
 # Function để xác thực password
@@ -67,6 +68,19 @@ def verify_password(plain_password, hashed_password):
 # Function để tạo người dùng
 def create_user(db: Session, user: UserCredentials):
     try:
+        # Check if the user_name is not provided or empty
+        if user.user_name is None:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Username is required for registration",
+            )
+        # Check if the email is not provided or empty
+        if user.email is None:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Email is required for registration",
+            )
+        # Check if the password is not provided or empty
         if user.password is None:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
@@ -75,12 +89,16 @@ def create_user(db: Session, user: UserCredentials):
         # Hash mật khẩu trước khi lưu vào CSDL
         user.password = pwd_context.hash(user.password)
 
+        # Tạo người dùng mới
         with db:
-            # Tạo người dùng mới
+            # Add user to the database
             db.add(user)
+            # Commit changes to the database
             db.commit()
+            # Refresh the user object to get the id
             db.refresh(user)
             return user
+    # Handle errors during user creation
     except Exception as e:
         print(f"Error during user creation: {e}")
         db.rollback()
@@ -89,10 +107,11 @@ def create_user(db: Session, user: UserCredentials):
             detail="Internal server error during user creation",
         )
     finally:
+        # Close the database session
         db.close()
 
 
-# Function để xác thực token và lấy thông tin người dùng
+# Function để lấy thông tin người dùng hiện tại
 def get_current_user(
     db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)
 ):
@@ -100,6 +119,7 @@ def get_current_user(
     return credentials
 
 
+# Function để xác thực token và lấy thông tin người dùng
 def verify_token_and_get_credentials(token: str, db: Session):
     credentials = None
     try:
@@ -118,7 +138,7 @@ def verify_token_and_get_credentials(token: str, db: Session):
         )
 
     if token_data:
-        credentials = db.exec(
+        credentials = db.execute(
             select(UserCredentials).where(UserCredentials.user_name == username)
         ).first()
 
@@ -130,22 +150,29 @@ def verify_token_and_get_credentials(token: str, db: Session):
     return credentials
 
 
+# Fuction de set global user id
 def set_global_user_id(id_user):
     global global_id_user
     global_id_user = id_user
 
 
+# Endpoint để xác thực và tạo token cho người dùng khi đăng nhập
 @app.post("/token")
-async def login_for_access_token(form_data: TokenRequest):
-    db = SessionLocal()
-    user = db.execute(
-        select(UserCredentials).where(
-            UserCredentials.user_name == form_data.username
-            and UserCredentials.password == form_data.password
-        )
-    ).first()
+async def login_for_access_token(
+    form_data: LoginRequest, db: Session = Depends(get_db)
+):
+    user = get_user(db, form_data)
 
-    if not user or not verify_password(form_data.password, user.password):
+    if not user or not user[0].password:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid username or password",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+
+    hashed_password = user[0].password
+
+    if not verify_password(form_data.password, hashed_password):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid username or password",
@@ -162,11 +189,9 @@ async def login_for_access_token(form_data: TokenRequest):
     return {"access_token": access_token, "token_type": "bearer"}
 
 
-# Endpoint để đăng ký và tạo token
+# Endpoint để đăng ký người dùng va tạo token cho người dùng
 @app.post("/register")
-async def register_user(request_data: RegisterRequest):
-    db = SessionLocal()
-
+async def register_user(request_data: RegisterRequest, db: Session = Depends(get_db)):
     # Kiểm tra xem user_name có được cung cấp hay không
     user = UserCredentials(
         user_name=request_data.username,
@@ -178,16 +203,25 @@ async def register_user(request_data: RegisterRequest):
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Username is required for registration",
         )
-    # Hash mật khẩu trước khi lưu vào CSDL
-    user.password = pwd_context.hash(user.password)
+    if not user.password:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Password is required for registration",
+        )
+    if not user.email:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Email is required for registration",
+        )
 
     # Tạo người dùng mới
     created_user = create_user(db, user)
 
+    # Tạo token cho người dùng
     if created_user:
         # Check if the environment variable is set and not None
         access_token_expire_minutes = os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES")
-        print("access_token_expire_minutes: ", access_token_expire_minutes)
+        # Create access token
         if access_token_expire_minutes is not None:
             access_token_expires = timedelta(minutes=int(access_token_expire_minutes))
         else:
