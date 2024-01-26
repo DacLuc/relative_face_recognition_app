@@ -158,8 +158,8 @@ def verify_token_and_get_credentials(token: str, db: Session):
 
 
 # Endpoint để lấy id người dùng hiện tại
-@app.get("/user_id", response_model=uuid.UUID)
-async def get_user_id(
+@app.get("/user_credentials_id", response_model=uuid.UUID)
+async def get_user_credentials_id(
     current_user: UserCredentials = Depends(get_current_user),
 ):
     print("current_user: ", current_user)
@@ -172,7 +172,7 @@ async def get_user_id(
 async def create_user_info(
     data: UserInfoRequest,
     db: Session = Depends(get_db),
-    user_id: uuid.UUID = Depends(get_user_id),
+    user_id: uuid.UUID = Depends(get_user_credentials_id),
 ):
     print("data: ", data)
     print("user_id: ", user_id)

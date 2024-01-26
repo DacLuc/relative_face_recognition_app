@@ -3,9 +3,9 @@ import sys
 import os
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/../")
-import frontend.home_page, frontend.signup_ui, frontend.login_ui, frontend.menu, frontend.found_users, frontend.user_info, frontend.credit_ui, frontend.check_login, frontend.check_upload_pic, frontend.check_signup, frontend.check_wrong_login, frontend.results, frontend.check_wrong_signup, frontend.check_fill_info, frontend.check_right_update_user_info, frontend.check_wrong_update_user_info
 from server.services.auth import user_auth_controller
 from client.controllers.cities_districts_wards import LocationApp
+import frontend.home_page, frontend.signup_ui, frontend.login_ui, frontend.credit_ui, frontend.menu, frontend.user_info, frontend.found_users, frontend.check_fill_info, frontend.check_signup, frontend.check_wrong_signup, frontend.check_login, frontend.check_wrong_login, frontend.check_right_update_user_info, frontend.check_wrong_update_user_info, frontend.check_upload_pic, frontend.check_robot_ui, frontend.results, frontend.check_confirm_password
 
 user_auth_controller = user_auth_controller()
 
@@ -72,23 +72,60 @@ def check_wrong_signup_ui():
     return ui.exit_button.accepted.connect(dlg.accept)
 
 
+def check_robot_ui():
+    dlg = QtWidgets.QDialog()
+    ui = frontend.check_robot_ui.Ui_CheckRobot()
+    ui.setupUi(dlg)
+    dlg.exec()
+    return ui.exit_button.accepted.connect(dlg.accept)
+
+
+def check_confirm_password_ui():
+    dlg = QtWidgets.QDialog()
+    ui = frontend.check_confirm_password.Ui_Dialog()
+    ui.setupUi(dlg)
+    dlg.exec()
+    return ui.exit_button.accepted.connect(dlg.accept)
+
+
 # check signup controllers (from client layer to controller layer)
 def check_signup_user_auth_controller():
     account_name = ui.account_name.text()
     account_email = ui.account_email.text()
     account_password = ui.account_password.text()
+    check_robot = ui.check_robot.isChecked()
+    confirm_password = ui.confirm_password.text()
 
     # ---
-    if not account_name or not account_email or not account_password:
-        # Thuc hien bao loi (tra ve cho client) do khong dien day du thong tin
-        check_fill_info_ui()
-    elif user_auth_controller.register(account_name, account_email, account_password):
-        # Thuc hien day du khi dang ky thanh cong (tra ve cho client)
-        check_right_signup_ui()
-        login_ui_load()
+    # check if user is not robot
+    if check_robot:
+        if (
+            not account_name
+            or not account_email
+            or not account_password
+            or not confirm_password
+        ):
+            # Thuc hien bao loi (tra ve cho client) do khong dien day du thong tin
+            check_fill_info_ui()
+            signup_ui_load()
+        elif account_password != confirm_password:
+            # Thuc hien bao loi (tra ve cho client) do khong xac nhan dung mat khau (passWord)
+            check_confirm_password_ui()
+            signup_ui_load()
+        elif user_auth_controller.register(
+            account_name, account_email, account_password
+        ):
+            # Thuc hien day du khi dang ky thanh cong (tra ve cho client)
+            check_right_signup_ui()
+            login_ui_load()
+        else:
+            # Thuc hien bao loi (tra ve cho client) do khong the dang ky duoc tai khoan do da ton tai trong database
+            check_wrong_signup_ui()
+            signup_ui_load()
     else:
-        # Thuc hien bao loi (tra ve cho client) do khong the dang ky duoc tai khoan do da ton tai trong database
-        check_wrong_signup_ui()
+        # Thuc hien bao loi (tra ve cho client) do khong phai la nguoi dung that (la robot)
+        check_robot_ui()
+        signup_ui_load()
 
 
 # -----------------------------------------------------'
@@ -139,8 +176,7 @@ def check_login_user_auth_controller():
 
 
 # -----------------------------------------------------'
-
-
+# CREDIT
 # Credit UI (Step Page 04)
 def credit_ui_load():
     global ui
@@ -151,8 +187,7 @@ def credit_ui_load():
 
 
 # -----------------------------------------------------'
-
-
+# MENU
 # menu UI (Step Page 05)
 def menu_ui():
     global ui
@@ -165,7 +200,8 @@ def menu_ui():
     Mainwindow.show()
 
 
-# -----------------------------------------------------
+# -----------------------------------------------------\
+# ENTER USER INFORMATION
 # User Info UI (Step Page 06)
 def user_info_ui():
     global ui
@@ -181,6 +217,7 @@ def user_info_ui():
     Mainwindow.show()
 
 
+# check right user info dialog
 def check_right_user_info_ui():
     dlg = QtWidgets.QDialog()
     ui = frontend.check_right_update_user_info.Ui_Dialog()
@@ -189,6 +226,7 @@ def check_right_user_info_ui():
     return ui.exit_button.accepted.connect(dlg.accept)
 
 
+# Check wrong user info dialog
 def check_wrong_user_info_ui():
     dlg = QtWidgets.QDialog()
     ui = frontend.check_wrong_update_user_info.Ui_Dialog()
@@ -197,9 +235,10 @@ def check_wrong_user_info_ui():
     return ui.exit_button.accepted.connect(dlg.accept)
 
 
-def check_user_info_auth_controller():  # Create an instance
-    id_user = user_auth_controller.get_user_id_from_auth_controller()
-    full_name = ui.ho_ten.text()
+# check user info auth controllers (from client layer to controller layer)
+def check_user_info_auth_controller():
+    id_user = user_auth_controller.get_user_credentials_id_from_auth_controller()
+    full_name = str(ui.ho_ten.text())
     age = int(ui.age_range.text())
     check_gioi_tinh = str(ui.gioi_tinh_box.currentText())
     gioi_tinh = None
@@ -213,7 +252,7 @@ def check_user_info_auth_controller():  # Create an instance
     id_district = ui.location_app.selected_district_id
     id_ward = ui.location_app.selected_ward_id
     info_face = str(ui.info_face_text.toPlainText())
-    is_allowed = ui.is_allowed.isChecked()
+    is_allowed = bool(ui.is_allowed.isChecked())
 
     print(
         "      ===---=== BIG DATA from check_user_info_auth_controller ===---===      "
@@ -276,6 +315,7 @@ def launch_upload_pic_ui(response):
 
 
 # -----------------------------------------------------
+# FOUND USERS INFORMATION THROUGH FACE RECOGNITION
 # Found Users UI (Step Page 07)
 def found_users_ui():
     global ui
@@ -356,6 +396,7 @@ def check_found_user_ui(
 
 
 # -----------------------------------------------------
+# HITORY FINDING USERS INFORMATION
 # history finding UI (Step Page 08)
 def history_finding_ui():
     pass

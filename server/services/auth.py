@@ -4,6 +4,9 @@ import os
 import json
 import uuid
 
+# Biến toàn cục để lưu trữ access_token
+saved_token = None
+
 
 class user_auth_controller:
     def __init__(self):
@@ -52,9 +55,10 @@ class user_auth_controller:
             return False
 
     # -------------------------
-    def get_user_id_from_auth_controller(self):
+    # Get user id from auth controller function
+    def get_user_credentials_id_from_auth_controller(self):
         response = requests.get(
-            "http://localhost:8080/user_id",
+            "http://localhost:8080/user_credentials_id",
             headers=self.get_auth_headers(),
         )
         print("response: ", response.status_code)
@@ -151,7 +155,3 @@ class user_auth_controller:
         # Lấy token đã lưu trước đó từ biến cục bộ
         global saved_token
         return saved_token
-
-
-# Biến toàn cục để lưu trữ token
-saved_token = None
