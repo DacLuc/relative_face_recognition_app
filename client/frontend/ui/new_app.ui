@@ -94,8 +94,8 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
     <widget class="QWidget" name="horizontalLayoutWidget_2">
      <property name="geometry">
       <rect>
-       <x>510</x>
-       <y>50</y>
+       <x>360</x>
+       <y>40</y>
        <width>132</width>
        <height>30</height>
       </rect>
@@ -162,13 +162,16 @@ font: 9pt &quot;Segoe UI&quot;;</string>
     <widget class="QWidget" name="horizontalLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>100</y>
-       <width>982</width>
-       <height>28</height>
+       <x>640</x>
+       <y>40</y>
+       <width>171</width>
+       <height>30</height>
       </rect>
      </property>
      <layout class="QHBoxLayout" name="age_box">
+      <property name="spacing">
+       <number>2</number>
+      </property>
       <item>
        <widget class="QLabel" name="age_landmark">
         <property name="font">
@@ -189,211 +192,10 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="age_1">
-        <property name="font">
-         <font>
-          <family>Segoe UI</family>
-          <pointsize>9</pointsize>
-          <italic>false</italic>
-          <bold>false</bold>
-         </font>
-        </property>
+       <widget class="QSpinBox" name="age_range">
         <property name="styleSheet">
          <string notr="true">color: rgb(0, 0, 0);
 font: 9pt &quot;Segoe UI&quot;;</string>
-        </property>
-        <property name="text">
-         <string>0 - 10</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="age_2">
-        <property name="font">
-         <font>
-          <family>Segoe UI</family>
-          <pointsize>9</pointsize>
-          <italic>false</italic>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(0, 0, 0);
-font: 9pt &quot;Segoe UI&quot;;</string>
-        </property>
-        <property name="text">
-         <string>10 - 20</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="age_3">
-        <property name="font">
-         <font>
-          <family>Segoe UI</family>
-          <pointsize>9</pointsize>
-          <italic>false</italic>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(0, 0, 0);
-font: 9pt &quot;Segoe UI&quot;;</string>
-        </property>
-        <property name="text">
-         <string>21 - 30</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="age_4">
-        <property name="font">
-         <font>
-          <family>Segoe UI</family>
-          <pointsize>9</pointsize>
-          <italic>false</italic>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(0, 0, 0);
-font: 9pt &quot;Segoe UI&quot;;</string>
-        </property>
-        <property name="text">
-         <string>31 - 40</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="age_5">
-        <property name="font">
-         <font>
-          <family>Segoe UI</family>
-          <pointsize>9</pointsize>
-          <italic>false</italic>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(0, 0, 0);
-font: 9pt &quot;Segoe UI&quot;;</string>
-        </property>
-        <property name="text">
-         <string>41 - 50</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="age_6">
-        <property name="font">
-         <font>
-          <family>Segoe UI</family>
-          <pointsize>9</pointsize>
-          <italic>false</italic>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(0, 0, 0);
-font: 9pt &quot;Segoe UI&quot;;</string>
-        </property>
-        <property name="text">
-         <string>51 - 60</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="age_7">
-        <property name="font">
-         <font>
-          <family>Segoe UI</family>
-          <pointsize>9</pointsize>
-          <italic>false</italic>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(0, 0, 0);
-font: 9pt &quot;Segoe UI&quot;;</string>
-        </property>
-        <property name="text">
-         <string>61 - 70</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="age_8">
-        <property name="font">
-         <font>
-          <family>Segoe UI</family>
-          <pointsize>9</pointsize>
-          <italic>false</italic>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(0, 0, 0);
-font: 9pt &quot;Segoe UI&quot;;</string>
-        </property>
-        <property name="text">
-         <string>71 - 80</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="age_9">
-        <property name="font">
-         <font>
-          <family>Segoe UI</family>
-          <pointsize>9</pointsize>
-          <italic>false</italic>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(0, 0, 0);
-font: 9pt &quot;Segoe UI&quot;;</string>
-        </property>
-        <property name="text">
-         <string>81 - 90</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="age_10">
-        <property name="font">
-         <font>
-          <family>Segoe UI</family>
-          <pointsize>9</pointsize>
-          <italic>false</italic>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(0, 0, 0);
-font: 9pt &quot;Segoe UI&quot;;</string>
-        </property>
-        <property name="text">
-         <string>91 - 100</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="age_11">
-        <property name="font">
-         <font>
-          <family>Segoe UI</family>
-          <pointsize>9</pointsize>
-          <italic>false</italic>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(0, 0, 0);
-font: 9pt &quot;Segoe UI&quot;;</string>
-        </property>
-        <property name="text">
-         <string>101 - 110</string>
         </property>
        </widget>
       </item>
@@ -486,7 +288,7 @@ font: 9pt &quot;Segoe UI&quot;;</string>
     <widget class="QWidget" name="horizontalLayoutWidget_5">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>290</x>
        <y>340</y>
        <width>475</width>
        <height>28</height>
@@ -536,8 +338,8 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
     <widget class="QWidget" name="horizontalLayoutWidget_6">
      <property name="geometry">
       <rect>
-       <x>510</x>
-       <y>250</y>
+       <x>640</x>
+       <y>220</y>
        <width>284</width>
        <height>31</height>
       </rect>
@@ -577,7 +379,7 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
 color: rgb(0, 0, 0);</string>
         </property>
         <property name="text">
-         <string>Download </string>
+         <string>Upload</string>
         </property>
        </widget>
       </item>
@@ -587,8 +389,8 @@ color: rgb(0, 0, 0);</string>
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>160</y>
-       <width>164</width>
+       <y>100</y>
+       <width>231</width>
        <height>30</height>
       </rect>
      </property>
@@ -636,9 +438,9 @@ font: 9pt &quot;Segoe UI&quot;;</string>
     <widget class="QWidget" name="horizontalLayoutWidget_11">
      <property name="geometry">
       <rect>
-       <x>750</x>
+       <x>360</x>
        <y>160</y>
-       <width>251</width>
+       <width>271</width>
        <height>30</height>
       </rect>
      </property>
@@ -684,7 +486,7 @@ font: 9pt &quot;Segoe UI&quot;;</string>
     <widget class="QWidget" name="horizontalLayoutWidget_10">
      <property name="geometry">
       <rect>
-       <x>497</x>
+       <x>10</x>
        <y>160</y>
        <width>231</width>
        <height>30</height>
@@ -732,8 +534,8 @@ font: 9pt &quot;Segoe UI&quot;;</string>
     <widget class="QWidget" name="horizontalLayoutWidget_9">
      <property name="geometry">
       <rect>
-       <x>210</x>
-       <y>160</y>
+       <x>360</x>
+       <y>100</y>
        <width>274</width>
        <height>30</height>
       </rect>

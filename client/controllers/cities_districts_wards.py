@@ -1,4 +1,4 @@
-from PyQt6 import QtWidgets
+from PyQt6 import QtWidgets, QtCore
 import sys
 import os
 
@@ -24,16 +24,21 @@ class LocationApp(QtWidgets.QWidget):
         self.district_box = district_box
         self.ward_box = ward_box
 
+        self.selected_country_id = None
+        self.selected_city_id = None
+        self.selected_district_id = None
+        self.selected_ward_id = None
+
         self.load_data()
 
         self.city_box.currentIndexChanged.connect(self.update_districts)
         self.district_box.currentIndexChanged.connect(self.update_wards)
+        self.ward_box.currentIndexChanged.connect(self.update_selected_ward_id)
 
     def load_data(self):
         with Session(engine) as session:
             countries = session.exec(select(Country)).all()
             self.nation_box.addItems([country.name_country for country in countries])
-
         self.update_cities()
 
     def update_cities(self):
@@ -43,13 +48,17 @@ class LocationApp(QtWidgets.QWidget):
             country = session.exec(
                 select(Country).where(Country.name_country == selected_country)
             ).first()
-            cities = session.exec(
-                select(City).where(City.id_country == country.id)
-            ).all()
+            if country:
+                self.selected_country_id = country.id  # Store the selected country id
+                cities = session.exec(
+                    select(City).where(City.id_country == country.id)
+                ).all()
 
-            self.city_box.clear()
-            self.city_box.addItems([city.name_city for city in cities])
-
+                self.city_box.clear()
+                self.city_box.addItems([city.name_city for city in cities])
+            else:
+                # Handle the case where no matching country is found
+                print("No matching country found for:", selected_country)
         self.update_districts()
 
     def update_districts(self):
@@ -61,6 +70,7 @@ class LocationApp(QtWidgets.QWidget):
             ).first()
 
             if city:
+                self.selected_city_id = city.id  # Store the selected city id
                 districts = session.exec(
                     select(District).where(District.id_city == city.id)
                 ).all()
@@ -68,10 +78,10 @@ class LocationApp(QtWidgets.QWidget):
                 self.district_box.addItems(
                     [district.name_district for district in districts]
                 )
-                self.update_wards()
             else:
                 # Handle the case where no matching city is found
                 print("No matching city found for:", selected_city)
+        self.update_wards()
 
     def update_wards(self):
         selected_district = self.district_box.currentText()
@@ -81,12 +91,37 @@ class LocationApp(QtWidgets.QWidget):
                 select(District).where(District.name_district == selected_district)
             ).first()
             if district:
+                self.selected_district_id = (
+                    district.id
+                )  # Store the selected district id
                 wards = session.exec(
                     select(Ward).where(Ward.id_district == district.id)
                 ).all()
 
                 self.ward_box.clear()
-                self.ward_box.addItems([ward.name_ward for ward in wards])
+                ward_names = [ward.name_ward for ward in wards]
+                self.ward_box.addItems(ward_names)
+
+                # Check if there are wards and set selected_ward_id
+                if wards:
+                    self.selected_ward_id = wards[
+                        0
+                    ].id  # Set the default to the first ward
+                else:
+                    self.selected_ward_id = None
+                    print("No wards found for district:", selected_district)
             else:
                 # Handle the case where no matching district is found
                 print("No matching district found for:", selected_district)
+
+    def update_selected_ward_id(self):
+        selected_ward = self.ward_box.currentText()
+
+        with Session(engine) as session:
+            ward = session.exec(
+                select(Ward).where(Ward.name_ward == selected_ward)
+            ).first()
+            if ward:
+                self.selected_ward_id = ward.id
+            else:
+                print("No matching ward found for:", selected_ward)

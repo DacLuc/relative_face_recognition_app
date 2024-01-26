@@ -12,7 +12,8 @@ from datetime import datetime, timedelta
 from passlib.context import CryptContext
 from sqlalchemy.orm import sessionmaker, Session
 from dotenv import load_dotenv
-from services.user_validators import RegisterRequest, LoginRequest
+from services.user_validators import RegisterRequest, LoginRequest, UserInfoRequest
+import uuid
 
 load_dotenv()
 
@@ -29,6 +30,12 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 # Password hashing
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+
+# Function để set global user id
+def set_global_user_id(id_user):
+    global global_user_id
+    global_user_id = id_user
 
 
 # get db session from orm.py
@@ -116,7 +123,7 @@ def get_current_user(
     db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)
 ):
     credentials = verify_token_and_get_credentials(token, db)
-    return credentials
+    return credentials[0]
 
 
 # Function để xác thực token và lấy thông tin người dùng
@@ -150,10 +157,46 @@ def verify_token_and_get_credentials(token: str, db: Session):
     return credentials
 
 
-# Fuction de set global user id
-def set_global_user_id(id_user):
-    global global_id_user
-    global_id_user = id_user
+# Endpoint để lấy id người dùng hiện tại
+@app.get("/user_id", response_model=uuid.UUID)
+async def get_user_id(
+    current_user: UserCredentials = Depends(get_current_user),
+):
+    print("current_user: ", current_user)
+    user_id = current_user.id
+    return user_id
+
+
+# Endpoint để nhap thong tin ca nhan cua nguoi dung
+@app.post("/create_user_info")
+async def create_user_info(
+    data: UserInfoRequest,
+    db: Session = Depends(get_db),
+    user_id: uuid.UUID = Depends(get_user_id),
+):
+    print("data: ", data)
+    print("user_id: ", user_id)
+    with db:
+        data.id_user = user_id
+        new_user_info = UserInfo(
+            id_user=data.id_user,
+            full_name=data.full_name,
+            age=data.age,
+            gender=data.gender,
+            id_image=data.id_image,
+            id_country=data.id_country,
+            id_city=data.id_city,
+            id_district=data.id_district,
+            id_ward=data.id_ward,
+            face_feature=data.face_feature,
+            is_allowed=data.is_allowed,
+        )
+
+        print("new_user_info: ", new_user_info)
+
+        db.add(new_user_info)
+        db.commit()
+    db.close()
 
 
 # Endpoint để xác thực và tạo token cho người dùng khi đăng nhập
@@ -247,14 +290,6 @@ async def register_user(request_data: RegisterRequest, db: Session = Depends(get
 async def read_user_info(current_user: UserCredentials = Depends(get_current_user)):
     # Sử dụng current_user để lấy thông tin người dùng từ CSDL và thực hiện các thao tác khác
     return {"user_info": current_user}
-
-
-@app.post("/user_info")
-async def update_user_info(data: user_info.UserInfo, db: Session = Depends(get_db)):
-    with db:
-        db.add(data)
-        db.commit()
-    return {"status": 200, "message": "Successfully updated user info"}
 
 
 @app.get("/user_info")

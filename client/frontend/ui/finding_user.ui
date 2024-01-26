@@ -551,7 +551,7 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
 font: 9pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="text">
-         <string>Download</string>
+         <string>Upload</string>
         </property>
        </widget>
       </item>

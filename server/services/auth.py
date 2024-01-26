@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 import requests
 import os
 import json
+import uuid
 
 
 class user_auth_controller:
@@ -11,6 +12,7 @@ class user_auth_controller:
         self.ACCESS_TOKEN_EXPIRES_IN = os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES")
         self.REFRESH_TOKEN_EXPIRES_IN = os.getenv("REFRESH_TOKEN_EXPIRES_MINUTES")
 
+    # ------------------------
     # Register function
     def register(self, username: str, email: str, password: str):
         data = {
@@ -25,6 +27,7 @@ class user_auth_controller:
         else:
             return False
 
+    # ------------------------
     # Login function
     def log_in(self, username: str, password: str):
         data = {
@@ -48,24 +51,60 @@ class user_auth_controller:
         else:
             return False
 
-    # Update user info function
-    def update_user_info(self, full_name, age, gender, country, city, district, ward):
+    # -------------------------
+    def get_user_id_from_auth_controller(self):
+        response = requests.get(
+            "http://localhost:8080/user_id",
+            headers=self.get_auth_headers(),
+        )
+        print("response: ", response.status_code)
+        print("response: ", response.text)
+
+        if response.status_code == 200:
+            return response.text.replace('"', "")
+        else:
+            # Handle error
+            return None
+
+    # Create user info function
+    def create_user_info(
+        self,
+        id_user: uuid.UUID,
+        full_name: str,
+        age: int,
+        gender: bool,
+        id_image: uuid.UUID,
+        id_country: uuid.UUID,
+        id_city: uuid.UUID,
+        id_district: uuid.UUID,
+        id_ward: uuid.UUID,
+        face_feature: str,
+        is_allowed: bool,
+    ):
         data = {
+            "id_user": str(id_user),
             "full_name": full_name,
             "age": age,
             "gender": gender,
-            "id_country": country,
-            "id_city": city,
-            "id_district": district,
-            "id_ward": ward,
+            "id_image": str(id_image),
+            "id_country": str(id_country),
+            "id_city": str(id_city),
+            "id_district": str(id_district),
+            "id_ward": str(id_ward),
+            "face_feature": face_feature,
+            "is_allowed": is_allowed,
         }
-        URL = "http://localhost:8080/user_info"
+        print("data json: ", data)
+        URL = "http://localhost:8080/create_user_info"
         response = requests.post(url=URL, json=data, headers=self.get_auth_headers())
+        print("response: ", response.status_code)
+        print("response: ", response.text)
         if response.status_code == 200:
-            return {"status": 200, "message": "Successfully updated user info."}
+            return True
         else:
-            return {"status": response.status_code, "message": response.text}
+            return False
 
+    # -------------------------
     # Find people function
     def find_people(
         self,

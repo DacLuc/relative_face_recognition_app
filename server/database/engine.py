@@ -1,6 +1,5 @@
 import os
 from dotenv import load_dotenv
-from sqlmodel import SQLModel
 from sqlmodel import create_engine
 import sys
 
@@ -25,5 +24,3 @@ engine = create_engine(
     f"postgresql+psycopg2://{db_connection.user}:{db_connection.password}@{db_connection.host}:{db_connection.port}/{db_connection.dbname}",
     echo=True,
 )
-
-SQLModel.metadata.create_all(engine)

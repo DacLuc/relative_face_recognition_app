@@ -40,6 +40,8 @@ class UserInfo(SQLModel, table=True):
     # id_ward: day la id cua phuong / xa ma users nhap khi vao trang thong tin ca nhan vao app
     # FK (Foreign_Key): User_info(id_ward) --> Ward(id)
     id_ward: uuid.UUID = Field(index=True, nullable=True, foreign_key="ward.id")
+    # face_feature: day la dac trung khuon mat cua user khi nhap thong tin ca nhan vao app
+    face_feature: str = Field(index=True, nullable=True)
     # is_finding_user: check xem user nay dang tim kiem nguoi khac hay khong
     is_finding_user: bool = Field(index=True, nullable=True)
     # is_allowed: check xem user nay co cho phep nguoi khac tim kiem minh hay khong

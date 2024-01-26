@@ -3,7 +3,7 @@ import sys
 import os
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/../")
-import frontend.home_page, frontend.signup_ui, frontend.login_ui, frontend.menu, frontend.found_users, frontend.user_info, frontend.credit_ui, frontend.check_login, frontend.check_upload_pic, frontend.check_signup, frontend.check_wrong_login, frontend.results, frontend.check_wrong_signup, frontend.check_fill_info
+import frontend.home_page, frontend.signup_ui, frontend.login_ui, frontend.menu, frontend.found_users, frontend.user_info, frontend.credit_ui, frontend.check_login, frontend.check_upload_pic, frontend.check_signup, frontend.check_wrong_login, frontend.results, frontend.check_wrong_signup, frontend.check_fill_info, frontend.check_right_update_user_info, frontend.check_wrong_update_user_info
 from server.services.auth import user_auth_controller
 from client.controllers.cities_districts_wards import LocationApp
 
@@ -126,8 +126,6 @@ def check_wrong_login_ui():
 def check_login_user_auth_controller():
     username = ui.account_name.text()
     password = ui.account_password.text()
-    print("username: ", username)
-    print("password: ", password)
     if not username or not password:
         # Thuc hien bao loi (tra ve cho client) do khong dien day du thong tin
         check_fill_info_ui()
@@ -168,12 +166,90 @@ def menu_ui():
 
 
 # -----------------------------------------------------
-# history finding UI (Step Page 06)
-def history_finding_ui():
-    pass
+# User Info UI (Step Page 06)
+def user_info_ui():
+    global ui
+    ui = frontend.user_info.Ui_Info_Users_Page()
+    ui.setupUi(Mainwindow)
+
+    user_info_img = []
+    ui.download_pic.clicked.connect(lambda: launch_upload_pic_ui(user_info_img))
+    ui.cancel_button.clicked.connect(menu_ui)
+    location_app = LocationApp(ui.nation_box, ui.city_box, ui.district_box, ui.ward_box)
+    ui.location_app = location_app
+    ui.apply_button.clicked.connect(check_user_info_auth_controller)
+    Mainwindow.show()
 
 
-# -----------------------------------------------------
+def check_right_user_info_ui():
+    dlg = QtWidgets.QDialog()
+    ui = frontend.check_right_update_user_info.Ui_Dialog()
+    ui.setupUi(dlg)
+    dlg.exec()
+    return ui.exit_button.accepted.connect(dlg.accept)
+
+
+def check_wrong_user_info_ui():
+    dlg = QtWidgets.QDialog()
+    ui = frontend.check_wrong_update_user_info.Ui_Dialog()
+    ui.setupUi(dlg)
+    dlg.exec()
+    return ui.exit_button.accepted.connect(dlg.accept)
+
+
+def check_user_info_auth_controller():  # Create an instance
+    id_user = user_auth_controller.get_user_id_from_auth_controller()
+    full_name = ui.ho_ten.text()
+    age = int(ui.age_range.text())
+    check_gioi_tinh = str(ui.gioi_tinh_box.currentText())
+    gioi_tinh = None
+    if check_gioi_tinh == "Nam":
+        gioi_tinh = True
+    else:
+        gioi_tinh = False
+    id_image = "123e4567-e89b-12d3-a456-426614174001"
+    id_country = ui.location_app.selected_country_id
+    id_city = ui.location_app.selected_city_id
+    id_district = ui.location_app.selected_district_id
+    id_ward = ui.location_app.selected_ward_id
+    info_face = str(ui.info_face_text.toPlainText())
+    is_allowed = ui.is_allowed.isChecked()
+
+    print(
+        "      ===---=== BIG DATA from check_user_info_auth_controller ===---===      "
+    )
+    print("- id_user: ", id_user)
+    print("- full_name: ", full_name)
+    print("- age: ", age)
+    print("- gioi_tinh: ", gioi_tinh)
+    print("- id_image: ", id_image)
+    print("- id_country: ", id_country)
+    print("- id_city: ", id_city)
+    print("- id_district: ", id_district)
+    print("- id_ward: ", id_ward)
+    print("- info_face: ", info_face)
+    print("- is_allowed: ", is_allowed)
+    print("________________________________________")
+
+    if user_auth_controller.create_user_info(
+        id_user,
+        full_name,
+        age,
+        gioi_tinh,
+        id_image,
+        id_country,
+        id_city,
+        id_district,
+        id_ward,
+        info_face,
+        is_allowed,
+    ):
+        check_right_user_info_ui()
+        menu_ui()
+    else:
+        check_wrong_user_info_ui()
+
+
 def get_response_upload_pic():
     file_filter = "Image File (*.png *.jpg)"
     response = QtWidgets.QFileDialog.getOpenFileName(
@@ -199,71 +275,8 @@ def launch_upload_pic_ui(response):
         response.append(user_uploaded_img)
 
 
-def check_user_info_ui(
-    user_info_name=None,
-    user_info_gender=None,
-    user_info_age=None,
-    user_info_country=None,
-    user_info_city=None,
-    user_info_district=None,
-    user_info_ward=None,
-    user_info_feature=None,
-    user_info_allowed=None,
-    user_info_img=None,
-):
-    print("      ===---=== BIG DATA ===---===      ")
-    print("- user_info_name: ", user_info_name)
-    print("- user_info_gender: ", user_info_gender)
-    print("- user_info_age: ", user_info_age)
-    print("- user_info_country: ", user_info_country)
-    print("- user_info_city: ", user_info_city)
-    print("- user_info_district: ", user_info_district)
-    print("- user_info_ward: ", user_info_ward)
-    print("- user_info_feature: ", user_info_feature)
-    print("- user_info_allowed: ", user_info_allowed)
-    print("- user_info_img: ", user_info_img)
-    print("________________________________________")
-    user_auth_controller.update_user_info(
-        user_info_name,
-        user_info_age,
-        user_info_gender,
-        user_info_country,
-        user_info_city,
-        user_info_district,
-        user_info_ward,
-    )
-
-
-def user_info_ui():
-    global ui
-    ui = frontend.user_info.Ui_Info_Users_Page()
-    ui.setupUi(Mainwindow)
-
-    user_info_img = []
-    ui.download_pic.clicked.connect(lambda: launch_upload_pic_ui(user_info_img))
-    ui.cancel_button.clicked.connect(menu_ui)
-    ui.location_app = LocationApp(
-        ui.nation_box, ui.city_box, ui.district_box, ui.ward_box
-    )
-    ui.apply_button.clicked.connect(
-        lambda: check_user_info_ui(
-            ui.ho_ten.text(),
-            str(ui.gioi_tinh_box.currentText()),
-            ui.age_1.isChecked(),
-            str(ui.nation_box.currentText()),
-            str(ui.city_box.currentText()),
-            str(ui.district_box.currentText()),
-            str(ui.ward_box.currentText()),
-            ui.info_face_text.toPlainText(),
-            ui.is_allowed.isChecked(),
-            user_info_img,
-        )
-    )
-    ui.apply_button.clicked.connect(menu_ui)
-    ui.cancel_button.clicked.connect(home_page_ui)
-    Mainwindow.show()
-
-
+# -----------------------------------------------------
+# Found Users UI (Step Page 07)
 def found_users_ui():
     global ui
     ui = frontend.found_users.Ui_Found_Users_Page()
@@ -290,6 +303,7 @@ def found_users_ui():
     Mainwindow.show()
 
 
+# Check found user auth controllers (from client layer to controller layer)
 def check_found_user_ui(
     user_info_name=None,
     user_info_gender=None,
@@ -341,5 +355,12 @@ def check_found_user_ui(
     Mainwindow.show()
 
 
+# -----------------------------------------------------
+# history finding UI (Step Page 08)
+def history_finding_ui():
+    pass
+
+
+# -----------------------------------------------------
 home_page_ui()
 sys.exit(app.exec())
