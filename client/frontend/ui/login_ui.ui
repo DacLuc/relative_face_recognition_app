@@ -14,39 +14,13 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="title_label">
-    <property name="geometry">
-     <rect>
-      <x>380</x>
-      <y>60</y>
-      <width>344</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="mouseTracking">
-     <bool>true</bool>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: qconicalgradient(cx:0, cy:0, angle:135, stop:0 rgba(255, 255, 0, 69), stop:0.375 rgba(255, 255, 0, 69), stop:0.423533 rgba(251, 255, 0, 145), stop:0.45 rgba(247, 255, 0, 208), stop:0.477581 rgba(255, 244, 71, 130), stop:0.518717 rgba(255, 218, 71, 130), stop:0.55 rgba(255, 255, 0, 255), stop:0.57754 rgba(255, 203, 0, 130), stop:0.625 rgba(255, 255, 0, 69), stop:1 rgba(255, 255, 0, 69));
-color: rgb(0, 0, 0);</string>
-    </property>
-    <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;ỨNG DỤNG TÌM NGƯỜI MUỐN GẶP&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-   </widget>
    <widget class="QGroupBox" name="info_login">
     <property name="geometry">
      <rect>
       <x>320</x>
-      <y>150</y>
-      <width>461</width>
-      <height>241</height>
+      <y>130</y>
+      <width>457</width>
+      <height>310</height>
      </rect>
     </property>
     <property name="font">
@@ -59,14 +33,14 @@ color: rgb(0, 0, 0);</string>
 color: rgb(170, 0, 0);</string>
     </property>
     <property name="title">
-     <string>THÔNG TIN ĐĂNG NHẬP TÀI KHOẢN</string>
+     <string>💻 THÔNG TIN ĐĂNG NHẬP TÀI KHOẢN</string>
     </property>
     <widget class="QWidget" name="verticalLayoutWidget">
      <property name="geometry">
       <rect>
        <x>20</x>
        <y>50</y>
-       <width>151</width>
+       <width>191</width>
        <height>71</height>
       </rect>
      </property>
@@ -82,7 +56,7 @@ color: rgb(170, 0, 0);</string>
          <string notr="true">color: rgb(0, 0, 0);</string>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;TÊN ĐĂNG NHẬP&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;TÊN ĐĂNG NHẬP &lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic; color:#aa0000;&quot;&gt;(*)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -97,7 +71,7 @@ color: rgb(170, 0, 0);</string>
          <string notr="true">color: rgb(0, 0, 0);</string>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;MẬT KHẨU&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;MẬT KHẨU &lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic; color:#aa0000;&quot;&gt;(*)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -106,9 +80,9 @@ color: rgb(170, 0, 0);</string>
     <widget class="QWidget" name="verticalLayoutWidget_2">
      <property name="geometry">
       <rect>
-       <x>170</x>
+       <x>210</x>
        <y>50</y>
-       <width>261</width>
+       <width>221</width>
        <height>71</height>
       </rect>
      </property>
@@ -119,8 +93,11 @@ color: rgb(170, 0, 0);</string>
          <string notr="true">background-color: rgb(255, 255, 255);
 color: rgb(0, 0, 0);</string>
         </property>
+        <property name="text">
+         <string/>
+        </property>
         <property name="placeholderText">
-         <string>Ten Dang Nhap</string>
+         <string>Enter Your Login Username</string>
         </property>
        </widget>
       </item>
@@ -137,7 +114,7 @@ background-color: rgb(255, 255, 255);</string>
          <enum>QLineEdit::Password</enum>
         </property>
         <property name="placeholderText">
-         <string>Password</string>
+         <string>Enter Your Password</string>
         </property>
        </widget>
       </item>
@@ -146,7 +123,7 @@ background-color: rgb(255, 255, 255);</string>
     <widget class="QWidget" name="horizontalLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>50</x>
        <y>190</y>
        <width>387</width>
        <height>31</height>
@@ -237,6 +214,45 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
       </item>
      </layout>
     </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>240</y>
+       <width>187</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:400; font-style:italic; color:#aa0000;&quot;&gt;(*) Đây là thông tin &lt;/span&gt;&lt;span style=&quot; font-weight:400; font-style:italic; text-decoration: underline; color:#aa0000;&quot;&gt;bắt buộc.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="title_label_2">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>40</y>
+      <width>472</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: qconicalgradient(cx:0, cy:0, angle:135, stop:0 rgba(255, 255, 0, 69), stop:0.375 rgba(255, 255, 0, 69), stop:0.423533 rgba(251, 255, 0, 145), stop:0.45 rgba(247, 255, 0, 208), stop:0.477581 rgba(255, 244, 71, 130), stop:0.518717 rgba(255, 218, 71, 130), stop:0.55 rgba(255, 255, 0, 255), stop:0.57754 rgba(255, 203, 0, 130), stop:0.625 rgba(255, 255, 0, 69), stop:1 rgba(255, 255, 0, 69));
+color: rgb(0, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;💑💑 ỨNG DỤNG TÌM NGƯỜI MUỐN GẶP 💑💑&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -248,6 +264,18 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
      <height>25</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuRegister_Page">
+    <property name="title">
+     <string>Register Page</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuCredit_Page">
+    <property name="title">
+     <string>Credit Page</string>
+    </property>
+   </widget>
+   <addaction name="menuRegister_Page"/>
+   <addaction name="menuCredit_Page"/>
   </widget>
  </widget>
  <resources/>

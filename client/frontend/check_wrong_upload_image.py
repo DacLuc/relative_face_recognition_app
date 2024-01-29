@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file '.\ui\check_confirm_password.ui'
+# Form implementation generated from reading ui file '.\ui\check_wrong_upload_image.ui'
 #
 # Created by: PyQt6 UI code generator 6.6.1
 #
@@ -21,11 +21,11 @@ class Ui_Dialog(object):
         self.exit_button.setOrientation(QtCore.Qt.Orientation.Horizontal)
         self.exit_button.setStandardButtons(QtWidgets.QDialogButtonBox.StandardButton.Cancel|QtWidgets.QDialogButtonBox.StandardButton.Ok)
         self.exit_button.setObjectName("exit_button")
-        self.text_confirm = QtWidgets.QTextBrowser(parent=Dialog)
-        self.text_confirm.setGeometry(QtCore.QRect(10, 10, 381, 31))
-        self.text_confirm.setStyleSheet("color: rgb(170, 0, 0);\n"
+        self.text_info = QtWidgets.QTextBrowser(parent=Dialog)
+        self.text_info.setGeometry(QtCore.QRect(0, 10, 401, 33))
+        self.text_info.setStyleSheet("color: rgb(170, 0, 0);\n"
 "font: 700 9pt \"Segoe UI\";")
-        self.text_confirm.setObjectName("text_confirm")
+        self.text_info.setObjectName("text_info")
 
         self.retranslateUi(Dialog)
         self.exit_button.accepted.connect(Dialog.accept) # type: ignore
@@ -35,11 +35,11 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.text_confirm.setHtml(_translate("Dialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.text_info.setHtml(_translate("Dialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:\'Segoe UI\'; font-size:9pt; font-weight:700; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">🔐🔐 BẠN ĐÃ XÁC NHẬN SAI MẬT KHẨU 🔐🔐</p></body></html>"))
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"> BẠN ĐÃ UPLOAD HÌNH THẤT BẠI 😰</p></body></html>"))

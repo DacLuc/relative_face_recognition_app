@@ -5,7 +5,7 @@ import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/../")
 from server.services.auth import user_auth_controller
 from client.controllers.cities_districts_wards import LocationApp
-import frontend.home_page, frontend.signup_ui, frontend.login_ui, frontend.credit_ui, frontend.menu, frontend.user_info, frontend.found_users, frontend.check_fill_info, frontend.check_signup, frontend.check_wrong_signup, frontend.check_login, frontend.check_wrong_login, frontend.check_right_update_user_info, frontend.check_wrong_update_user_info, frontend.check_upload_pic, frontend.check_robot_ui, frontend.results, frontend.check_confirm_password
+import frontend.home_page, frontend.signup_ui, frontend.login_ui, frontend.credit_ui, frontend.menu, frontend.user_info, frontend.found_users, frontend.check_fill_info, frontend.check_signup, frontend.check_wrong_signup, frontend.check_login, frontend.check_wrong_login, frontend.check_right_update_user_info, frontend.check_wrong_update_user_info, frontend.check_upload_pic, frontend.check_robot_ui, frontend.results, frontend.check_confirm_password, frontend.check_wrong_upload_image, frontend.check_finished_upload_image, frontend.check_type
 
 user_auth_controller = user_auth_controller()
 
@@ -13,6 +13,7 @@ user_auth_controller = user_auth_controller()
 ui = ""
 app = QtWidgets.QApplication(sys.argv)
 Mainwindow = QtWidgets.QMainWindow()
+id_image_global = None
 
 
 # -----------------------------------------------------
@@ -88,6 +89,14 @@ def check_confirm_password_ui():
     return ui.exit_button.accepted.connect(dlg.accept)
 
 
+def check_type_ui():
+    dlg = QtWidgets.QDialog()
+    ui = frontend.check_type.Ui_check_dialog()
+    ui.setupUi(dlg)
+    dlg.exec()
+    return ui.exit_button.accepted.connect(dlg.accept)
+
+
 # check signup controllers (from client layer to controller layer)
 def check_signup_user_auth_controller():
     account_name = ui.account_name.text()
@@ -108,6 +117,10 @@ def check_signup_user_auth_controller():
             # Thuc hien bao loi (tra ve cho client) do khong dien day du thong tin
             check_fill_info_ui()
             signup_ui_load()
+        elif account_email.find("@gmail.com") == -1:
+            check_type_ui()
+            signup_ui_load()
+        # dang bi loi o day ==> c the hien check_confirm_password_ui nhung khong close duoc dialog
         elif account_password != confirm_password:
             # Thuc hien bao loi (tra ve cho client) do khong xac nhan dung mat khau (passWord)
             check_confirm_password_ui()
@@ -200,7 +213,7 @@ def menu_ui():
     Mainwindow.show()
 
 
-# -----------------------------------------------------\
+# -----------------------------------------------------
 # ENTER USER INFORMATION
 # User Info UI (Step Page 06)
 def user_info_ui():
@@ -208,12 +221,11 @@ def user_info_ui():
     ui = frontend.user_info.Ui_Info_Users_Page()
     ui.setupUi(Mainwindow)
 
-    user_info_img = []
-    ui.download_pic.clicked.connect(lambda: launch_upload_pic_ui(user_info_img))
-    ui.cancel_button.clicked.connect(menu_ui)
+    ui.download_pic.clicked.connect(check_upload_pic_auth_controller)
     location_app = LocationApp(ui.nation_box, ui.city_box, ui.district_box, ui.ward_box)
     ui.location_app = location_app
     ui.apply_button.clicked.connect(check_user_info_auth_controller)
+    ui.cancel_button.clicked.connect(menu_ui)
     Mainwindow.show()
 
 
@@ -246,7 +258,7 @@ def check_user_info_auth_controller():
         gioi_tinh = True
     else:
         gioi_tinh = False
-    id_image = "123e4567-e89b-12d3-a456-426614174001"
+    id_image = id_image_global
     id_country = ui.location_app.selected_country_id
     id_city = ui.location_app.selected_city_id
     id_district = ui.location_app.selected_district_id
@@ -289,6 +301,7 @@ def check_user_info_auth_controller():
         check_wrong_user_info_ui()
 
 
+# Upload image ui
 def get_response_upload_pic():
     file_filter = "Image File (*.png *.jpg)"
     response = QtWidgets.QFileDialog.getOpenFileName(
@@ -301,17 +314,42 @@ def get_response_upload_pic():
     return response[0]
 
 
-def launch_upload_pic_ui(response):
+# Check upload pic auth controllers (from client layer to controller layer)
+def check_upload_pic_auth_controller():
     user_uploaded_img = get_response_upload_pic()
-    dlg = QtWidgets.QDialog()
-    ui = frontend.check_upload_pic.Ui_Dialog()
-    ui.setupUi(dlg)
-    ui.exit_box.accepted.connect(dlg.accept)
-    ui.exit_box.rejected.connect(dlg.reject)
-    if user_uploaded_img[0] != "":
+    name_image = os.path.basename(user_uploaded_img)
+    print("user_uploaded_img: ", user_uploaded_img)
+    print("name_image: ", name_image)
+    if user_uploaded_img != "":
+        id_image = user_auth_controller.upload_image(name_image, user_uploaded_img)
+        global id_image_global
+        id_image_global = id_image
+        print("id_image: ", id_image)
+        if id_image is not None:
+            dlg = QtWidgets.QDialog()
+            ui = frontend.check_upload_pic.Ui_Dialog()
+            ui.setupUi(dlg)
+            ui.exit_box.accepted.connect(dlg.accept)
+            ui.exit_box.rejected.connect(dlg.reject)
+            dlg.exec()
+            print("Upload image successfully.")
+        else:
+            dlg = QtWidgets.QDialog()
+            ui = frontend.check_wrong_upload_image.Ui_Dialog()
+            ui.setupUi(dlg)
+            ui.exit_button.accepted.connect(dlg.accept)
+            ui.exit_button.rejected.connect(dlg.reject)
+            dlg.exec()
+            print("Error uploading image.")
+    else:
+        # Xử lý khi không upload ảnh
+        dlg = QtWidgets.QDialog()
+        ui = frontend.check_finished_upload_image.Ui_Check_Upload()
+        ui.setupUi(dlg)
+        ui.exit_button.accepted.connect(dlg.accept)
+        ui.exit_button.rejected.connect(dlg.reject)
         dlg.exec()
-        print("!!! response from launch_upload_pic_ui: ", user_uploaded_img)
-        response.append(user_uploaded_img)
+        print("No image uploaded.")
 
 
 # -----------------------------------------------------
@@ -322,7 +360,7 @@ def found_users_ui():
     ui = frontend.found_users.Ui_Found_Users_Page()
     ui.setupUi(Mainwindow)
     found_user_img = []
-    ui.pushButton.clicked.connect(lambda: launch_upload_pic_ui(found_user_img))
+    # ui.pushButton.clicked.connect(lambda: launch_upload_pic_ui(found_user_img))
     ui.cancel_button.clicked.connect(menu_ui)
     ui.location_app = LocationApp(
         ui.nation_box, ui.city_box, ui.district_box, ui.ward_box

@@ -13,11 +13,10 @@ class ImageInfo(SQLModel, table=True):
         nullable=False,
         sa_column_kwargs=dict(server_default=func.gen_random_uuid()),
     )
-    name_imagee: str = Field(index=True, nullable=False)
+    id_user: uuid.UUID = Field(
+        index=True, nullable=True, foreign_key="usercredentials.id"
+    )
+    name_image: str = Field(index=True, nullable=False)
     image_path: str = Field(index=True, nullable=False)
-    created_at: Optional[datetime] = Column(
-        DateTime, server_default=func.now(), nullable=False
-    )
-    updated_at: Optional[datetime] = Column(
-        DateTime, server_default=func.now(), nullable=False
-    )
+    created_at: Optional[datetime] = Field(default=func.now(), nullable=False)
+    updated_at: Optional[datetime] = Field(default=func.now(), nullable=False)

@@ -3,11 +3,14 @@ import requests
 import os
 import json
 import uuid
+from server.models.image_info import ImageInfo
 
 # Biến toàn cục để lưu trữ access_token
 saved_token = None
 
 
+# ---------------------------------
+# User auth controller class
 class user_auth_controller:
     def __init__(self):
         load_dotenv()
@@ -40,6 +43,7 @@ class user_auth_controller:
         URL = "http://localhost:8080/token"
         response = requests.post(url=URL, json=data)
         print("response: ", response.status_code)
+        print("response: ", response.text)
         try:
             json_data = response.json()
             # Xử lý dữ liệu JSON ở đây
@@ -107,6 +111,36 @@ class user_auth_controller:
             return True
         else:
             return False
+
+    # -------------------------
+    # Upload image function
+    def upload_image(self, name_image: str, image_path: str):
+        try:
+            with open(image_path, "rb") as image_file:
+                files = {"file": (name_image, image_file, "image/jpeg")}
+
+                URL = "http://localhost:8080/upload_image"
+                response = requests.post(
+                    url=URL,  # Send data as JSON in the request body
+                    files=files,
+                    headers=self.get_auth_headers(),
+                )
+
+                print("response: ", response.status_code)
+                print("response: ", response.text)
+
+                if response.status_code == 200:
+                    json_data = response.json()
+                    return json_data["id_image"]
+                else:
+                    # Handle error
+                    print("Error: ", response.status_code)
+                    print("Error: ", response.text)
+                    return None
+        except Exception as e:
+            # Handle other exception
+            print(f"Error during image upload: {e}")
+            return None
 
     # -------------------------
     # Find people function

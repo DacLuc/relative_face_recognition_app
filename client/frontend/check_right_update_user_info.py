@@ -22,12 +22,14 @@ class Ui_Dialog(object):
         self.exit_button.setStandardButtons(QtWidgets.QDialogButtonBox.StandardButton.Cancel|QtWidgets.QDialogButtonBox.StandardButton.Ok)
         self.exit_button.setObjectName("exit_button")
         self.textBrowser = QtWidgets.QTextBrowser(parent=Dialog)
-        self.textBrowser.setGeometry(QtCore.QRect(10, 10, 391, 33))
+        self.textBrowser.setGeometry(QtCore.QRect(0, 10, 401, 33))
         self.textBrowser.setStyleSheet("color: rgb(170, 0, 0);\n"
 "font: 700 9pt \"Segoe UI\";")
         self.textBrowser.setObjectName("textBrowser")
 
         self.retranslateUi(Dialog)
+        self.exit_button.accepted.connect(Dialog.accept) # type: ignore
+        self.exit_button.rejected.connect(Dialog.reject) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
@@ -40,4 +42,4 @@ class Ui_Dialog(object):
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:\'Segoe UI\'; font-size:9pt; font-weight:700; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">️🎊️🎊 BẠN CẬP NHẬT THÀNH CÔNG ️🎊️🎊</p></body></html>"))
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">️🎊️🎊 BẠN ĐÃ CẬP NHẬT THÀNH CÔNG ️🎊️🎊</p></body></html>"))

@@ -17,9 +17,9 @@
    <widget class="QGroupBox" name="info_account">
     <property name="geometry">
      <rect>
-      <x>270</x>
+      <x>280</x>
       <y>90</y>
-      <width>531</width>
+      <width>511</width>
       <height>321</height>
      </rect>
     </property>
@@ -121,7 +121,7 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
       <rect>
        <x>240</x>
        <y>60</y>
-       <width>251</width>
+       <width>221</width>
        <height>181</height>
       </rect>
      </property>
@@ -134,7 +134,7 @@ background-color: rgb(255, 255, 255);
 font: 9pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="placeholderText">
-         <string>Username Account</string>
+         <string>Enter Your Username Account</string>
         </property>
        </widget>
       </item>
@@ -184,7 +184,7 @@ font: 9pt &quot;Segoe UI&quot;;</string>
       <rect>
        <x>40</x>
        <y>250</y>
-       <width>381</width>
+       <width>421</width>
        <height>28</height>
       </rect>
      </property>
@@ -275,8 +275,8 @@ color: rgb(0, 0, 0);</string>
    <widget class="QWidget" name="horizontalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>430</y>
+      <x>470</x>
+      <y>450</y>
       <width>169</width>
       <height>31</height>
      </rect>

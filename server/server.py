@@ -1,10 +1,12 @@
 import sys
 import os
 
+from models.image_info import ImageInfo
+
 sys.path.append("../../../face_recognition_app/server")
 from database.engine import engine
 from models import *
-from fastapi import FastAPI, HTTPException, Depends, status
+from fastapi import FastAPI, HTTPException, Depends, status, File, UploadFile
 from fastapi.security import OAuth2PasswordBearer
 from services.orm import *
 from jose import JWTError, jwt
@@ -12,7 +14,11 @@ from datetime import datetime, timedelta
 from passlib.context import CryptContext
 from sqlalchemy.orm import sessionmaker, Session
 from dotenv import load_dotenv
-from services.user_validators import RegisterRequest, LoginRequest, UserInfoRequest
+from services.user_validators import (
+    RegisterRequest,
+    LoginRequest,
+    UserInfoRequest,
+)
 import uuid
 
 load_dotenv()
@@ -30,6 +36,9 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 # Password hashing
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+# Upload image folder
+UPLOAD_FOLDER = "images"
 
 
 # Function để set global user id
@@ -197,6 +206,47 @@ async def create_user_info(
         db.add(new_user_info)
         db.commit()
     db.close()
+
+
+@app.post("/upload_image")
+async def upload_image(
+    file: UploadFile = File(...),
+    db: Session = Depends(get_db),
+    id_credential_user: uuid.UUID = Depends(get_user_credentials_id),
+):
+    try:
+        os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+        print("id_credential_user: ", id_credential_user)
+        print("file: ", file)
+        image_path = os.path.join(
+            UPLOAD_FOLDER, f"{str(id_credential_user)}_{file.filename}"
+        )
+        print("image_path: ", image_path)
+
+        with open(image_path, "wb") as image_file:
+            image_file.write(file.file.read())
+
+        with db:
+            new_image_info = ImageInfo(
+                id_user=id_credential_user,
+                name_image=file.filename,
+                image_path=image_path,
+            )
+            print("new_image_info: ", new_image_info)
+            db.add(new_image_info)
+            db.commit()
+            db.refresh(new_image_info)
+
+        return {"id_image": new_image_info.id}
+    except Exception as e:
+        print(f"Error during image upload: {e}")
+        db.rollback()
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Internal server error during image upload",
+        )
+    finally:
+        db.close()
 
 
 # Endpoint để xác thực và tạo token cho người dùng khi đăng nhập
