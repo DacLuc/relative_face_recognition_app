@@ -17,10 +17,10 @@
    <widget class="QGroupBox" name="info_login">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>130</y>
-      <width>457</width>
-      <height>310</height>
+      <x>280</x>
+      <y>90</y>
+      <width>551</width>
+      <height>321</height>
      </rect>
     </property>
     <property name="font">
@@ -38,7 +38,7 @@ color: rgb(170, 0, 0);</string>
     <widget class="QWidget" name="verticalLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>20</x>
+       <x>70</x>
        <y>50</y>
        <width>191</width>
        <height>71</height>
@@ -80,7 +80,7 @@ color: rgb(170, 0, 0);</string>
     <widget class="QWidget" name="verticalLayoutWidget_2">
      <property name="geometry">
       <rect>
-       <x>210</x>
+       <x>260</x>
        <y>50</y>
        <width>221</width>
        <height>71</height>
@@ -123,8 +123,8 @@ background-color: rgb(255, 255, 255);</string>
     <widget class="QWidget" name="horizontalLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>50</x>
-       <y>190</y>
+       <x>80</x>
+       <y>200</y>
        <width>387</width>
        <height>31</height>
       </rect>
@@ -181,7 +181,7 @@ background-color: rgb(255, 255, 255);</string>
     <widget class="QWidget" name="horizontalLayoutWidget_2">
      <property name="geometry">
       <rect>
-       <x>140</x>
+       <x>190</x>
        <y>140</y>
        <width>169</width>
        <height>31</height>
@@ -217,8 +217,8 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>160</x>
-       <y>240</y>
+       <x>190</x>
+       <y>260</y>
        <width>187</width>
        <height>20</height>
       </rect>
@@ -231,8 +231,8 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
    <widget class="QLabel" name="title_label_2">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>40</y>
+      <x>300</x>
+      <y>30</y>
       <width>472</width>
       <height>28</height>
      </rect>

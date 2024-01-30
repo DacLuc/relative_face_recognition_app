@@ -17,58 +17,11 @@
    <bool>true</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="title_label">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>10</y>
-      <width>371</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="mouseTracking">
-     <bool>true</bool>
-    </property>
-    <property name="tabletTracking">
-     <bool>true</bool>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::LeftToRight</enum>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: qconicalgradient(cx:0, cy:0, angle:135, stop:0 rgba(255, 255, 0, 69), stop:0.375 rgba(255, 255, 0, 69), stop:0.423533 rgba(251, 255, 0, 145), stop:0.45 rgba(247, 255, 0, 208), stop:0.477581 rgba(255, 244, 71, 130), stop:0.518717 rgba(255, 218, 71, 130), stop:0.55 rgba(255, 255, 0, 255), stop:0.57754 rgba(255, 203, 0, 130), stop:0.625 rgba(255, 255, 0, 69), stop:1 rgba(255, 255, 0, 69));
-color: rgb(0, 0, 0);</string>
-    </property>
-    <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;ỨNG DỤNG TÌM NGƯỜI MUỐN GẶP&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-    <property name="wordWrap">
-     <bool>true</bool>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
-    </property>
-   </widget>
    <widget class="QGroupBox" name="users_info">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>60</y>
+      <y>70</y>
       <width>1031</width>
       <height>391</height>
      </rect>
@@ -81,12 +34,15 @@ color: rgb(0, 0, 0);</string>
       <bold>true</bold>
      </font>
     </property>
+    <property name="tabletTracking">
+     <bool>false</bool>
+    </property>
     <property name="styleSheet">
      <string notr="true">color: rgb(170, 0, 0);
 font: 700 9pt &quot;Segoe UI&quot;;</string>
     </property>
     <property name="title">
-     <string>THÔNG TIN NGƯỜI DÙNG</string>
+     <string>👨 THÔNG TIN NGƯỜI DÙNG</string>
     </property>
     <property name="checkable">
      <bool>false</bool>
@@ -96,7 +52,7 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
       <rect>
        <x>360</x>
        <y>40</y>
-       <width>132</width>
+       <width>291</width>
        <height>30</height>
       </rect>
      </property>
@@ -130,9 +86,21 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
           <bold>false</bold>
          </font>
         </property>
+        <property name="mouseTracking">
+         <bool>true</bool>
+        </property>
+        <property name="tabletTracking">
+         <bool>true</bool>
+        </property>
         <property name="styleSheet">
          <string notr="true">color: rgb(0, 0, 0);
 font: 9pt &quot;Segoe UI&quot;;</string>
+        </property>
+        <property name="editable">
+         <bool>true</bool>
+        </property>
+        <property name="currentText">
+         <string>Nam</string>
         </property>
         <property name="insertPolicy">
          <enum>QComboBox::NoInsert</enum>
@@ -162,9 +130,9 @@ font: 9pt &quot;Segoe UI&quot;;</string>
     <widget class="QWidget" name="horizontalLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>640</x>
+       <x>720</x>
        <y>40</y>
-       <width>171</width>
+       <width>211</width>
        <height>30</height>
       </rect>
      </property>
@@ -206,7 +174,7 @@ font: 9pt &quot;Segoe UI&quot;;</string>
       <rect>
        <x>10</x>
        <y>40</y>
-       <width>231</width>
+       <width>241</width>
        <height>30</height>
       </rect>
      </property>
@@ -288,7 +256,7 @@ font: 9pt &quot;Segoe UI&quot;;</string>
     <widget class="QWidget" name="horizontalLayoutWidget_5">
      <property name="geometry">
       <rect>
-       <x>290</x>
+       <x>10</x>
        <y>340</y>
        <width>475</width>
        <height>28</height>
@@ -338,9 +306,9 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
     <widget class="QWidget" name="horizontalLayoutWidget_6">
      <property name="geometry">
       <rect>
-       <x>640</x>
-       <y>220</y>
-       <width>284</width>
+       <x>720</x>
+       <y>100</y>
+       <width>301</width>
        <height>31</height>
       </rect>
      </property>
@@ -379,7 +347,7 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
 color: rgb(0, 0, 0);</string>
         </property>
         <property name="text">
-         <string>Upload</string>
+         <string>Upload Image</string>
         </property>
        </widget>
       </item>
@@ -399,7 +367,7 @@ color: rgb(0, 0, 0);</string>
        <number>2</number>
       </property>
       <property name="rightMargin">
-       <number>4</number>
+       <number>0</number>
       </property>
       <item>
        <widget class="QLabel" name="nation_label">
@@ -443,7 +411,7 @@ font: 9pt &quot;Segoe UI&quot;;</string>
       <rect>
        <x>360</x>
        <y>160</y>
-       <width>271</width>
+       <width>291</width>
        <height>30</height>
       </rect>
      </property>
@@ -539,7 +507,7 @@ font: 9pt &quot;Segoe UI&quot;;</string>
       <rect>
        <x>360</x>
        <y>100</y>
-       <width>274</width>
+       <width>291</width>
        <height>30</height>
       </rect>
      </property>
@@ -588,12 +556,47 @@ font: 9pt &quot;Segoe UI&quot;;</string>
       </item>
      </layout>
     </widget>
+    <widget class="QLabel" name="label_user_img">
+     <property name="geometry">
+      <rect>
+       <x>740</x>
+       <y>140</y>
+       <width>261</width>
+       <height>211</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>../../../../../../Downloads/avatar-trang-69.jpg</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>820</x>
+       <y>360</y>
+       <width>113</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>HÌNH CÁ NHÂN</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="horizontalLayoutWidget_7">
     <property name="geometry">
      <rect>
       <x>450</x>
-      <y>460</y>
+      <y>470</y>
       <width>169</width>
       <height>31</height>
      </rect>
@@ -633,6 +636,32 @@ background-color: rgb(255, 255, 255);</string>
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QLabel" name="title_label">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>30</y>
+      <width>481</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: qconicalgradient(cx:0, cy:0, angle:135, stop:0 rgba(255, 255, 0, 69), stop:0.375 rgba(255, 255, 0, 69), stop:0.423533 rgba(251, 255, 0, 145), stop:0.45 rgba(247, 255, 0, 208), stop:0.477581 rgba(255, 244, 71, 130), stop:0.518717 rgba(255, 218, 71, 130), stop:0.55 rgba(255, 255, 0, 255), stop:0.57754 rgba(255, 203, 0, 130), stop:0.625 rgba(255, 255, 0, 69), stop:1 rgba(255, 255, 0, 69));
+color: rgb(0, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;💑💑 ỨNG DỤNG TÌM NGƯỜI MUỐN GẶP 💑💑&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

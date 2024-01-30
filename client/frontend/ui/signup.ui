@@ -49,6 +49,9 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="text_labe_box">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
+      </property>
       <item>
        <widget class="QLabel" name="user_name_label">
         <property name="font">
@@ -126,6 +129,9 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="fill_in_user_info">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
+      </property>
       <item>
        <widget class="QLineEdit" name="account_name">
         <property name="styleSheet">

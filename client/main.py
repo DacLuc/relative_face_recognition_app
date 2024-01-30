@@ -1,11 +1,13 @@
-from PyQt6 import QtWidgets
+from PyQt6 import QtWidgets, QtCore
 import sys
 import os
+from PyQt6.QtGui import QPixmap
+import uuid
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/../")
 from server.services.auth import user_auth_controller
 from client.controllers.cities_districts_wards import LocationApp
-import frontend.home_page, frontend.signup_ui, frontend.login_ui, frontend.credit_ui, frontend.menu, frontend.user_info, frontend.found_users, frontend.check_fill_info, frontend.check_signup, frontend.check_wrong_signup, frontend.check_login, frontend.check_wrong_login, frontend.check_right_update_user_info, frontend.check_wrong_update_user_info, frontend.check_upload_pic, frontend.check_robot_ui, frontend.results, frontend.check_confirm_password, frontend.check_wrong_upload_image, frontend.check_finished_upload_image, frontend.check_type
+import frontend.home_page, frontend.signup_ui, frontend.login_ui, frontend.credit_ui, frontend.menu, frontend.user_info, frontend.found_users, frontend.check_fill_info, frontend.check_signup, frontend.check_wrong_signup, frontend.check_login, frontend.check_wrong_login, frontend.check_right_update_user_info, frontend.check_wrong_update_user_info, frontend.check_upload_pic, frontend.check_robot_ui, frontend.results, frontend.check_confirm_password, frontend.check_wrong_upload_image, frontend.check_finished_upload_image, frontend.check_type, frontend.get_responses_image
 
 user_auth_controller = user_auth_controller()
 
@@ -226,6 +228,7 @@ def user_info_ui():
     ui.location_app = location_app
     ui.apply_button.clicked.connect(check_user_info_auth_controller)
     ui.cancel_button.clicked.connect(menu_ui)
+
     Mainwindow.show()
 
 
@@ -266,22 +269,6 @@ def check_user_info_auth_controller():
     info_face = str(ui.info_face_text.toPlainText())
     is_allowed = bool(ui.is_allowed.isChecked())
 
-    print(
-        "      ===---=== BIG DATA from check_user_info_auth_controller ===---===      "
-    )
-    print("- id_user: ", id_user)
-    print("- full_name: ", full_name)
-    print("- age: ", age)
-    print("- gioi_tinh: ", gioi_tinh)
-    print("- id_image: ", id_image)
-    print("- id_country: ", id_country)
-    print("- id_city: ", id_city)
-    print("- id_district: ", id_district)
-    print("- id_ward: ", id_ward)
-    print("- info_face: ", info_face)
-    print("- is_allowed: ", is_allowed)
-    print("________________________________________")
-
     if user_auth_controller.create_user_info(
         id_user,
         full_name,
@@ -301,55 +288,72 @@ def check_user_info_auth_controller():
         check_wrong_user_info_ui()
 
 
+def check_upload_pic_ui():
+    dlg = QtWidgets.QDialog()
+    ui = frontend.check_upload_pic.Ui_Dialog()
+    ui.setupUi(dlg)
+    dlg.exec()
+    return ui.exit_box.accepted.connect(dlg.accept)
+
+
+def check_finished_upload_pic_ui():
+    dlg = QtWidgets.QDialog()
+    ui = frontend.check_finished_upload_image.Ui_Check_Upload()
+    ui.setupUi(dlg)
+    dlg.exec()
+    return ui.exit_button.accepted.connect(dlg.accept)
+
+
+def check_wrong_upload_pic_ui():
+    dlg = QtWidgets.QDialog()
+    ui = frontend.check_wrong_upload_image.Ui_Dialog()
+    ui.setupUi(dlg)
+    dlg.exec()
+    return ui.exit_button.accepted.connect(dlg.accept)
+
+
 # Upload image ui
 def get_response_upload_pic():
-    file_filter = "Image File (*.png *.jpg)"
-    response = QtWidgets.QFileDialog.getOpenFileName(
-        parent=Mainwindow,
-        caption="Select a file",
-        directory=os.getcwd(),
-        filter=file_filter,
-        initialFilter="Image File (*.png *.jpg)",
-    )
-    return response[0]
+    ui = frontend.get_responses_image.Ui_Get_Response()
+    progress = QtWidgets.QProgressDialog("Uploading Image...", "Cancel", 0, 100, ui)
+    response = ui.get_response_upload_pic_with_progress(progress)
+    progress.close()
+    return response
 
 
 # Check upload pic auth controllers (from client layer to controller layer)
 def check_upload_pic_auth_controller():
     user_uploaded_img = get_response_upload_pic()
     name_image = os.path.basename(user_uploaded_img)
-    print("user_uploaded_img: ", user_uploaded_img)
-    print("name_image: ", name_image)
     if user_uploaded_img != "":
         id_image = user_auth_controller.upload_image(name_image, user_uploaded_img)
         global id_image_global
         id_image_global = id_image
-        print("id_image: ", id_image)
         if id_image is not None:
-            dlg = QtWidgets.QDialog()
-            ui = frontend.check_upload_pic.Ui_Dialog()
-            ui.setupUi(dlg)
-            ui.exit_box.accepted.connect(dlg.accept)
-            ui.exit_box.rejected.connect(dlg.reject)
-            dlg.exec()
-            print("Upload image successfully.")
+            check_upload_pic_ui()
+            display_user_uploaded_img(
+                user_auth_controller.get_user_credentials_id_from_auth_controller()
+            )
         else:
-            dlg = QtWidgets.QDialog()
-            ui = frontend.check_wrong_upload_image.Ui_Dialog()
-            ui.setupUi(dlg)
-            ui.exit_button.accepted.connect(dlg.accept)
-            ui.exit_button.rejected.connect(dlg.reject)
-            dlg.exec()
-            print("Error uploading image.")
+            check_wrong_upload_pic_ui()
+            user_info_ui()
     else:
         # Xử lý khi không upload ảnh
-        dlg = QtWidgets.QDialog()
-        ui = frontend.check_finished_upload_image.Ui_Check_Upload()
-        ui.setupUi(dlg)
-        ui.exit_button.accepted.connect(dlg.accept)
-        ui.exit_button.rejected.connect(dlg.reject)
-        dlg.exec()
-        print("No image uploaded.")
+        check_finished_upload_pic_ui()
+        user_info_ui()
+
+
+def display_user_uploaded_img(id_image_global: uuid.UUID):
+    ui.label_user_img.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+    image_data = user_auth_controller.display_image(id_image_global)
+    pixmap = QPixmap()
+    pixmap.loadFromData(image_data)
+    scaled_pixmap = pixmap.scaled(
+        ui.label_user_img.size(),
+        QtCore.Qt.AspectRatioMode.KeepAspectRatio,
+        QtCore.Qt.TransformationMode.SmoothTransformation,
+    )
+    ui.label_user_img.setPixmap(scaled_pixmap)
 
 
 # -----------------------------------------------------
