@@ -3,7 +3,7 @@ import requests
 import os
 import json
 import uuid
-from server.models.image_info import ImageInfo
+
 
 # Biến toàn cục để lưu trữ access_token
 saved_token = None
@@ -42,12 +42,8 @@ class user_auth_controller:
         }
         URL = "http://localhost:8080/token"
         response = requests.post(url=URL, json=data)
-        print("response: ", response.status_code)
-        print("response: ", response.text)
         try:
             json_data = response.json()
-            # Xử lý dữ liệu JSON ở đây
-            print("JSON response:", json_data)
         except json.decoder.JSONDecodeError:
             # Xử lý trường hợp response.text không phải là JSON hợp lệ
             print("Invalid JSON response:", response.text)
@@ -65,8 +61,6 @@ class user_auth_controller:
             "http://localhost:8080/user_credentials_id",
             headers=self.get_auth_headers(),
         )
-        print("response: ", response.status_code)
-        print("response: ", response.text)
 
         if response.status_code == 200:
             return response.text.replace('"', "")
@@ -102,11 +96,8 @@ class user_auth_controller:
             "face_feature": face_feature,
             "is_allowed": is_allowed,
         }
-        print("data json: ", data)
         URL = "http://localhost:8080/create_user_info"
         response = requests.post(url=URL, json=data, headers=self.get_auth_headers())
-        print("response: ", response.status_code)
-        print("response: ", response.text)
         if response.status_code == 200:
             return True
         else:
@@ -126,9 +117,6 @@ class user_auth_controller:
                     headers=self.get_auth_headers(),
                 )
 
-                print("response: ", response.status_code)
-                print("response: ", response.text)
-
                 if response.status_code == 200:
                     json_data = response.json()
                     return json_data["id_image"]
@@ -140,6 +128,23 @@ class user_auth_controller:
         except Exception as e:
             # Handle other exception
             print(f"Error during image upload: {e}")
+            return None
+
+    # -------------------------
+    # Display image function
+    def display_image(self, user_id: uuid.UUID):
+        try:
+            URL = f"http://localhost:8080/get_user_image/{str(user_id)}"
+            response = requests.get(url=URL, headers=self.get_auth_headers())
+            if response.status_code == 200:
+                return response.content
+            else:
+                # Handle error
+                print(f"Error fetching user image: {response.status_code}")
+                return None
+        except Exception as e:
+            # Handle other exception
+            print(f"Error during image display: {e}")
             return None
 
     # -------------------------

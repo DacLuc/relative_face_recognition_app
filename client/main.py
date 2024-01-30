@@ -324,8 +324,12 @@ def get_response_upload_pic():
 # Check upload pic auth controllers (from client layer to controller layer)
 def check_upload_pic_auth_controller():
     user_uploaded_img = get_response_upload_pic()
-    name_image = os.path.basename(user_uploaded_img)
-    if user_uploaded_img != "":
+    if user_uploaded_img is not None:
+        name_image = os.path.basename(user_uploaded_img)
+        if name_image is None:
+            check_wrong_upload_pic_ui()
+            user_info_ui()
+        print("name_image: ", name_image)
         id_image = user_auth_controller.upload_image(name_image, user_uploaded_img)
         global id_image_global
         id_image_global = id_image
@@ -338,7 +342,9 @@ def check_upload_pic_auth_controller():
             check_wrong_upload_pic_ui()
             user_info_ui()
     else:
-        # Xử lý khi không upload ảnh
+        # Handle the case where user_uploaded_img is None
+        # You might want to show a message or take appropriate action
+        print("Error: User did not upload an image.")
         check_finished_upload_pic_ui()
         user_info_ui()
 

@@ -7,6 +7,7 @@ sys.path.append("../../../face_recognition_app/server")
 from database.engine import engine
 from models import *
 from fastapi import FastAPI, HTTPException, Depends, status, File, UploadFile
+from fastapi.responses import FileResponse
 from fastapi.security import OAuth2PasswordBearer
 from services.orm import *
 from jose import JWTError, jwt
@@ -25,145 +26,6 @@ load_dotenv()
 
 # Khởi tạo FastAPI
 app = FastAPI()
-# Khởi tạo session để truy vấn CSDL
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-# Khởi tạo biến toàn cục để lưu id người dùng
-global_id_user = None
-
-# OAuth2 để xác thực người dùng
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
-
-# Password hashing
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
-# Upload image folder
-UPLOAD_FOLDER = "images"
-
-
-# Function để set global user id
-def set_global_user_id(id_user):
-    global global_user_id
-    global_user_id = id_user
-
-
-# get db session from orm.py
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-
-
-# Function để tạo token
-def create_access_token(data: dict, expires_delta: timedelta):
-    to_encode = data.copy()
-    expire = datetime.utcnow() + expires_delta
-    to_encode.update({"exp": expire})
-    encoded_jwt = jwt.encode(
-        to_encode, os.getenv("SECRET_KEY"), algorithm=os.getenv("ALGORITHM")
-    )
-    return encoded_jwt
-
-
-# Function để xác thực người dùng
-def get_user(db: Session, form_data: LoginRequest):
-    result_proxy = db.execute(
-        select(UserCredentials).where(UserCredentials.user_name == form_data.username)
-    )
-    user = result_proxy.fetchone()
-    return user
-
-
-# Function để xác thực password
-def verify_password(plain_password, hashed_password):
-    return pwd_context.verify(plain_password, hashed_password)
-
-
-# Function để tạo người dùng
-def create_user(db: Session, user: UserCredentials):
-    try:
-        # Check if the user_name is not provided or empty
-        if user.user_name is None:
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Username is required for registration",
-            )
-        # Check if the email is not provided or empty
-        if user.email is None:
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Email is required for registration",
-            )
-        # Check if the password is not provided or empty
-        if user.password is None:
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Password is required for registration",
-            )
-        # Hash mật khẩu trước khi lưu vào CSDL
-        user.password = pwd_context.hash(user.password)
-
-        # Tạo người dùng mới
-        with db:
-            # Add user to the database
-            db.add(user)
-            # Commit changes to the database
-            db.commit()
-            # Refresh the user object to get the id
-            db.refresh(user)
-            return user
-    # Handle errors during user creation
-    except Exception as e:
-        print(f"Error during user creation: {e}")
-        db.rollback()
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Internal server error during user creation",
-        )
-    finally:
-        # Close the database session
-        db.close()
-
-
-# Function để lấy thông tin người dùng hiện tại
-def get_current_user(
-    db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)
-):
-    credentials = verify_token_and_get_credentials(token, db)
-    return credentials[0]
-
-
-# Function để xác thực token và lấy thông tin người dùng
-def verify_token_and_get_credentials(token: str, db: Session):
-    credentials = None
-    try:
-        payload = jwt.decode(
-            token, os.getenv("SECRET_KEY"), algorithms=[os.getenv("ALGORITHM")]
-        )
-        username: str = payload.get("sub")
-        if username is None:
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials"
-            )
-        token_data = payload
-    except JWTError:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials"
-        )
-
-    if token_data:
-        credentials = db.execute(
-            select(UserCredentials).where(UserCredentials.user_name == username)
-        ).first()
-
-    if credentials is None:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials"
-        )
-
-    return credentials
 
 
 # Endpoint để lấy id người dùng hiện tại
@@ -208,6 +70,8 @@ async def create_user_info(
     db.close()
 
 
+# ----------------------------------
+# Endpoint de upload anh tren server
 @app.post("/upload_image")
 async def upload_image(
     file: UploadFile = File(...),
@@ -216,12 +80,9 @@ async def upload_image(
 ):
     try:
         os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-        print("id_credential_user: ", id_credential_user)
-        print("file: ", file)
         image_path = os.path.join(
             UPLOAD_FOLDER, f"{str(id_credential_user)}_{file.filename}"
         )
-        print("image_path: ", image_path)
 
         with open(image_path, "wb") as image_file:
             image_file.write(file.file.read())
@@ -232,7 +93,6 @@ async def upload_image(
                 name_image=file.filename,
                 image_path=image_path,
             )
-            print("new_image_info: ", new_image_info)
             db.add(new_image_info)
             db.commit()
             db.refresh(new_image_info)
@@ -247,6 +107,29 @@ async def upload_image(
         )
     finally:
         db.close()
+
+
+# ----------------------------------
+# Endpoint de retrieve anh tu server
+@app.get("/get_user_image/{user_id}")
+async def get_user_image(user_id: uuid.UUID, db: Session = Depends(get_db)):
+    try:
+        # Fetch user image information from the database
+        user_image_info = db.query(ImageInfo).filter_by(id_user=user_id).first()
+
+        if user_image_info:
+            # Return the image file using FileResponse
+            return FileResponse(user_image_info.image_path, media_type="image/jpeg")
+        else:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, detail="Image not found"
+            )
+    except Exception as e:
+        print(f"Error retrieving user image: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Internal server error retrieving user image",
+        )
 
 
 # Endpoint để xác thực và tạo token cho người dùng khi đăng nhập
