@@ -23,15 +23,22 @@ class Ui_Sign_Up_Page(object):
         font.setBold(True)
         font.setItalic(False)
         self.info_account.setFont(font)
-        self.info_account.setStyleSheet("color: rgb(170, 0, 0);\n"
-"border-color: rgb(255, 255, 127);\n"
-"font: 700 9pt \"Segoe UI\";")
+        self.info_account.setAcceptDrops(True)
+        self.info_account.setAutoFillBackground(True)
+        self.info_account.setStyleSheet(
+            "color: rgb(170, 0, 0);\n"
+            "background-color: rgb(255, 255, 255);\n"
+            "border-color: rgb(255, 255, 127);\n"
+            'font: 700 9pt "Segoe UI";'
+        )
         self.info_account.setObjectName("info_account")
         self.verticalLayoutWidget = QtWidgets.QWidget(parent=self.info_account)
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(40, 60, 201, 171))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.text_labe_box = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
-        self.text_labe_box.setSizeConstraint(QtWidgets.QLayout.SizeConstraint.SetDefaultConstraint)
+        self.text_labe_box.setSizeConstraint(
+            QtWidgets.QLayout.SizeConstraint.SetDefaultConstraint
+        )
         self.text_labe_box.setContentsMargins(0, 0, 0, 0)
         self.text_labe_box.setObjectName("text_labe_box")
         self.user_name_label = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
@@ -41,8 +48,9 @@ class Ui_Sign_Up_Page(object):
         font.setBold(True)
         font.setItalic(False)
         self.user_name_label.setFont(font)
-        self.user_name_label.setStyleSheet("color: rgb(0, 0, 0);\n"
-"font: 700 9pt \"Segoe UI\";")
+        self.user_name_label.setStyleSheet(
+            "color: rgb(0, 0, 0);\n" 'font: 700 9pt "Segoe UI";'
+        )
         self.user_name_label.setObjectName("user_name_label")
         self.text_labe_box.addWidget(self.user_name_label)
         self.emai_label = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
@@ -73,31 +81,41 @@ class Ui_Sign_Up_Page(object):
         self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(240, 60, 221, 181))
         self.verticalLayoutWidget_2.setObjectName("verticalLayoutWidget_2")
         self.fill_in_user_info = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_2)
-        self.fill_in_user_info.setSizeConstraint(QtWidgets.QLayout.SizeConstraint.SetDefaultConstraint)
+        self.fill_in_user_info.setSizeConstraint(
+            QtWidgets.QLayout.SizeConstraint.SetDefaultConstraint
+        )
         self.fill_in_user_info.setContentsMargins(0, 0, 0, 0)
         self.fill_in_user_info.setObjectName("fill_in_user_info")
         self.account_name = QtWidgets.QLineEdit(parent=self.verticalLayoutWidget_2)
-        self.account_name.setStyleSheet("color: rgb(0, 0, 0);\n"
-"background-color: rgb(255, 255, 255);\n"
-"font: 9pt \"Segoe UI\";")
+        self.account_name.setStyleSheet(
+            "color: rgb(0, 0, 0);\n"
+            "background-color: rgb(255, 255, 255);\n"
+            'font: 9pt "Segoe UI";'
+        )
         self.account_name.setObjectName("account_name")
         self.fill_in_user_info.addWidget(self.account_name)
         self.account_email = QtWidgets.QLineEdit(parent=self.verticalLayoutWidget_2)
-        self.account_email.setStyleSheet("color: rgb(0, 0, 0);\n"
-"background-color: rgb(255, 255, 255);\n"
-"font: 9pt \"Segoe UI\";")
+        self.account_email.setStyleSheet(
+            "color: rgb(0, 0, 0);\n"
+            "background-color: rgb(255, 255, 255);\n"
+            'font: 9pt "Segoe UI";'
+        )
         self.account_email.setObjectName("account_email")
         self.fill_in_user_info.addWidget(self.account_email)
         self.account_password = QtWidgets.QLineEdit(parent=self.verticalLayoutWidget_2)
-        self.account_password.setStyleSheet("color: rgb(0, 0, 0);\n"
-"background-color: rgb(255, 255, 255);\n"
-"font: 9pt \"Segoe UI\";")
+        self.account_password.setStyleSheet(
+            "color: rgb(0, 0, 0);\n"
+            "background-color: rgb(255, 255, 255);\n"
+            'font: 9pt "Segoe UI";'
+        )
         self.account_password.setObjectName("account_password")
         self.fill_in_user_info.addWidget(self.account_password)
         self.confirm_password = QtWidgets.QLineEdit(parent=self.verticalLayoutWidget_2)
-        self.confirm_password.setStyleSheet("color: rgb(0, 0, 0);\n"
-"background-color: rgb(255, 255, 255);\n"
-"font: 9pt \"Segoe UI\";")
+        self.confirm_password.setStyleSheet(
+            "color: rgb(0, 0, 0);\n"
+            "background-color: rgb(255, 255, 255);\n"
+            'font: 9pt "Segoe UI";'
+        )
         self.confirm_password.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
         self.confirm_password.setObjectName("confirm_password")
         self.fill_in_user_info.addWidget(self.confirm_password)
@@ -115,8 +133,9 @@ class Ui_Sign_Up_Page(object):
         font.setBold(True)
         font.setItalic(False)
         self.check_robot_text.setFont(font)
-        self.check_robot_text.setStyleSheet("color: rgb(0, 0, 0);\n"
-"font: 700 9pt \"Segoe UI\";")
+        self.check_robot_text.setStyleSheet(
+            "color: rgb(0, 0, 0);\n" 'font: 700 9pt "Segoe UI";'
+        )
         self.check_robot_text.setObjectName("check_robot_text")
         self.check_robot_box.addWidget(self.check_robot_text)
         self.check_robot = QtWidgets.QCheckBox(parent=self.horizontalLayoutWidget)
@@ -126,10 +145,13 @@ class Ui_Sign_Up_Page(object):
         font.setBold(True)
         font.setItalic(False)
         self.check_robot.setFont(font)
-        self.check_robot.setStyleSheet("color: rgb(170, 0, 0);\n"
-"font: 700 9pt \"Segoe UI\";")
+        self.check_robot.setStyleSheet(
+            "color: rgb(170, 0, 0);\n" 'font: 700 9pt "Segoe UI";'
+        )
         self.check_robot.setObjectName("check_robot")
-        self.check_robot_box.addWidget(self.check_robot, 0, QtCore.Qt.AlignmentFlag.AlignHCenter)
+        self.check_robot_box.addWidget(
+            self.check_robot, 0, QtCore.Qt.AlignmentFlag.AlignHCenter
+        )
         self.label = QtWidgets.QLabel(parent=self.info_account)
         self.label.setGeometry(QtCore.QRect(150, 290, 187, 20))
         self.label.setObjectName("label")
@@ -140,8 +162,10 @@ class Ui_Sign_Up_Page(object):
         font.setBold(True)
         self.title_label.setFont(font)
         self.title_label.setMouseTracking(True)
-        self.title_label.setStyleSheet("background-color: qconicalgradient(cx:0, cy:0, angle:135, stop:0 rgba(255, 255, 0, 69), stop:0.375 rgba(255, 255, 0, 69), stop:0.423533 rgba(251, 255, 0, 145), stop:0.45 rgba(247, 255, 0, 208), stop:0.477581 rgba(255, 244, 71, 130), stop:0.518717 rgba(255, 218, 71, 130), stop:0.55 rgba(255, 255, 0, 255), stop:0.57754 rgba(255, 203, 0, 130), stop:0.625 rgba(255, 255, 0, 69), stop:1 rgba(255, 255, 0, 69));\n"
-"color: rgb(0, 0, 0);")
+        self.title_label.setStyleSheet(
+            "background-color: qconicalgradient(cx:0, cy:0, angle:135, stop:0 rgba(255, 255, 0, 69), stop:0.375 rgba(255, 255, 0, 69), stop:0.423533 rgba(251, 255, 0, 145), stop:0.45 rgba(247, 255, 0, 208), stop:0.477581 rgba(255, 244, 71, 130), stop:0.518717 rgba(255, 218, 71, 130), stop:0.55 rgba(255, 255, 0, 255), stop:0.57754 rgba(255, 203, 0, 130), stop:0.625 rgba(255, 255, 0, 69), stop:1 rgba(255, 255, 0, 69));\n"
+            "color: rgb(0, 0, 0);"
+        )
         self.title_label.setObjectName("title_label")
         self.horizontalLayoutWidget_2 = QtWidgets.QWidget(parent=self.REGISTER_ACCOUNT)
         self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(470, 450, 169, 31))
@@ -150,17 +174,54 @@ class Ui_Sign_Up_Page(object):
         self.exit_box.setContentsMargins(0, 0, 0, 0)
         self.exit_box.setObjectName("exit_box")
         self.apply_button = QtWidgets.QPushButton(parent=self.horizontalLayoutWidget_2)
-        self.apply_button.setStyleSheet("color: rgb(0, 0, 127);\n"
-"background-color: rgb(255, 255, 255);\n"
-"font: 700 9pt \"Segoe UI\";")
+        self.apply_button.setStyleSheet(
+            "color: rgb(0, 0, 127);\n"
+            "background-color: rgb(255, 255, 255);\n"
+            'font: 700 9pt "Segoe UI";'
+        )
         self.apply_button.setObjectName("apply_button")
         self.exit_box.addWidget(self.apply_button)
         self.cancel_button = QtWidgets.QPushButton(parent=self.horizontalLayoutWidget_2)
-        self.cancel_button.setStyleSheet("color: rgb(170, 0, 0);\n"
-"background-color: rgb(255, 255, 255);\n"
-"font: 700 9pt \"Segoe UI\";")
+        self.cancel_button.setStyleSheet(
+            "color: rgb(170, 0, 0);\n"
+            "background-color: rgb(255, 255, 255);\n"
+            'font: 700 9pt "Segoe UI";'
+        )
         self.cancel_button.setObjectName("cancel_button")
         self.exit_box.addWidget(self.cancel_button)
+        self.image_1 = QtWidgets.QLabel(parent=self.REGISTER_ACCOUNT)
+        self.image_1.setGeometry(QtCore.QRect(780, 90, 291, 331))
+        self.image_1.setText("")
+        self.image_1.setPixmap(
+            QtGui.QPixmap(
+                r"C:\Users\phatl\OneDrive - VNU-HCMUS\Desktop\relative_face_recognition_app\client\frontend\ui\picture\icon.png"
+            )
+        )
+        self.image_1.setScaledContents(True)
+        self.image_1.setObjectName("image_1")
+        self.back_ground = QtWidgets.QLabel(parent=self.REGISTER_ACCOUNT)
+        self.back_ground.setGeometry(QtCore.QRect(-10, 0, 1091, 531))
+        self.back_ground.setMouseTracking(True)
+        self.back_ground.setTabletTracking(True)
+        self.back_ground.setAcceptDrops(True)
+        self.back_ground.setAutoFillBackground(True)
+        self.back_ground.setFrameShape(QtWidgets.QFrame.Shape.VLine)
+        self.back_ground.setFrameShadow(QtWidgets.QFrame.Shadow.Plain)
+        self.back_ground.setText("")
+        self.back_ground.setPixmap(
+            QtGui.QPixmap(
+                r"C:\Users\phatl\OneDrive - VNU-HCMUS\Desktop\relative_face_recognition_app\client\frontend\ui\picture\Purple Galaxy Desktop Wallpaper.png"
+            )
+        )
+        self.back_ground.setScaledContents(True)
+        self.back_ground.setWordWrap(True)
+        self.back_ground.setOpenExternalLinks(True)
+        self.back_ground.setObjectName("back_ground")
+        self.back_ground.raise_()
+        self.info_account.raise_()
+        self.title_label.raise_()
+        self.horizontalLayoutWidget_2.raise_()
+        self.image_1.raise_()
         Sign_Up_Page.setCentralWidget(self.REGISTER_ACCOUNT)
         self.menubar = QtWidgets.QMenuBar(parent=Sign_Up_Page)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1074, 25))
@@ -179,19 +240,64 @@ class Ui_Sign_Up_Page(object):
     def retranslateUi(self, Sign_Up_Page):
         _translate = QtCore.QCoreApplication.translate
         Sign_Up_Page.setWindowTitle(_translate("Sign_Up_Page", "MainWindow"))
-        self.info_account.setTitle(_translate("Sign_Up_Page", "📝 THÔNG TIN ĐĂNG KÝ TÀI KHOẢN "))
-        self.user_name_label.setText(_translate("Sign_Up_Page", "<html><head/><body><p>TÊN ĐĂNG KÝ <span style=\" font-style:italic; color:#aa0000;\">(*)</span></p></body></html>"))
-        self.emai_label.setText(_translate("Sign_Up_Page", "<html><head/><body><p>EMAIL ĐĂNG KÝ <span style=\" font-style:italic; color:#aa0000;\">(*)</span></p></body></html>"))
-        self.password_label.setText(_translate("Sign_Up_Page", "<html><head/><body><p>NHẬP MẬT KHẨU <span style=\" font-style:italic; color:#aa0000;\">(*)</span></p></body></html>"))
-        self.confirm_password_label.setText(_translate("Sign_Up_Page", "<html><head/><body><p>XÁC NHẬN MẬT KHẨU <span style=\" font-style:italic; color:#aa0000;\">(*)</span></p></body></html>"))
-        self.account_name.setPlaceholderText(_translate("Sign_Up_Page", "Enter Your Username Account"))
-        self.account_email.setPlaceholderText(_translate("Sign_Up_Page", "Email (ex: name_email@gmail.com)"))
-        self.account_password.setPlaceholderText(_translate("Sign_Up_Page", "Enter Your Password"))
-        self.confirm_password.setPlaceholderText(_translate("Sign_Up_Page", "Confirm Your Password"))
-        self.check_robot_text.setText(_translate("Sign_Up_Page", "<html><head/><body><p>BẠN CÓ PHẢI <span style=\" color:#aa0000;\">ROBOT</span> KHÔNG ?</p></body></html>"))
+        self.info_account.setTitle(
+            _translate("Sign_Up_Page", "📝 THÔNG TIN ĐĂNG KÝ TÀI KHOẢN")
+        )
+        self.user_name_label.setText(
+            _translate(
+                "Sign_Up_Page",
+                '<html><head/><body><p>TÊN ĐĂNG KÝ <span style=" font-style:italic; color:#aa0000;">(*)</span></p></body></html>',
+            )
+        )
+        self.emai_label.setText(
+            _translate(
+                "Sign_Up_Page",
+                '<html><head/><body><p>EMAIL ĐĂNG KÝ <span style=" font-style:italic; color:#aa0000;">(*)</span></p></body></html>',
+            )
+        )
+        self.password_label.setText(
+            _translate(
+                "Sign_Up_Page",
+                '<html><head/><body><p>NHẬP MẬT KHẨU <span style=" font-style:italic; color:#aa0000;">(*)</span></p></body></html>',
+            )
+        )
+        self.confirm_password_label.setText(
+            _translate(
+                "Sign_Up_Page",
+                '<html><head/><body><p>XÁC NHẬN MẬT KHẨU <span style=" font-style:italic; color:#aa0000;">(*)</span></p></body></html>',
+            )
+        )
+        self.account_name.setPlaceholderText(
+            _translate("Sign_Up_Page", "Enter Your Username Account")
+        )
+        self.account_email.setPlaceholderText(
+            _translate("Sign_Up_Page", "Email (ex: name_email@gmail.com)")
+        )
+        self.account_password.setPlaceholderText(
+            _translate("Sign_Up_Page", "Enter Your Password")
+        )
+        self.confirm_password.setPlaceholderText(
+            _translate("Sign_Up_Page", "Confirm Your Password")
+        )
+        self.check_robot_text.setText(
+            _translate(
+                "Sign_Up_Page",
+                '<html><head/><body><p>BẠN CÓ PHẢI <span style=" color:#aa0000;">ROBOT</span> KHÔNG ?</p></body></html>',
+            )
+        )
         self.check_robot.setText(_translate("Sign_Up_Page", "Not Robot 🤖"))
-        self.label.setText(_translate("Sign_Up_Page", "<html><head/><body><p><span style=\" font-weight:400; font-style:italic; color:#aa0000;\">(*) Đây là thông tin </span><span style=\" font-weight:400; font-style:italic; text-decoration: underline; color:#aa0000;\">bắt buộc.</span></p></body></html>"))
-        self.title_label.setText(_translate("Sign_Up_Page", "<html><head/><body><p align=\"center\">💑💑 ỨNG DỤNG TÌM NGƯỜI MUỐN GẶP 💑💑</p></body></html>"))
+        self.label.setText(
+            _translate(
+                "Sign_Up_Page",
+                '<html><head/><body><p><span style=" font-weight:400; font-style:italic; color:#aa0000;">(*) Đây là thông tin </span><span style=" font-weight:400; font-style:italic; text-decoration: underline; color:#aa0000;">bắt buộc.</span></p></body></html>',
+            )
+        )
+        self.title_label.setText(
+            _translate(
+                "Sign_Up_Page",
+                '<html><head/><body><p align="center">💑💑 ỨNG DỤNG TÌM NGƯỜI MUỐN GẶP 💑💑</p></body></html>',
+            )
+        )
         self.apply_button.setText(_translate("Sign_Up_Page", "APPLY"))
         self.cancel_button.setText(_translate("Sign_Up_Page", "CANCEL"))
         self.menu_login_page.setTitle(_translate("Sign_Up_Page", "Login Page"))

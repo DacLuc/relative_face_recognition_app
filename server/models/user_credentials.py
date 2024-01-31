@@ -1,7 +1,7 @@
 from typing import Optional
 from sqlmodel import Field, SQLModel
 import uuid
-from sqlalchemy import Column, DateTime, func
+from sqlalchemy import func
 from datetime import datetime
 
 

@@ -1,13 +1,12 @@
-from PyQt6 import QtWidgets, QtCore
+from PyQt6 import QtWidgets, QtCore, QtGui
 import sys
 import os
-from PyQt6.QtGui import QPixmap
 import uuid
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/../")
 from server.services.auth import user_auth_controller
 from client.controllers.cities_districts_wards import LocationApp
-import frontend.home_page, frontend.signup_ui, frontend.login_ui, frontend.credit_ui, frontend.menu, frontend.user_info, frontend.found_users, frontend.check_fill_info, frontend.check_signup, frontend.check_wrong_signup, frontend.check_login, frontend.check_wrong_login, frontend.check_right_update_user_info, frontend.check_wrong_update_user_info, frontend.check_upload_pic, frontend.check_robot_ui, frontend.results, frontend.check_confirm_password, frontend.check_wrong_upload_image, frontend.check_finished_upload_image, frontend.check_type, frontend.get_responses_image
+import frontend.home_page, frontend.signup_ui, frontend.login_ui, frontend.credit_ui, frontend.menu, frontend.user_info, frontend.found_users, frontend.check_fill_info, frontend.check_signup, frontend.check_wrong_signup, frontend.check_login, frontend.check_wrong_login, frontend.check_right_update_user_info, frontend.check_wrong_update_user_info, frontend.check_upload_pic, frontend.check_robot_ui, frontend.results, frontend.check_confirm_password, frontend.check_wrong_upload_image, frontend.check_finished_upload_image, frontend.check_type, frontend.get_responses_image, frontend.check_update_user_info
 
 user_auth_controller = user_auth_controller()
 
@@ -16,6 +15,7 @@ ui = ""
 app = QtWidgets.QApplication(sys.argv)
 Mainwindow = QtWidgets.QMainWindow()
 id_image_global = None
+id_updated_image_global = None
 
 
 # -----------------------------------------------------
@@ -223,11 +223,59 @@ def user_info_ui():
     ui = frontend.user_info.Ui_Info_Users_Page()
     ui.setupUi(Mainwindow)
 
-    ui.download_pic.clicked.connect(check_upload_pic_auth_controller)
-    location_app = LocationApp(ui.nation_box, ui.city_box, ui.district_box, ui.ward_box)
-    ui.location_app = location_app
-    ui.apply_button.clicked.connect(check_user_info_auth_controller)
-    ui.cancel_button.clicked.connect(menu_ui)
+    id_user = user_auth_controller.get_user_credentials_id_from_auth_controller()
+    user_info = user_auth_controller.get_user_info(id_user)
+    if user_info is not None:
+        id_user = user_auth_controller.get_user_credentials_id_from_auth_controller()
+        user_info = user_auth_controller.get_user_info(id_user)
+        user_info_name = user_info["full_name"]
+        user_info_age = user_info["age"]
+        user_info_gender = user_info["gender"]
+        user_info_country = user_auth_controller.get_country_name(
+            user_info["id_country"]
+        )["name_country"]
+        user_info_city = user_auth_controller.get_city_name(user_info["id_city"])[
+            "name_city"
+        ]
+        user_info_district = user_auth_controller.get_district_name(
+            user_info["id_district"]
+        )["name_district"]
+        user_info_ward = user_auth_controller.get_ward_name(user_info["id_ward"])[
+            "name_ward"
+        ]
+        user_info_feature = user_info["face_feature"]
+        user_info_image = user_auth_controller.display_image(id_user)
+        user_check_is_allowed = user_info["is_allowed"]
+        ui.display_main_user_info(
+            user_info_name,
+            user_info_gender,
+            user_info_age,
+            user_info_country,
+            user_info_city,
+            user_info_district,
+            user_info_ward,
+            user_info_feature,
+            user_info_image,
+            user_check_is_allowed,
+        )
+        location_app = LocationApp(
+            ui.nation_box, ui.city_box, ui.district_box, ui.ward_box
+        )
+        ui.location_app = location_app
+        ui.cancel_button.clicked.connect(menu_ui)
+        ui.download_pic.clicked.connect(check_update_user_image_auth_controller)
+        ui.apply_button.setText("UPDATE")
+        ui.apply_button.clicked.connect(check_update_user_info_auth_controller)
+    else:
+        print("Error: User info does not exist.")
+        print("Creating user info...")
+        ui.download_pic.clicked.connect(check_upload_pic_auth_controller)
+        location_app = LocationApp(
+            ui.nation_box, ui.city_box, ui.district_box, ui.ward_box
+        )
+        ui.location_app = location_app
+        ui.apply_button.clicked.connect(check_user_info_auth_controller)
+        ui.cancel_button.clicked.connect(menu_ui)
 
     Mainwindow.show()
 
@@ -250,6 +298,44 @@ def check_wrong_user_info_ui():
     return ui.exit_button.accepted.connect(dlg.accept)
 
 
+def check_update_user_info_auth_controller():
+    id_user = user_auth_controller.get_user_credentials_id_from_auth_controller()
+    full_name = str(ui.ho_ten.text())
+    age = int(ui.age_range.text())
+    check_gioi_tinh = str(ui.gioi_tinh_box.currentText())
+    gioi_tinh = None
+    if check_gioi_tinh == "Nam":
+        gioi_tinh = True
+    else:
+        gioi_tinh = False
+    id_image = id_updated_image_global
+    id_country = ui.location_app.selected_country_id
+    id_city = ui.location_app.selected_city_id
+    id_district = ui.location_app.selected_district_id
+    id_ward = ui.location_app.selected_ward_id
+    info_face = str(ui.info_face_text.toPlainText())
+    is_allowed = bool(ui.is_allowed.isChecked())
+
+    if user_auth_controller.update_user_info(
+        id_user,
+        full_name,
+        age,
+        gioi_tinh,
+        id_image,
+        id_country,
+        id_city,
+        id_district,
+        id_ward,
+        info_face,
+        is_allowed,
+    ):
+        check_right_user_info_from_auth_controller()
+        menu_ui()
+    else:
+        print("Error: Could not update user info.")
+        check_wrong_user_info_ui()
+
+
 # check user info auth controllers (from client layer to controller layer)
 def check_user_info_auth_controller():
     id_user = user_auth_controller.get_user_credentials_id_from_auth_controller()
@@ -269,23 +355,84 @@ def check_user_info_auth_controller():
     info_face = str(ui.info_face_text.toPlainText())
     is_allowed = bool(ui.is_allowed.isChecked())
 
-    if user_auth_controller.create_user_info(
-        id_user,
-        full_name,
-        age,
-        gioi_tinh,
-        id_image,
-        id_country,
-        id_city,
-        id_district,
-        id_ward,
-        info_face,
-        is_allowed,
+    if (
+        user_auth_controller.create_user_info(
+            id_user,
+            full_name,
+            age,
+            gioi_tinh,
+            id_image,
+            id_country,
+            id_city,
+            id_district,
+            id_ward,
+            info_face,
+            is_allowed,
+        )
+        == 0
     ):
-        check_right_user_info_ui()
+        check_right_user_info_from_auth_controller()
         menu_ui()
-    else:
+    elif (
+        user_auth_controller.create_user_info(
+            id_user,
+            full_name,
+            age,
+            gioi_tinh,
+            id_image,
+            id_country,
+            id_city,
+            id_district,
+            id_ward,
+            info_face,
+            is_allowed,
+        )
+        == 1
+    ):
+        print("Error: User info already exists.")
         check_wrong_user_info_ui()
+    else:
+        print("Error: Could not create user info.")
+        check_wrong_user_info_ui()
+
+
+def check_right_user_info_from_auth_controller():
+    id_user = user_auth_controller.get_user_credentials_id_from_auth_controller()
+    user_info = user_auth_controller.get_user_info(id_user)
+    user_info_name = user_info["full_name"]
+    user_info_age = user_info["age"]
+    user_info_gender = user_info["gender"]
+    user_info_country = user_auth_controller.get_country_name(user_info["id_country"])[
+        "name_country"
+    ]
+    user_info_city = user_auth_controller.get_city_name(user_info["id_city"])[
+        "name_city"
+    ]
+    user_info_district = user_auth_controller.get_district_name(
+        user_info["id_district"]
+    )["name_district"]
+    user_info_ward = user_auth_controller.get_ward_name(user_info["id_ward"])[
+        "name_ward"
+    ]
+    user_info_feature = user_info["face_feature"]
+    user_info_image = user_auth_controller.display_image(id_user)
+    dlg = QtWidgets.QDialog()
+    ui = frontend.check_update_user_info.Ui_Check_Update_User()
+    ui.setupUi(dlg)
+    ui.display_update_user_info(
+        user_info_name,
+        user_info_gender,
+        user_info_age,
+        user_info_country,
+        user_info_city,
+        user_info_district,
+        user_info_ward,
+        user_info_feature,
+        user_info_image,
+    )
+    ui.exit_button.accepted.connect(dlg.accept)
+    ui.exit_button.rejected.connect(dlg.reject)
+    dlg.exec()
 
 
 def check_upload_pic_ui():
@@ -329,7 +476,6 @@ def check_upload_pic_auth_controller():
         if name_image is None:
             check_wrong_upload_pic_ui()
             user_info_ui()
-        print("name_image: ", name_image)
         id_image = user_auth_controller.upload_image(name_image, user_uploaded_img)
         global id_image_global
         id_image_global = id_image
@@ -339,6 +485,7 @@ def check_upload_pic_auth_controller():
                 user_auth_controller.get_user_credentials_id_from_auth_controller()
             )
         else:
+            print("Error: Could not upload image.")
             check_wrong_upload_pic_ui()
             user_info_ui()
     else:
@@ -349,10 +496,43 @@ def check_upload_pic_auth_controller():
         user_info_ui()
 
 
-def display_user_uploaded_img(id_image_global: uuid.UUID):
+def check_update_user_image_auth_controller():
+    user_updated_img = get_response_upload_pic()
+    print("user_uploaded_img: ", user_updated_img)
+    if user_updated_img is not None:
+        name_image = os.path.basename(user_updated_img)
+        print("name_image: ", name_image)
+        if name_image is None:
+            check_wrong_upload_pic_ui()
+            user_info_ui()
+        id_user = user_auth_controller.get_user_credentials_id_from_auth_controller()
+        id_image = user_auth_controller.update_image(
+            id_user, name_image, user_updated_img
+        )
+
+        global id_updated_image_global
+        id_updated_image_global = id_image
+        if id_image is not None:
+            check_upload_pic_ui()
+            display_user_uploaded_img(
+                user_auth_controller.get_user_credentials_id_from_auth_controller()
+            )
+        else:
+            print("Error: Could not upload image.")
+            check_wrong_upload_pic_ui()
+            user_info_ui()
+    else:
+        # Handle the case where user_uploaded_img is None
+        # You might want to show a message or take appropriate action
+        print("Error: User did not upload an image.")
+        check_finished_upload_pic_ui()
+        user_info_ui()
+
+
+def display_user_uploaded_img(id_user_info: uuid.UUID):
     ui.label_user_img.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-    image_data = user_auth_controller.display_image(id_image_global)
-    pixmap = QPixmap()
+    image_data = user_auth_controller.display_image(id_user_info)
+    pixmap = QtGui.QPixmap()
     pixmap.loadFromData(image_data)
     scaled_pixmap = pixmap.scaled(
         ui.label_user_img.size(),

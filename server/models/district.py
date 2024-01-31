@@ -14,3 +14,13 @@ class District(SQLModel, table=True):
     )
     name_district: str = Field(index=True, nullable=False)
     id_city: uuid.UUID = Field(index=True, nullable=True, foreign_key="city.id")
+
+    def to_dict(self):
+        return {
+            "id": str(self.id),
+            "name_district": self.name_district,
+            "id_city": str(self.id_city),
+        }
+
+    def json(self):
+        return self.to_dict()

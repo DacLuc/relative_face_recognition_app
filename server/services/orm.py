@@ -6,8 +6,7 @@ import os
 
 sys.path.append("../../../../relative_face_recognition_app/server")
 from database.engine import engine
-from fastapi import FastAPI, HTTPException, Depends, status, File, UploadFile
-from fastapi.responses import FileResponse
+from fastapi import HTTPException, Depends, status
 from fastapi.security import OAuth2PasswordBearer
 from services.orm import *
 from jose import JWTError, jwt
@@ -16,11 +15,8 @@ from passlib.context import CryptContext
 from sqlalchemy.orm import sessionmaker, Session
 
 from services.user_validators import (
-    RegisterRequest,
     LoginRequest,
-    UserInfoRequest,
 )
-import uuid
 
 
 def select_users(username, password):

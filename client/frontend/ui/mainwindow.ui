@@ -139,7 +139,7 @@ font: 700 9pt &quot;Segoe UI&quot;;
 background-color: rgb(255, 255, 255);</string>
         </property>
         <property name="text">
-         <string>TRỞ VỀ TRANG CHỦ</string>
+         <string>ĐĂNG XUẤT</string>
         </property>
        </widget>
       </item>

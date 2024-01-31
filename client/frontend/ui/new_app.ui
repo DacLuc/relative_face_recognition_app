@@ -51,8 +51,8 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
      <property name="geometry">
       <rect>
        <x>780</x>
-       <y>30</y>
-       <width>161</width>
+       <y>40</y>
+       <width>191</width>
        <height>30</height>
       </rect>
      </property>
@@ -94,7 +94,7 @@ font: 9pt &quot;Segoe UI&quot;;</string>
       <rect>
        <x>520</x>
        <y>220</y>
-       <width>471</width>
+       <width>451</width>
        <height>151</height>
       </rect>
      </property>
@@ -171,7 +171,7 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">color: rgb(0, 0, 0);
+         <string notr="true">color: rgb(170, 0, 0);
 font: 700 9pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="text">
@@ -184,9 +184,9 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
     <widget class="QLabel" name="label_user_img">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>201</width>
+       <x>20</x>
+       <y>40</y>
+       <width>181</width>
        <height>201</height>
       </rect>
      </property>
@@ -197,7 +197,7 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../../../../../../Downloads/avatar-trang-69.jpg</pixmap>
+      <pixmap>../../../server/demo_ava.jpg</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -207,7 +207,7 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
      <property name="geometry">
       <rect>
        <x>230</x>
-       <y>30</y>
+       <y>40</y>
        <width>241</width>
        <height>30</height>
       </rect>
@@ -252,7 +252,7 @@ font: 9pt &quot;Segoe UI&quot;;</string>
      <property name="geometry">
       <rect>
        <x>520</x>
-       <y>30</y>
+       <y>40</y>
        <width>181</width>
        <height>30</height>
       </rect>
@@ -335,7 +335,7 @@ font: 9pt &quot;Segoe UI&quot;;</string>
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>240</y>
+       <y>250</y>
        <width>161</width>
        <height>61</height>
       </rect>
@@ -560,6 +560,55 @@ font: 9pt &quot;Segoe UI&quot;;</string>
       </item>
      </layout>
     </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>201</width>
+       <height>221</height>
+      </rect>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="tabletTracking">
+      <bool>true</bool>
+     </property>
+     <property name="acceptDrops">
+      <bool>true</bool>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>picture/Hồng và Màu kem Minh họa Ô trống Đường viền trang.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+     <property name="openExternalLinks">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <zorder>label_2</zorder>
+    <zorder>horizontalLayoutWidget</zorder>
+    <zorder>horizontalLayoutWidget_4</zorder>
+    <zorder>horizontalLayoutWidget_5</zorder>
+    <zorder>horizontalLayoutWidget_3</zorder>
+    <zorder>horizontalLayoutWidget_2</zorder>
+    <zorder>verticalLayoutWidget</zorder>
+    <zorder>verticalLayoutWidget_2</zorder>
+    <zorder>verticalLayoutWidget_3</zorder>
+    <zorder>verticalLayoutWidget_4</zorder>
+    <zorder>verticalLayoutWidget_5</zorder>
+    <zorder>label_user_img</zorder>
    </widget>
    <widget class="QWidget" name="horizontalLayoutWidget_7">
     <property name="geometry">

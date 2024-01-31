@@ -31,7 +31,7 @@ class Ui_Info_Users_Page(object):
         self.users_info.setCheckable(False)
         self.users_info.setObjectName("users_info")
         self.horizontalLayoutWidget = QtWidgets.QWidget(parent=self.users_info)
-        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(780, 30, 161, 30))
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(780, 40, 191, 30))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
         self.age_box = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
         self.age_box.setContentsMargins(0, 0, 0, 0)
@@ -54,7 +54,7 @@ class Ui_Info_Users_Page(object):
         self.age_range.setObjectName("age_range")
         self.age_box.addWidget(self.age_range)
         self.horizontalLayoutWidget_4 = QtWidgets.QWidget(parent=self.users_info)
-        self.horizontalLayoutWidget_4.setGeometry(QtCore.QRect(520, 220, 471, 151))
+        self.horizontalLayoutWidget_4.setGeometry(QtCore.QRect(520, 220, 451, 151))
         self.horizontalLayoutWidget_4.setObjectName("horizontalLayoutWidget_4")
         self.face_feature = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_4)
         self.face_feature.setContentsMargins(0, 0, 0, 0)
@@ -103,23 +103,23 @@ class Ui_Info_Users_Page(object):
         font.setItalic(False)
         self.is_allowed.setFont(font)
         self.is_allowed.setStyleSheet(
-            "color: rgb(0, 0, 0);\n" 'font: 700 9pt "Segoe UI";'
+            "color: rgb(170, 0, 0);\n" 'font: 700 9pt "Segoe UI";'
         )
         self.is_allowed.setObjectName("is_allowed")
         self.allowed_finding.addWidget(self.is_allowed)
         self.label_user_img = QtWidgets.QLabel(parent=self.users_info)
-        self.label_user_img.setGeometry(QtCore.QRect(10, 30, 201, 201))
+        self.label_user_img.setGeometry(QtCore.QRect(20, 40, 181, 201))
         self.label_user_img.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.label_user_img.setText("")
         self.label_user_img.setPixmap(
             QtGui.QPixmap(
-                r"C:\Users\phatl\OneDrive - VNU-HCMUS\Desktop\relative_face_recognition_app\server\demo_ava.jpg"
+                r"C:\Users\phatl\OneDrive - VNU-HCMUS\Desktop\relative_face_recognition_app\client\frontend\ui\picture\demo_ava.jpg"
             )
         )
         self.label_user_img.setScaledContents(True)
         self.label_user_img.setObjectName("label_user_img")
         self.horizontalLayoutWidget_3 = QtWidgets.QWidget(parent=self.users_info)
-        self.horizontalLayoutWidget_3.setGeometry(QtCore.QRect(230, 30, 241, 30))
+        self.horizontalLayoutWidget_3.setGeometry(QtCore.QRect(230, 40, 241, 30))
         self.horizontalLayoutWidget_3.setObjectName("horizontalLayoutWidget_3")
         self.name_box = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_3)
         self.name_box.setContentsMargins(0, 0, 0, 0)
@@ -142,7 +142,7 @@ class Ui_Info_Users_Page(object):
         self.ho_ten.setObjectName("ho_ten")
         self.name_box.addWidget(self.ho_ten)
         self.horizontalLayoutWidget_2 = QtWidgets.QWidget(parent=self.users_info)
-        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(520, 30, 181, 30))
+        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(520, 40, 181, 30))
         self.horizontalLayoutWidget_2.setObjectName("horizontalLayoutWidget_2")
         self.sex_box = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_2)
         self.sex_box.setContentsMargins(0, 0, 0, 0)
@@ -182,7 +182,7 @@ class Ui_Info_Users_Page(object):
         self.gioi_tinh_box.setItemText(2, "")
         self.sex_box.addWidget(self.gioi_tinh_box)
         self.verticalLayoutWidget = QtWidgets.QWidget(parent=self.users_info)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(30, 240, 161, 61))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(30, 250, 161, 61))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -305,6 +305,34 @@ class Ui_Info_Users_Page(object):
         )
         self.ward_box.setObjectName("ward_box")
         self.verticalLayout_5.addWidget(self.ward_box)
+        self.label_2 = QtWidgets.QLabel(parent=self.users_info)
+        self.label_2.setGeometry(QtCore.QRect(10, 30, 201, 221))
+        self.label_2.setMouseTracking(True)
+        self.label_2.setTabletTracking(True)
+        self.label_2.setAcceptDrops(True)
+        self.label_2.setAutoFillBackground(True)
+        self.label_2.setText("")
+        self.label_2.setPixmap(
+            QtGui.QPixmap(
+                r"C:\Users\phatl\OneDrive - VNU-HCMUS\Desktop\relative_face_recognition_app\client\frontend\ui\picture\Hồng và Màu kem Minh họa Ô trống Đường viền trang.png"
+            )
+        )
+        self.label_2.setScaledContents(True)
+        self.label_2.setWordWrap(True)
+        self.label_2.setOpenExternalLinks(True)
+        self.label_2.setObjectName("label_2")
+        self.label_2.raise_()
+        self.horizontalLayoutWidget.raise_()
+        self.horizontalLayoutWidget_4.raise_()
+        self.horizontalLayoutWidget_5.raise_()
+        self.horizontalLayoutWidget_3.raise_()
+        self.horizontalLayoutWidget_2.raise_()
+        self.verticalLayoutWidget.raise_()
+        self.verticalLayoutWidget_2.raise_()
+        self.verticalLayoutWidget_3.raise_()
+        self.verticalLayoutWidget_4.raise_()
+        self.verticalLayoutWidget_5.raise_()
+        self.label_user_img.raise_()
         self.horizontalLayoutWidget_7 = QtWidgets.QWidget(parent=self.centralwidget)
         self.horizontalLayoutWidget_7.setGeometry(QtCore.QRect(450, 470, 169, 31))
         self.horizontalLayoutWidget_7.setObjectName("horizontalLayoutWidget_7")
@@ -406,6 +434,39 @@ class Ui_Info_Users_Page(object):
         self.title_label.setText(
             _translate(
                 "Info_Users_Page",
-                '<html><head/><body><p align="center">💑💑 ỨNG DỤNG TÌM NGƯỜI MUỐN GẶP 💑💑</p></body></h',
+                '<html><head/><body><p align="center">💑💑 ỨNG DỤNG TÌM NGƯỜI MUỐN GẶP 💑💑</p></body></html>',
             )
         )
+
+    def display_main_user_info(
+        self,
+        user_info_name: str,
+        user_info_gender: str,
+        user_info_age: int,
+        user_info_country: str,
+        user_info_city: str,
+        user_info_district: str,
+        user_info_ward: str,
+        user_info_feature: str,
+        user_info_image: bytes,
+        user_check_is_allowed: bool,
+    ):
+        self.ho_ten.setText(user_info_name)
+        self.age_range.setValue(user_info_age)
+        self.gioi_tinh_box.setCurrentText(user_info_gender)
+        self.label_user_img.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        pixmap = QtGui.QPixmap()
+        pixmap.loadFromData(user_info_image)
+        scaled_pixmap = pixmap.scaled(
+            self.label_user_img.size(),
+            QtCore.Qt.AspectRatioMode.KeepAspectRatio,
+            QtCore.Qt.TransformationMode.SmoothTransformation,
+        )
+        self.label_user_img.setPixmap(scaled_pixmap)
+        self.label_user_img.setScaledContents(True)
+        self.info_face_text.setText(user_info_feature)
+        self.nation_box.setPlaceholderText(user_info_country)
+        self.city_box.setPlaceholderText(user_info_city)
+        self.district_box.setPlaceholderText(user_info_district)
+        self.ward_box.setPlaceholderText(user_info_ward)
+        self.is_allowed.setChecked(user_check_is_allowed)

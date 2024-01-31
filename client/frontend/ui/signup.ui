@@ -31,8 +31,15 @@
       <bold>true</bold>
      </font>
     </property>
+    <property name="acceptDrops">
+     <bool>true</bool>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
     <property name="styleSheet">
      <string notr="true">color: rgb(170, 0, 0);
+background-color: rgb(255, 255, 255);
 border-color: rgb(255, 255, 127);
 font: 700 9pt &quot;Segoe UI&quot;;</string>
     </property>
@@ -314,6 +321,73 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
      </item>
     </layout>
    </widget>
+   <widget class="QLabel" name="image_1">
+    <property name="geometry">
+     <rect>
+      <x>780</x>
+      <y>90</y>
+      <width>291</width>
+      <height>331</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>picture/icon.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="back_ground">
+    <property name="geometry">
+     <rect>
+      <x>-10</x>
+      <y>0</y>
+      <width>1091</width>
+      <height>531</height>
+     </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
+    <property name="tabletTracking">
+     <bool>true</bool>
+    </property>
+    <property name="acceptDrops">
+     <bool>true</bool>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::VLine</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>picture/Purple Galaxy Desktop Wallpaper.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+    <property name="openExternalLinks">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <zorder>back_ground</zorder>
+   <zorder>info_account</zorder>
+   <zorder>title_label</zorder>
+   <zorder>horizontalLayoutWidget_2</zorder>
+   <zorder>image_1</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

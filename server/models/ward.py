@@ -14,3 +14,13 @@ class Ward(SQLModel, table=True):
     )
     name_ward: str = Field(index=True, nullable=False)
     id_district: uuid.UUID = Field(index=True, nullable=True, foreign_key="district.id")
+
+    def to_dict(self):
+        return {
+            "id": str(self.id),
+            "name_ward": self.name_ward,
+            "id_district": str(self.id_district),
+        }
+
+    def json(self):
+        return self.to_dict()
