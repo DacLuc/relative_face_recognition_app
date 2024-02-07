@@ -39,9 +39,16 @@ app = FastAPI()
 async def get_user_credentials_id(
     current_user: UserCredentials = Depends(get_current_user),
 ):
-    print("current_user: ", current_user)
     user_id = current_user.id
     return user_id
+
+
+@app.get("/user_credentials_name")
+async def get_user_credentials_name(
+    current_user: UserCredentials = Depends(get_current_user),
+):
+    user_name = current_user.user_name
+    return user_name
 
 
 # Endpoint để nhap thong tin ca nhan cua nguoi dung
@@ -75,6 +82,7 @@ async def create_user_info(
                     face_feature=data.face_feature,
                     is_allowed=data.is_allowed,
                 )
+                print("new_user_info: ", new_user_info)
 
                 db.add(new_user_info)
                 db.commit()
@@ -87,6 +95,8 @@ async def create_user_info(
         )
 
 
+# ----------------------------------
+# Endpoint để lấy thông tin người dùng hiện tại
 @app.get("/get_user_info/{user_id}")
 async def get_user_info(
     user_id: uuid.UUID,
@@ -256,6 +266,44 @@ async def get_user_image(user_id: uuid.UUID, db: Session = Depends(get_db)):
         )
 
 
+# ----------------------------------
+# Endpoint de delete anh tren server
+@app.delete("/delete_user_image/{user_id}")
+async def delete_user_image(
+    user_id: uuid.UUID,
+    db: Session = Depends(get_db),
+    current_user: UserCredentials = Depends(get_current_user),
+):
+    print("user_id: ", user_id)
+    print("current_user: ", current_user)
+    try:
+        if current_user.id != user_id:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Unauthorized access to user info",
+            )
+        user_image_info = db.query(ImageInfo).filter_by(id_user=user_id).first()
+        if user_image_info:
+            os.remove(user_image_info.image_path)
+            db.delete(user_image_info)
+            db.commit()
+            return {"status": 200, "message": "Successfully deleted user image"}
+        else:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="User image not found for the specified user ID,",
+            )
+
+    except Exception as e:
+        print(f"Error retrieving user image: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Internal server error retrieving user image",
+        )
+
+
+# ----------------------------------
+# Endpoint de update anh tren server
 @app.put("/update_user_image/{user_id}")
 async def update_user_image(
     user_id: uuid.UUID,
@@ -297,6 +345,7 @@ async def update_user_image(
         )
 
 
+# ----------------------------------
 @app.get("/get_country_info/{country_id}")
 async def get_country_info(country_id: uuid.UUID, db: Session = Depends(get_db)):
     try:

@@ -23,35 +23,43 @@ class UserInfo(SQLModel, table=True):
         nullable=True, index=True, unique=True, foreign_key="usercredentials.id"
     )
     # name: day la ho va ten cua user khi nhap thong tin ca nhan chu khong phai username khi user dang nhap / dang ky
-    full_name: str = Field(nullable=False)
+    full_name: Optional[str] = Field(nullable=True)
     # age: em khong chac nen de kieu du lieu gi -> nhung ma theo ui thi em su dung radiobutton de lua chon age-range nen anh check xem du lieu nao hop ly nhat
-    age: int = Field(index=True, nullable=False)
+    age: Optional[int] = Field(index=True, nullable=True)
     # gender: anh chi co the lua chon mot trong hai kieu du lieu la "Nam" hay "Nu" --> thong thuong theo hoc tren truong em se de la kieu nvarchar(3) de luu du lieu nay nhung trong sqlmodel thi em khong chac nen de kieu du lieu string hay khong ?
-    gender: bool = Field(nullable=False)
+    gender: Optional[bool] = Field(nullable=True)
     # id_image: day la id cua anh ma user nhap khi vao trang thong tin ca nhan vao app
-    id_image: uuid.UUID = Field(
+    id_image: Optional[uuid.UUID] = Field(
         nullable=True, index=True, unique=True, foreign_key="imageinfo.id"
     )
     # id_country: day la id cua quoc gia ma users nhap khi vao trang thong tin ca nhan vao app
     # FK (Foreign_Key): User_info(id_country) --> Country(id)
-    id_country: uuid.UUID = Field(index=True, nullable=True, foreign_key="country.id")
+    id_country: Optional[uuid.UUID] = Field(
+        index=True, nullable=True, foreign_key="country.id"
+    )
     # id_city: day la id cua thanh pho / tinh thanh ma users nhap khi vao trang thong tin ca nhan vao app
     # FK (Foreign_Key): User_info(id_city) --> City(id)
-    id_city: uuid.UUID = Field(index=True, nullable=True, foreign_key="city.id")
+    id_city: Optional[uuid.UUID] = Field(
+        index=True, nullable=True, foreign_key="city.id"
+    )
     # id_district: day la id cua quan / huyen ma users nhap khi vao trang thong tin ca nhan vao app
     # FK (Foreign_Key): User_info(id_district) --> District(id)
-    id_district: uuid.UUID = Field(index=True, nullable=True, foreign_key="district.id")
+    id_district: Optional[uuid.UUID] = Field(
+        index=True, nullable=True, foreign_key="district.id"
+    )
     # id_ward: day la id cua phuong / xa ma users nhap khi vao trang thong tin ca nhan vao app
     # FK (Foreign_Key): User_info(id_ward) --> Ward(id)
-    id_ward: uuid.UUID = Field(index=True, nullable=True, foreign_key="ward.id")
+    id_ward: Optional[uuid.UUID] = Field(
+        index=True, nullable=True, foreign_key="ward.id"
+    )
     # face_feature: day la dac trung khuon mat cua user khi nhap thong tin ca nhan vao app
-    face_feature: str = Field(nullable=True)
+    face_feature: Optional[str] = Field(nullable=True)
     # is_finding_user: check xem user nay dang tim kiem nguoi khac hay khong
-    is_finding_user: bool = Field(nullable=True)
+    is_finding_user: Optional[bool] = Field(nullable=True)
     # is_allowed: check xem user nay co cho phep nguoi khac tim kiem minh hay khong
-    is_allowed: bool = Field(index=True, nullable=True)
+    is_allowed: Optional[bool] = Field(nullable=True)
     # is_searched: check xem user nay dang duoc tim kiem hay khong
-    is_searched_user: bool = Field(nullable=True)
+    is_searched_user: Optional[bool] = Field(nullable=True)
     # created_at: thoi diem tao tai khoan user_info
     created_at: Optional[datetime] = Field(default=func.now(), nullable=False)
     # updated_at: thoi diem cap nhat tai khoan user_info

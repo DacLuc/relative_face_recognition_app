@@ -1,8 +1,9 @@
-from typing import Optional
+from typing import Optional, List
 from sqlmodel import Field, SQLModel
 import uuid
 from sqlalchemy import Column, DateTime, func
 from datetime import datetime
+from pgvector.sqlalchemy import Vector
 
 
 class FoundImage(SQLModel, table=True):
@@ -20,7 +21,7 @@ class FoundImage(SQLModel, table=True):
         default=None, nullable=True, index=True, foreign_key="imageinfo.id"
     )
     found_time: float = Field(default=None, nullable=True)
-    similarity_faces: float = Field(default=None, nullable=True)
+    similarity_faces: List[float] = Field(sa_column=Column(Vector(5)))
     created_at: Optional[datetime] = Column(
         DateTime, server_default=func.now(), nullable=False
     )

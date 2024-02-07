@@ -16,72 +16,208 @@ class Ui_Specific_Task(object):
         Specific_Task.setStyleSheet("")
         self.Menu = QtWidgets.QWidget(parent=Specific_Task)
         self.Menu.setObjectName("Menu")
-        self.title_label = QtWidgets.QLabel(parent=self.Menu)
-        self.title_label.setGeometry(QtCore.QRect(370, 40, 344, 27))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        self.title_label.setFont(font)
-        self.title_label.setMouseTracking(True)
-        self.title_label.setStyleSheet("background-color: qconicalgradient(cx:0, cy:0, angle:135, stop:0 rgba(255, 255, 0, 69), stop:0.375 rgba(255, 255, 0, 69), stop:0.423533 rgba(251, 255, 0, 145), stop:0.45 rgba(247, 255, 0, 208), stop:0.477581 rgba(255, 244, 71, 130), stop:0.518717 rgba(255, 218, 71, 130), stop:0.55 rgba(255, 255, 0, 255), stop:0.57754 rgba(255, 203, 0, 130), stop:0.625 rgba(255, 255, 0, 69), stop:1 rgba(255, 255, 0, 69));\n"
-"color: rgb(0, 0, 0);")
-        self.title_label.setObjectName("title_label")
         self.tasks_box = QtWidgets.QGroupBox(parent=self.Menu)
-        self.tasks_box.setGeometry(QtCore.QRect(370, 120, 340, 331))
+        self.tasks_box.setGeometry(QtCore.QRect(130, 80, 821, 411))
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(9)
         font.setBold(True)
         font.setItalic(False)
         self.tasks_box.setFont(font)
-        self.tasks_box.setStyleSheet("color: rgb(170, 0, 0);\n"
-"font: 700 9pt \"Segoe UI\";\n"
-"font: 9pt \"Segoe UI\";\n"
-"font: 700 9pt \"Segoe UI\";")
+        self.tasks_box.setStyleSheet(
+            "color: rgb(255, 255, 255);\n" 'font: 700 9pt "Segoe UI";'
+        )
         self.tasks_box.setObjectName("tasks_box")
         self.verticalLayoutWidget = QtWidgets.QWidget(parent=self.tasks_box)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(60, 100, 220, 201))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(310, 190, 220, 180))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.menu_box = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.menu_box.setContentsMargins(0, 0, 0, 0)
         self.menu_box.setObjectName("menu_box")
-        self.menu_title = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
-        font = QtGui.QFont()
-        font.setFamily("Showcard Gothic")
-        font.setPointSize(12)
-        font.setBold(False)
-        font.setItalic(False)
-        self.menu_title.setFont(font)
-        self.menu_title.setStyleSheet("color: rgb(170, 0, 255);\n"
-"font: 12pt \"Showcard Gothic\";")
-        self.menu_title.setObjectName("menu_title")
-        self.menu_box.addWidget(self.menu_title)
+        self.label_2 = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
+        self.label_2.setStyleSheet('font: 9pt "STCaiyun";')
+        self.label_2.setObjectName("label_2")
+        self.menu_box.addWidget(self.label_2)
         self.user_info_box = QtWidgets.QPushButton(parent=self.verticalLayoutWidget)
-        self.user_info_box.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"color: rgb(0, 0, 0);")
+        self.user_info_box.setStyleSheet(
+            "background-color: rgb(255, 255, 255);\n" "color: rgb(0, 0, 0);"
+        )
         self.user_info_box.setObjectName("user_info_box")
         self.menu_box.addWidget(self.user_info_box)
         self.found_user_box = QtWidgets.QPushButton(parent=self.verticalLayoutWidget)
-        self.found_user_box.setStyleSheet("color: rgb(0, 0, 0);\n"
-"background-color: rgb(255, 255, 255);")
+        self.found_user_box.setStyleSheet(
+            "color: rgb(0, 0, 0);\n" "background-color: rgb(255, 255, 255);"
+        )
         self.found_user_box.setObjectName("found_user_box")
         self.menu_box.addWidget(self.found_user_box)
         self.history_finding = QtWidgets.QPushButton(parent=self.verticalLayoutWidget)
-        self.history_finding.setStyleSheet("color: rgb(0, 0, 0);\n"
-"background-color: rgb(255, 255, 255);")
+        self.history_finding.setStyleSheet(
+            "color: rgb(0, 0, 0);\n" "background-color: rgb(255, 255, 255);"
+        )
         self.history_finding.setObjectName("history_finding")
         self.menu_box.addWidget(self.history_finding)
         self.return_home_page = QtWidgets.QPushButton(parent=self.verticalLayoutWidget)
-        self.return_home_page.setStyleSheet("color: rgb(170, 0, 0);\n"
-"font: 700 9pt \"Segoe UI\";\n"
-"background-color: rgb(255, 255, 255);")
+        self.return_home_page.setStyleSheet(
+            "color: rgb(170, 0, 0);\n"
+            'font: 700 9pt "Segoe UI";\n'
+            "background-color: rgb(255, 255, 255);"
+        )
         self.return_home_page.setObjectName("return_home_page")
         self.menu_box.addWidget(self.return_home_page)
+        self.line_ava = QtWidgets.QLabel(parent=self.tasks_box)
+        self.line_ava.setGeometry(QtCore.QRect(40, 60, 161, 171))
+        self.line_ava.setText("")
+        self.line_ava.setPixmap(
+            QtGui.QPixmap(
+                r"C:\Users\phatl\OneDrive - VNU-HCMUS\Desktop\relative_face_recognition_app\client\frontend\ui\picture\round_box_ava_2.png"
+            )
+        )
+        self.line_ava.setScaledContents(True)
+        self.line_ava.setWordWrap(True)
+        self.line_ava.setOpenExternalLinks(True)
+        self.line_ava.setObjectName("line_ava")
+        self.ava = QtWidgets.QLabel(parent=self.tasks_box)
+        self.ava.setGeometry(QtCore.QRect(50, 90, 141, 131))
+        self.ava.setText("")
+        self.ava.setPixmap(
+            QtGui.QPixmap(
+                r"C:\Users\phatl\OneDrive - VNU-HCMUS\Desktop\relative_face_recognition_app\client\frontend\ui\picture\demo_ava_2.png"
+            )
+        )
+        self.ava.setScaledContents(True)
+        self.ava.setWordWrap(True)
+        self.ava.setOpenExternalLinks(True)
+        self.ava.setObjectName("ava")
+        self.verticalLayoutWidget_2 = QtWidgets.QWidget(parent=self.tasks_box)
+        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(70, 250, 112, 58))
+        self.verticalLayoutWidget_2.setObjectName("verticalLayoutWidget_2")
+        self.img_box = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_2)
+        self.img_box.setContentsMargins(0, 0, 0, 0)
+        self.img_box.setObjectName("img_box")
+        self.label = QtWidgets.QLabel(parent=self.verticalLayoutWidget_2)
+        self.label.setObjectName("label")
+        self.img_box.addWidget(self.label)
+        self.upload_img = QtWidgets.QPushButton(parent=self.verticalLayoutWidget_2)
+        self.upload_img.setStyleSheet(
+            'font: 700 9pt "Segoe UI";\n'
+            "color: rgb(170, 0, 0);\n"
+            "background-color: rgb(255, 255, 255);"
+        )
+        self.upload_img.setObjectName("upload_img")
+        self.img_box.addWidget(self.upload_img)
+        self.pushButton = QtWidgets.QPushButton(parent=self.tasks_box)
+        self.pushButton.setGeometry(QtCore.QRect(10, 370, 88, 30))
+        self.pushButton.setStyleSheet(
+            "background-color: rgb(255, 255, 255);\n"
+            'font: 700 9pt "Segoe UI";\n'
+            "color: rgb(0, 0, 0);"
+        )
+        self.pushButton.setObjectName("pushButton")
+        self.horizontalLayoutWidget = QtWidgets.QWidget(parent=self.tasks_box)
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(230, 80, 551, 80))
+        self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.name_account_label = QtWidgets.QLabel(parent=self.horizontalLayoutWidget)
+        self.name_account_label.setStyleSheet(
+            'font: 700 9pt "Segoe UI";\n' "color: rgb(255, 255, 255);"
+        )
+        self.name_account_label.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
+        self.name_account_label.setObjectName("name_account_label")
+        self.horizontalLayout.addWidget(self.name_account_label)
+        self.name_account = QtWidgets.QLabel(parent=self.horizontalLayoutWidget)
+        self.name_account.setStyleSheet(
+            "color: rgb(255, 255, 255);\n" 'font: 700 9pt "Segoe UI";'
+        )
+        self.name_account.setObjectName("name_account")
+        self.name_account.setFrameShape(QtWidgets.QFrame.Shape.Box)
+        self.horizontalLayout.addWidget(self.name_account)
+        self.background_img = QtWidgets.QLabel(parent=self.Menu)
+        self.background_img.setGeometry(QtCore.QRect(0, 0, 1074, 555))
+        self.background_img.setText("")
+        self.background_img.setPixmap(
+            QtGui.QPixmap(
+                r"C:\Users\phatl\OneDrive - VNU-HCMUS\Desktop\relative_face_recognition_app\client\frontend\ui\picture\background_3.jpg"
+            )
+        )
+        self.background_img.setScaledContents(True)
+        self.background_img.setWordWrap(True)
+        self.background_img.setOpenExternalLinks(True)
+        self.background_img.setObjectName("background_img")
+        self.title_name = QtWidgets.QLabel(parent=self.Menu)
+        self.title_name.setGeometry(QtCore.QRect(450, 20, 181, 41))
+        self.title_name.setStyleSheet(
+            "color: rgb(255, 255, 255);\n" "border-color: rgb(255, 255, 255);"
+        )
+        self.title_name.setFrameShape(QtWidgets.QFrame.Shape.WinPanel)
+        self.title_name.setObjectName("title_name")
+        self.star_line_2 = QtWidgets.QLabel(parent=self.Menu)
+        self.star_line_2.setGeometry(QtCore.QRect(350, 0, 111, 81))
+        self.star_line_2.setAutoFillBackground(False)
+        self.star_line_2.setText("")
+        self.star_line_2.setPixmap(
+            QtGui.QPixmap(
+                r"C:\Users\phatl\OneDrive - VNU-HCMUS\Desktop\relative_face_recognition_app\client\frontend\ui\picture\star_line.png"
+            )
+        )
+        self.star_line_2.setScaledContents(True)
+        self.star_line_2.setWordWrap(True)
+        self.star_line_2.setOpenExternalLinks(True)
+        self.star_line_2.setObjectName("star_line_2")
+        self.star_line = QtWidgets.QLabel(parent=self.Menu)
+        self.star_line.setGeometry(QtCore.QRect(620, 0, 101, 81))
+        self.star_line.setAutoFillBackground(False)
+        self.star_line.setText("")
+        self.star_line.setPixmap(
+            QtGui.QPixmap(
+                r"C:\Users\phatl\OneDrive - VNU-HCMUS\Desktop\relative_face_recognition_app\client\frontend\ui\picture\star_line_2.png"
+            )
+        )
+        self.star_line.setScaledContents(True)
+        self.star_line.setWordWrap(True)
+        self.star_line.setOpenExternalLinks(True)
+        self.star_line.setObjectName("star_line")
+        self.label_3 = QtWidgets.QLabel(parent=self.Menu)
+        self.label_3.setGeometry(QtCore.QRect(840, 330, 231, 211))
+        self.label_3.setText("")
+        self.label_3.setPixmap(
+            QtGui.QPixmap(
+                r"C:\Users\phatl\OneDrive - VNU-HCMUS\Desktop\relative_face_recognition_app\client\frontend\ui\picture\moonlight.png"
+            )
+        )
+        self.label_3.setScaledContents(True)
+        self.label_3.setWordWrap(True)
+        self.label_3.setOpenExternalLinks(True)
+        self.label_3.setObjectName("label_3")
+        self.label_4 = QtWidgets.QLabel(parent=self.Menu)
+        self.label_4.setGeometry(QtCore.QRect(880, 20, 141, 121))
+        self.label_4.setText("")
+        self.label_4.setPixmap(
+            QtGui.QPixmap(
+                r"C:\Users\phatl\OneDrive - VNU-HCMUS\Desktop\relative_face_recognition_app\client\frontend\ui\picture\star.png"
+            )
+        )
+        self.label_4.setScaledContents(True)
+        self.label_4.setWordWrap(True)
+        self.label_4.setOpenExternalLinks(True)
+        self.label_4.setObjectName("label_4")
+        self.background_img.raise_()
+        self.tasks_box.raise_()
+        self.title_name.raise_()
+        self.star_line_2.raise_()
+        self.star_line.raise_()
+        self.label_3.raise_()
+        self.label_4.raise_()
         Specific_Task.setCentralWidget(self.Menu)
         self.menubar = QtWidgets.QMenuBar(parent=Specific_Task)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1074, 25))
         self.menubar.setObjectName("menubar")
+        self.menuSettings = QtWidgets.QMenu(parent=self.menubar)
+        self.menuSettings.setObjectName("menuSettings")
         Specific_Task.setMenuBar(self.menubar)
+        self.menuSettings.addSeparator()
+        self.menubar.addAction(self.menuSettings.menuAction())
 
         self.retranslateUi(Specific_Task)
         QtCore.QMetaObject.connectSlotsByName(Specific_Task)
@@ -89,10 +225,45 @@ class Ui_Specific_Task(object):
     def retranslateUi(self, Specific_Task):
         _translate = QtCore.QCoreApplication.translate
         Specific_Task.setWindowTitle(_translate("Specific_Task", "MainWindow"))
-        self.title_label.setText(_translate("Specific_Task", "<html><head/><body><p align=\"center\">ỨNG DỤNG TÌM NGƯỜI MUỐN GẶP</p></body></html>"))
-        self.tasks_box.setTitle(_translate("Specific_Task", "CÁC CHỨC NĂNG ỨND DỤNG"))
-        self.menu_title.setText(_translate("Specific_Task", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt;\">MENU</span></p></body></html>"))
-        self.user_info_box.setText(_translate("Specific_Task", "NHẬP THÔNG TIN CÁ NHÂN "))
-        self.found_user_box.setText(_translate("Specific_Task", "NHẬP THÔNG TIN TÌM KIẾM"))
+        self.tasks_box.setTitle(_translate("Specific_Task", "🗳 CÁC CHỨC NĂNG ỨND DỤNG"))
+        self.label_2.setText(
+            _translate(
+                "Specific_Task",
+                '<html><head/><body><p align="center"><span style=" font-size:20pt; font-weight:700;">MENU</span></p></body></html>',
+            )
+        )
+        self.user_info_box.setText(
+            _translate("Specific_Task", "NHẬP THÔNG TIN CÁ NHÂN ")
+        )
+        self.found_user_box.setText(
+            _translate("Specific_Task", "NHẬP THÔNG TIN TÌM KIẾM")
+        )
         self.history_finding.setText(_translate("Specific_Task", "LỊCH SỬ TÌM KIẾM "))
         self.return_home_page.setText(_translate("Specific_Task", "ĐĂNG XUẤT"))
+        self.label.setText(
+            _translate(
+                "Specific_Task",
+                '<html><head/><body><p align="center">HÌNH ĐẠI DIỆN</p></body></html>',
+            )
+        )
+        self.upload_img.setText(_translate("Specific_Task", "Tải hình lên"))
+        self.pushButton.setText(_translate("Specific_Task", "⚙Settings"))
+        self.name_account_label.setText(
+            _translate(
+                "Specific_Task",
+                '<html><head/><body><p><span style=" font-size:14pt;">ℹ️ TÊN TÀI KHOẢN : </span></p></body></html>',
+            )
+        )
+        self.name_account.setText(
+            _translate(
+                "Specific_Task",
+                '<html><head/><body><p align="center"><br/></p></body></html>',
+            )
+        )
+        self.title_name.setText(
+            _translate(
+                "Specific_Task",
+                '<html><head/><body><p align="center"><span style=" font-size:14pt; font-weight:700; color:#ffffff;">FUInfo Apps</span></p></body></html>',
+            )
+        )
+        self.menuSettings.setTitle(_translate("Specific_Task", "Settings"))

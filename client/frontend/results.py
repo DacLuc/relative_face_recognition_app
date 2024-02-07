@@ -86,23 +86,3 @@ class Ui_MainWindow(object):
         self.label_4.setText(_translate("MainWindow", "Đặc điểm nhận dạng:"))
         self.select_button.setText(_translate("MainWindow", "SELECT"))
         self.cancel_button.setText(_translate("MainWindow", "CANCEL"))
-
-    def display_user_info(
-        self,
-        user_info_name: str,
-        user_info_gioi_tinh: str,
-        user_info_age,
-        user_info_country: str,
-        user_info_city: str,
-        user_info_district: str,
-        user_info_ward: str,
-        user_info_feature: str,
-        found_user_img,
-    ):
-        self.label.setText(f"Họ tên: {user_info_name}")
-        self.label_5.setText(f"Giới tính: {user_info_gioi_tinh}")
-        self.label_2.setText(f"Tuổi: {user_info_age}")
-        self.label_3.setText(
-            f"Quê quán: {user_info_ward}, {user_info_district}, {user_info_city}, {user_info_country}"
-        )
-        self.label_4.setText(f"Đặc điểm nhận dạng: {user_info_feature}")

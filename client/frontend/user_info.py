@@ -13,25 +13,29 @@ class Ui_Info_Users_Page(object):
     def setupUi(self, Info_Users_Page):
         Info_Users_Page.setObjectName("Info_Users_Page")
         Info_Users_Page.resize(1074, 555)
+        Info_Users_Page.setAutoFillBackground(True)
         Info_Users_Page.setDocumentMode(True)
         self.centralwidget = QtWidgets.QWidget(parent=Info_Users_Page)
         self.centralwidget.setObjectName("centralwidget")
         self.users_info = QtWidgets.QGroupBox(parent=self.centralwidget)
-        self.users_info.setGeometry(QtCore.QRect(20, 60, 1031, 391))
+        self.users_info.setGeometry(QtCore.QRect(20, 60, 1031, 401))
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(9)
         font.setBold(True)
         font.setItalic(False)
         self.users_info.setFont(font)
-        self.users_info.setTabletTracking(False)
+        self.users_info.setMouseTracking(True)
+        self.users_info.setTabletTracking(True)
+        self.users_info.setAcceptDrops(True)
+        self.users_info.setAutoFillBackground(False)
         self.users_info.setStyleSheet(
-            "color: rgb(170, 0, 0);\n" 'font: 700 9pt "Segoe UI";'
+            'font: 700 9pt "Segoe UI";\n' "color: rgb(255, 255, 255);"
         )
         self.users_info.setCheckable(False)
         self.users_info.setObjectName("users_info")
         self.horizontalLayoutWidget = QtWidgets.QWidget(parent=self.users_info)
-        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(780, 40, 191, 30))
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(790, 40, 103, 30))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
         self.age_box = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
         self.age_box.setContentsMargins(0, 0, 0, 0)
@@ -45,81 +49,175 @@ class Ui_Info_Users_Page(object):
         font.setItalic(False)
         self.age_landmark.setFont(font)
         self.age_landmark.setStyleSheet(
-            "color: rgb(0, 0, 0);\n" 'font: 700 9pt "Segoe UI";'
+            "color: rgb(255, 255, 255);\n" 'font: 700 9pt "Segoe UI";'
         )
         self.age_landmark.setObjectName("age_landmark")
         self.age_box.addWidget(self.age_landmark)
         self.age_range = QtWidgets.QSpinBox(parent=self.horizontalLayoutWidget)
-        self.age_range.setStyleSheet("color: rgb(0, 0, 0);\n" 'font: 9pt "Segoe UI";')
+        self.age_range.setAutoFillBackground(True)
+        self.age_range.setStyleSheet(
+            "color: rgb(0, 0, 0);\n"
+            "background-color: rgb(255, 255, 255);\n"
+            'font: 9pt "Segoe UI";'
+        )
+        self.age_range.setAccelerated(False)
+        self.age_range.setProperty("showGroupSeparator", True)
         self.age_range.setObjectName("age_range")
         self.age_box.addWidget(self.age_range)
-        self.horizontalLayoutWidget_4 = QtWidgets.QWidget(parent=self.users_info)
-        self.horizontalLayoutWidget_4.setGeometry(QtCore.QRect(520, 220, 451, 151))
-        self.horizontalLayoutWidget_4.setObjectName("horizontalLayoutWidget_4")
-        self.face_feature = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_4)
-        self.face_feature.setContentsMargins(0, 0, 0, 0)
-        self.face_feature.setObjectName("face_feature")
-        self.info_face_label = QtWidgets.QLabel(parent=self.horizontalLayoutWidget_4)
+        self.horizontalLayoutWidget_2 = QtWidgets.QWidget(parent=self.users_info)
+        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(570, 40, 127, 30))
+        self.horizontalLayoutWidget_2.setObjectName("horizontalLayoutWidget_2")
+        self.sex_box = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_2)
+        self.sex_box.setContentsMargins(0, 0, 0, 0)
+        self.sex_box.setSpacing(2)
+        self.sex_box.setObjectName("sex_box")
+        self.gioi_tinh_label = QtWidgets.QLabel(parent=self.horizontalLayoutWidget_2)
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(9)
         font.setBold(True)
         font.setItalic(False)
-        self.info_face_label.setFont(font)
-        self.info_face_label.setStyleSheet(
-            "color: rgb(0, 0, 0);\n" 'font: 700 9pt "Segoe UI";'
+        self.gioi_tinh_label.setFont(font)
+        self.gioi_tinh_label.setStyleSheet(
+            'font: 700 9pt "Segoe UI";\n' "color: rgb(255, 255, 255);"
         )
-        self.info_face_label.setObjectName("info_face_label")
-        self.face_feature.addWidget(self.info_face_label)
-        self.info_face_text = QtWidgets.QTextEdit(parent=self.horizontalLayoutWidget_4)
-        self.info_face_text.setStyleSheet(
-            "color: rgb(0, 0, 0);\n" 'font: 9pt "Segoe UI";'
+        self.gioi_tinh_label.setObjectName("gioi_tinh_label")
+        self.sex_box.addWidget(self.gioi_tinh_label)
+        self.gioi_tinh_box = QtWidgets.QComboBox(parent=self.horizontalLayoutWidget_2)
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(9)
+        font.setBold(False)
+        font.setItalic(False)
+        self.gioi_tinh_box.setFont(font)
+        self.gioi_tinh_box.setMouseTracking(True)
+        self.gioi_tinh_box.setTabletTracking(True)
+        self.gioi_tinh_box.setStyleSheet(
+            "color: rgb(0, 0, 0);\n"
+            "background-color: rgb(255, 255, 255);\n"
+            'font: 9pt "Segoe UI";'
         )
-        self.info_face_text.setObjectName("info_face_text")
-        self.face_feature.addWidget(self.info_face_text)
-        self.horizontalLayoutWidget_5 = QtWidgets.QWidget(parent=self.users_info)
-        self.horizontalLayoutWidget_5.setGeometry(QtCore.QRect(10, 320, 481, 28))
-        self.horizontalLayoutWidget_5.setObjectName("horizontalLayoutWidget_5")
-        self.allowed_finding = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_5)
-        self.allowed_finding.setContentsMargins(0, 0, 0, 0)
-        self.allowed_finding.setObjectName("allowed_finding")
-        self.allowed_label = QtWidgets.QLabel(parent=self.horizontalLayoutWidget_5)
+        self.gioi_tinh_box.setEditable(True)
+        self.gioi_tinh_box.setInsertPolicy(QtWidgets.QComboBox.InsertPolicy.NoInsert)
+        self.gioi_tinh_box.setObjectName("gioi_tinh_box")
+        self.gioi_tinh_box.addItem("")
+        self.gioi_tinh_box.addItem("")
+        icon = QtGui.QIcon.fromTheme("accessories-calculator")
+        self.gioi_tinh_box.addItem(icon, "")
+        self.gioi_tinh_box.setItemText(2, "")
+        self.sex_box.addWidget(self.gioi_tinh_box)
+        self.verticalLayoutWidget_2 = QtWidgets.QWidget(parent=self.users_info)
+        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(330, 110, 111, 71))
+        self.verticalLayoutWidget_2.setObjectName("verticalLayoutWidget_2")
+        self.group_2 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_2)
+        self.group_2.setContentsMargins(0, 0, 0, 0)
+        self.group_2.setObjectName("group_2")
+        self.nation_label = QtWidgets.QLabel(parent=self.verticalLayoutWidget_2)
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(9)
         font.setBold(True)
         font.setItalic(False)
-        self.allowed_label.setFont(font)
-        self.allowed_label.setStyleSheet(
-            "color: rgb(0, 0, 0);\n" 'font: 700 9pt "Segoe UI";'
+        self.nation_label.setFont(font)
+        self.nation_label.setStyleSheet(
+            'font: 700 9pt "Segoe UI";\n' "color: rgb(255, 255, 255);"
         )
-        self.allowed_label.setObjectName("allowed_label")
-        self.allowed_finding.addWidget(self.allowed_label)
-        self.is_allowed = QtWidgets.QCheckBox(parent=self.horizontalLayoutWidget_5)
+        self.nation_label.setObjectName("nation_label")
+        self.group_2.addWidget(self.nation_label)
+        self.district_label = QtWidgets.QLabel(parent=self.verticalLayoutWidget_2)
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(9)
         font.setBold(True)
         font.setItalic(False)
-        self.is_allowed.setFont(font)
-        self.is_allowed.setStyleSheet(
-            "color: rgb(170, 0, 0);\n" 'font: 700 9pt "Segoe UI";'
+        self.district_label.setFont(font)
+        self.district_label.setStyleSheet(
+            "color: rgb(255, 255, 255);\n" 'font: 700 9pt "Segoe UI";'
         )
-        self.is_allowed.setObjectName("is_allowed")
-        self.allowed_finding.addWidget(self.is_allowed)
-        self.label_user_img = QtWidgets.QLabel(parent=self.users_info)
-        self.label_user_img.setGeometry(QtCore.QRect(20, 40, 181, 201))
-        self.label_user_img.setStyleSheet("background-color: rgb(255, 255, 255);")
-        self.label_user_img.setText("")
-        self.label_user_img.setPixmap(
+        self.district_label.setObjectName("district_label")
+        self.group_2.addWidget(self.district_label)
+        self.verticalLayoutWidget_3 = QtWidgets.QWidget(parent=self.users_info)
+        self.verticalLayoutWidget_3.setGeometry(QtCore.QRect(650, 110, 131, 71))
+        self.verticalLayoutWidget_3.setObjectName("verticalLayoutWidget_3")
+        self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_3)
+        self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_3.setObjectName("verticalLayout_3")
+        self.city_label = QtWidgets.QLabel(parent=self.verticalLayoutWidget_3)
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(9)
+        font.setBold(True)
+        font.setItalic(False)
+        self.city_label.setFont(font)
+        self.city_label.setStyleSheet(
+            "color: rgb(255, 255, 255);\n" 'font: 700 9pt "Segoe UI";'
+        )
+        self.city_label.setObjectName("city_label")
+        self.verticalLayout_3.addWidget(self.city_label)
+        self.ward = QtWidgets.QLabel(parent=self.verticalLayoutWidget_3)
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(9)
+        font.setBold(True)
+        font.setItalic(False)
+        self.ward.setFont(font)
+        self.ward.setStyleSheet(
+            "color: rgb(255, 255, 255);\n" 'font: 700 9pt "Segoe UI";'
+        )
+        self.ward.setObjectName("ward")
+        self.verticalLayout_3.addWidget(self.ward)
+        self.verticalLayoutWidget_5 = QtWidgets.QWidget(parent=self.users_info)
+        self.verticalLayoutWidget_5.setGeometry(QtCore.QRect(780, 110, 151, 71))
+        self.verticalLayoutWidget_5.setObjectName("verticalLayoutWidget_5")
+        self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_5)
+        self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_5.setObjectName("verticalLayout_5")
+        self.city_box = QtWidgets.QComboBox(parent=self.verticalLayoutWidget_5)
+        self.city_box.setAcceptDrops(False)
+        self.city_box.setStyleSheet(
+            "color: rgb(0, 0, 0);\n"
+            "background-color: rgb(255, 255, 255);\n"
+            'font: 9pt "Segoe UI";'
+        )
+        self.city_box.setInsertPolicy(
+            QtWidgets.QComboBox.InsertPolicy.InsertAlphabetically
+        )
+        self.city_box.setSizeAdjustPolicy(
+            QtWidgets.QComboBox.SizeAdjustPolicy.AdjustToContents
+        )
+        self.city_box.setObjectName("city_box")
+        self.verticalLayout_5.addWidget(self.city_box)
+        self.ward_box = QtWidgets.QComboBox(parent=self.verticalLayoutWidget_5)
+        self.ward_box.setStyleSheet(
+            "color: rgb(0, 0, 0);\n"
+            "background-color: rgb(255, 255, 255);\n"
+            'font: 9pt "Segoe UI";'
+        )
+        self.ward_box.setInsertPolicy(QtWidgets.QComboBox.InsertPolicy.NoInsert)
+        self.ward_box.setSizeAdjustPolicy(
+            QtWidgets.QComboBox.SizeAdjustPolicy.AdjustToContents
+        )
+        self.ward_box.setObjectName("ward_box")
+        self.verticalLayout_5.addWidget(self.ward_box)
+        self.line_ava = QtWidgets.QLabel(parent=self.users_info)
+        self.line_ava.setGeometry(QtCore.QRect(30, 30, 231, 291))
+        self.line_ava.setMouseTracking(True)
+        self.line_ava.setTabletTracking(True)
+        self.line_ava.setAcceptDrops(True)
+        self.line_ava.setAutoFillBackground(False)
+        self.line_ava.setStyleSheet("")
+        self.line_ava.setText("")
+        self.line_ava.setPixmap(
             QtGui.QPixmap(
-                r"C:\Users\phatl\OneDrive - VNU-HCMUS\Desktop\relative_face_recognition_app\client\frontend\ui\picture\demo_ava.jpg"
+                r"C:\Users\phatl\OneDrive - VNU-HCMUS\Desktop\relative_face_recognition_app\client\frontend\ui\picture\new_img.png"
             )
         )
-        self.label_user_img.setScaledContents(True)
-        self.label_user_img.setObjectName("label_user_img")
+        self.line_ava.setScaledContents(True)
+        self.line_ava.setWordWrap(True)
+        self.line_ava.setOpenExternalLinks(True)
+        self.line_ava.setObjectName("line_ava")
         self.horizontalLayoutWidget_3 = QtWidgets.QWidget(parent=self.users_info)
-        self.horizontalLayoutWidget_3.setGeometry(QtCore.QRect(230, 40, 241, 30))
+        self.horizontalLayoutWidget_3.setGeometry(QtCore.QRect(300, 40, 203, 30))
         self.horizontalLayoutWidget_3.setObjectName("horizontalLayoutWidget_3")
         self.name_box = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_3)
         self.name_box.setContentsMargins(0, 0, 0, 0)
@@ -138,58 +236,49 @@ class Ui_Info_Users_Page(object):
         self.ho_ten_label.setObjectName("ho_ten_label")
         self.name_box.addWidget(self.ho_ten_label)
         self.ho_ten = QtWidgets.QLineEdit(parent=self.horizontalLayoutWidget_3)
-        self.ho_ten.setStyleSheet("color: rgb(0, 0, 0);\n" 'font: 9pt "Segoe UI";')
+        self.ho_ten.setStyleSheet(
+            "color: rgb(0, 0, 0);\n"
+            "background-color: rgb(255, 255, 255);\n"
+            'font: 9pt "Segoe UI";\n'
+            ""
+        )
         self.ho_ten.setObjectName("ho_ten")
         self.name_box.addWidget(self.ho_ten)
-        self.horizontalLayoutWidget_2 = QtWidgets.QWidget(parent=self.users_info)
-        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(520, 40, 181, 30))
-        self.horizontalLayoutWidget_2.setObjectName("horizontalLayoutWidget_2")
-        self.sex_box = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_2)
-        self.sex_box.setContentsMargins(0, 0, 0, 0)
-        self.sex_box.setSpacing(2)
-        self.sex_box.setObjectName("sex_box")
-        self.gioi_tinh_label = QtWidgets.QLabel(parent=self.horizontalLayoutWidget_2)
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        font.setPointSize(9)
-        font.setBold(True)
-        font.setItalic(False)
-        self.gioi_tinh_label.setFont(font)
-        self.gioi_tinh_label.setStyleSheet(
-            "color: rgb(0, 0, 0);\n" 'font: 700 9pt "Segoe UI";'
+        self.verticalLayoutWidget_4 = QtWidgets.QWidget(parent=self.users_info)
+        self.verticalLayoutWidget_4.setGeometry(QtCore.QRect(440, 110, 161, 71))
+        self.verticalLayoutWidget_4.setObjectName("verticalLayoutWidget_4")
+        self.group_1 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_4)
+        self.group_1.setContentsMargins(0, 0, 0, 0)
+        self.group_1.setObjectName("group_1")
+        self.nation_box = QtWidgets.QComboBox(parent=self.verticalLayoutWidget_4)
+        self.nation_box.setStyleSheet(
+            "color: rgb(0, 0, 0);\n"
+            "background-color: rgb(255, 255, 255);\n"
+            'font: 9pt "Segoe UI";'
         )
-        self.gioi_tinh_label.setObjectName("gioi_tinh_label")
-        self.sex_box.addWidget(self.gioi_tinh_label)
-        self.gioi_tinh_box = QtWidgets.QComboBox(parent=self.horizontalLayoutWidget_2)
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        font.setPointSize(9)
-        font.setBold(False)
-        font.setItalic(False)
-        self.gioi_tinh_box.setFont(font)
-        self.gioi_tinh_box.setMouseTracking(True)
-        self.gioi_tinh_box.setTabletTracking(True)
-        self.gioi_tinh_box.setStyleSheet(
-            "color: rgb(0, 0, 0);\n" 'font: 9pt "Segoe UI";'
+        self.nation_box.setObjectName("nation_box")
+        self.nation_box.addItem("")
+        self.group_1.addWidget(self.nation_box)
+        self.district_box = QtWidgets.QComboBox(parent=self.verticalLayoutWidget_4)
+        self.district_box.setStyleSheet(
+            "color: rgb(0, 0, 0);\n"
+            "background-color: rgb(255, 255, 255);\n"
+            'font: 9pt "Segoe UI";'
         )
-        self.gioi_tinh_box.setEditable(True)
-        self.gioi_tinh_box.setInsertPolicy(QtWidgets.QComboBox.InsertPolicy.NoInsert)
-        self.gioi_tinh_box.setObjectName("gioi_tinh_box")
-        self.gioi_tinh_box.addItem("")
-        self.gioi_tinh_box.addItem("")
-        icon = QtGui.QIcon.fromTheme("accessories-calculator")
-        self.gioi_tinh_box.addItem(icon, "")
-        self.gioi_tinh_box.setItemText(2, "")
-        self.sex_box.addWidget(self.gioi_tinh_box)
+        self.district_box.setSizeAdjustPolicy(
+            QtWidgets.QComboBox.SizeAdjustPolicy.AdjustToContents
+        )
+        self.district_box.setObjectName("district_box")
+        self.group_1.addWidget(self.district_box)
         self.verticalLayoutWidget = QtWidgets.QWidget(parent=self.users_info)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(30, 250, 161, 61))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(70, 330, 153, 58))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.label = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
-        self.label.setObjectName("label")
-        self.verticalLayout.addWidget(self.label)
+        self.hinh_anh_ca_nha = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
+        self.hinh_anh_ca_nha.setObjectName("hinh_anh_ca_nha")
+        self.verticalLayout.addWidget(self.hinh_anh_ca_nha)
         self.download_pic = QtWidgets.QPushButton(parent=self.verticalLayoutWidget)
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
@@ -198,143 +287,137 @@ class Ui_Info_Users_Page(object):
         font.setItalic(False)
         self.download_pic.setFont(font)
         self.download_pic.setStyleSheet(
-            "color: rgb(0, 0, 0);\n" 'font: 700 9pt "Segoe UI";'
+            "color: rgb(170, 0, 0);\n"
+            "background-color: rgb(255, 255, 255);\n"
+            'font: 700 9pt "Segoe UI";'
         )
         self.download_pic.setObjectName("download_pic")
         self.verticalLayout.addWidget(self.download_pic)
-        self.verticalLayoutWidget_2 = QtWidgets.QWidget(parent=self.users_info)
-        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(230, 100, 141, 101))
-        self.verticalLayoutWidget_2.setObjectName("verticalLayoutWidget_2")
-        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_2)
-        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.nation_label = QtWidgets.QLabel(parent=self.verticalLayoutWidget_2)
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        font.setPointSize(9)
-        font.setBold(True)
-        font.setItalic(False)
-        self.nation_label.setFont(font)
-        self.nation_label.setStyleSheet(
-            "color: rgb(0, 0, 0);\n" 'font: 700 9pt "Segoe UI";'
-        )
-        self.nation_label.setObjectName("nation_label")
-        self.verticalLayout_2.addWidget(self.nation_label)
-        self.district_label = QtWidgets.QLabel(parent=self.verticalLayoutWidget_2)
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        font.setPointSize(9)
-        font.setBold(True)
-        font.setItalic(False)
-        self.district_label.setFont(font)
-        self.district_label.setStyleSheet(
-            "color: rgb(0, 0, 0);\n" 'font: 700 9pt "Segoe UI";'
-        )
-        self.district_label.setObjectName("district_label")
-        self.verticalLayout_2.addWidget(self.district_label)
-        self.verticalLayoutWidget_3 = QtWidgets.QWidget(parent=self.users_info)
-        self.verticalLayoutWidget_3.setGeometry(QtCore.QRect(610, 100, 160, 101))
-        self.verticalLayoutWidget_3.setObjectName("verticalLayoutWidget_3")
-        self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_3)
-        self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_3.setObjectName("verticalLayout_3")
-        self.city_label = QtWidgets.QLabel(parent=self.verticalLayoutWidget_3)
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        font.setPointSize(9)
-        font.setBold(True)
-        font.setItalic(False)
-        self.city_label.setFont(font)
-        self.city_label.setStyleSheet(
-            "color: rgb(0, 0, 0);\n" 'font: 700 9pt "Segoe UI";'
-        )
-        self.city_label.setObjectName("city_label")
-        self.verticalLayout_3.addWidget(self.city_label)
-        self.ward = QtWidgets.QLabel(parent=self.verticalLayoutWidget_3)
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        font.setPointSize(9)
-        font.setBold(True)
-        font.setItalic(False)
-        self.ward.setFont(font)
-        self.ward.setStyleSheet("color: rgb(0, 0, 0);\n" 'font: 700 9pt "Segoe UI";')
-        self.ward.setObjectName("ward")
-        self.verticalLayout_3.addWidget(self.ward)
-        self.verticalLayoutWidget_4 = QtWidgets.QWidget(parent=self.users_info)
-        self.verticalLayoutWidget_4.setGeometry(QtCore.QRect(370, 100, 191, 101))
-        self.verticalLayoutWidget_4.setObjectName("verticalLayoutWidget_4")
-        self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_4)
-        self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_4.setObjectName("verticalLayout_4")
-        self.nation_box = QtWidgets.QComboBox(parent=self.verticalLayoutWidget_4)
-        self.nation_box.setStyleSheet("color: rgb(0, 0, 0);\n" 'font: 9pt "Segoe UI";')
-        self.nation_box.setObjectName("nation_box")
-        self.nation_box.addItem("")
-        self.verticalLayout_4.addWidget(self.nation_box)
-        self.district_box = QtWidgets.QComboBox(parent=self.verticalLayoutWidget_4)
-        self.district_box.setStyleSheet(
-            "color: rgb(0, 0, 0);\n" 'font: 9pt "Segoe UI";'
-        )
-        self.district_box.setSizeAdjustPolicy(
-            QtWidgets.QComboBox.SizeAdjustPolicy.AdjustToContents
-        )
-        self.district_box.setObjectName("district_box")
-        self.verticalLayout_4.addWidget(self.district_box)
-        self.verticalLayoutWidget_5 = QtWidgets.QWidget(parent=self.users_info)
-        self.verticalLayoutWidget_5.setGeometry(QtCore.QRect(770, 100, 201, 101))
-        self.verticalLayoutWidget_5.setObjectName("verticalLayoutWidget_5")
-        self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_5)
-        self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_5.setObjectName("verticalLayout_5")
-        self.city_box = QtWidgets.QComboBox(parent=self.verticalLayoutWidget_5)
-        self.city_box.setAcceptDrops(False)
-        self.city_box.setStyleSheet("color: rgb(0, 0, 0);\n" 'font: 9pt "Segoe UI";')
-        self.city_box.setInsertPolicy(
-            QtWidgets.QComboBox.InsertPolicy.InsertAlphabetically
-        )
-        self.city_box.setSizeAdjustPolicy(
-            QtWidgets.QComboBox.SizeAdjustPolicy.AdjustToContents
-        )
-        self.city_box.setObjectName("city_box")
-        self.verticalLayout_5.addWidget(self.city_box)
-        self.ward_box = QtWidgets.QComboBox(parent=self.verticalLayoutWidget_5)
-        self.ward_box.setStyleSheet("color: rgb(0, 0, 0);\n" 'font: 9pt "Segoe UI";')
-        self.ward_box.setInsertPolicy(QtWidgets.QComboBox.InsertPolicy.NoInsert)
-        self.ward_box.setSizeAdjustPolicy(
-            QtWidgets.QComboBox.SizeAdjustPolicy.AdjustToContents
-        )
-        self.ward_box.setObjectName("ward_box")
-        self.verticalLayout_5.addWidget(self.ward_box)
-        self.label_2 = QtWidgets.QLabel(parent=self.users_info)
-        self.label_2.setGeometry(QtCore.QRect(10, 30, 201, 221))
-        self.label_2.setMouseTracking(True)
-        self.label_2.setTabletTracking(True)
-        self.label_2.setAcceptDrops(True)
-        self.label_2.setAutoFillBackground(True)
-        self.label_2.setText("")
-        self.label_2.setPixmap(
+        self.label_user_img = QtWidgets.QLabel(parent=self.users_info)
+        self.label_user_img.setGeometry(QtCore.QRect(50, 50, 191, 251))
+        self.label_user_img.setAutoFillBackground(True)
+        self.label_user_img.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.label_user_img.setText("")
+        self.label_user_img.setPixmap(
             QtGui.QPixmap(
-                r"C:\Users\phatl\OneDrive - VNU-HCMUS\Desktop\relative_face_recognition_app\client\frontend\ui\picture\Hồng và Màu kem Minh họa Ô trống Đường viền trang.png"
+                r"C:\Users\phatl\OneDrive - VNU-HCMUS\Desktop\relative_face_recognition_app\client\frontend\ui\picture\demo_ava.jpg"
             )
         )
-        self.label_2.setScaledContents(True)
-        self.label_2.setWordWrap(True)
-        self.label_2.setOpenExternalLinks(True)
-        self.label_2.setObjectName("label_2")
-        self.label_2.raise_()
+        self.label_user_img.setScaledContents(True)
+        self.label_user_img.setWordWrap(True)
+        self.label_user_img.setObjectName("label_user_img")
+        self.horizontalLayoutWidget_5 = QtWidgets.QWidget(parent=self.users_info)
+        self.horizontalLayoutWidget_5.setGeometry(QtCore.QRect(390, 350, 484, 28))
+        self.horizontalLayoutWidget_5.setObjectName("horizontalLayoutWidget_5")
+        self.allowed_finding = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_5)
+        self.allowed_finding.setContentsMargins(0, 0, 0, 0)
+        self.allowed_finding.setObjectName("allowed_finding")
+        self.allowed_label = QtWidgets.QLabel(parent=self.horizontalLayoutWidget_5)
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(9)
+        font.setBold(True)
+        font.setItalic(False)
+        self.allowed_label.setFont(font)
+        self.allowed_label.setStyleSheet(
+            'font: 700 9pt "Segoe UI";\n' "color: rgb(255, 255, 255);"
+        )
+        self.allowed_label.setObjectName("allowed_label")
+        self.allowed_finding.addWidget(self.allowed_label)
+        self.is_allowed = QtWidgets.QCheckBox(parent=self.horizontalLayoutWidget_5)
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(9)
+        font.setBold(True)
+        font.setItalic(False)
+        self.is_allowed.setFont(font)
+        self.is_allowed.setStyleSheet(
+            'font: 700 9pt "Segoe UI";\n' "color: rgb(255, 255, 127);"
+        )
+        self.is_allowed.setObjectName("is_allowed")
+        self.allowed_finding.addWidget(self.is_allowed)
+        self.horizontalLayoutWidget_4 = QtWidgets.QWidget(parent=self.users_info)
+        self.horizontalLayoutWidget_4.setGeometry(QtCore.QRect(420, 200, 431, 131))
+        self.horizontalLayoutWidget_4.setObjectName("horizontalLayoutWidget_4")
+        self.face_feature = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_4)
+        self.face_feature.setContentsMargins(0, 0, 0, 0)
+        self.face_feature.setObjectName("face_feature")
+        self.info_face_label = QtWidgets.QLabel(parent=self.horizontalLayoutWidget_4)
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(9)
+        font.setBold(True)
+        font.setItalic(False)
+        self.info_face_label.setFont(font)
+        self.info_face_label.setStyleSheet(
+            'font: 700 9pt "Segoe UI";\n' "color: rgb(255, 255, 255);"
+        )
+        self.info_face_label.setObjectName("info_face_label")
+        self.face_feature.addWidget(self.info_face_label)
+        self.info_face_text = QtWidgets.QTextEdit(parent=self.horizontalLayoutWidget_4)
+        self.info_face_text.setStyleSheet(
+            "color: rgb(0, 0, 0);\n"
+            "background-color: rgb(255, 255, 255);\n"
+            'font: 9pt "Segoe UI";'
+        )
+        self.info_face_text.setObjectName("info_face_text")
+        self.face_feature.addWidget(self.info_face_text)
+        self.astronaunt_icon = QtWidgets.QLabel(parent=self.users_info)
+        self.astronaunt_icon.setGeometry(QtCore.QRect(860, 190, 151, 141))
+        self.astronaunt_icon.setAutoFillBackground(False)
+        self.astronaunt_icon.setText("")
+        self.astronaunt_icon.setPixmap(
+            QtGui.QPixmap(
+                r"C:\Users\phatl\OneDrive - VNU-HCMUS\Desktop\relative_face_recognition_app\client\frontend\ui\picture\image.png"
+            )
+        )
+        self.astronaunt_icon.setScaledContents(True)
+        self.astronaunt_icon.setWordWrap(True)
+        self.astronaunt_icon.setOpenExternalLinks(True)
+        self.astronaunt_icon.setObjectName("astronaunt_icon")
+        self.start_icon = QtWidgets.QLabel(parent=self.users_info)
+        self.start_icon.setGeometry(QtCore.QRect(260, 270, 151, 131))
+        self.start_icon.setAutoFillBackground(False)
+        self.start_icon.setText("")
+        self.start_icon.setPixmap(
+            QtGui.QPixmap(
+                r"C:\Users\phatl\OneDrive - VNU-HCMUS\Desktop\relative_face_recognition_app\client\frontend\ui\picture\icon_start.png"
+            )
+        )
+        self.start_icon.setScaledContents(True)
+        self.start_icon.setWordWrap(True)
+        self.start_icon.setOpenExternalLinks(True)
+        self.start_icon.setObjectName("start_icon")
+        self.ship_icon = QtWidgets.QLabel(parent=self.users_info)
+        self.ship_icon.setGeometry(QtCore.QRect(930, 0, 100, 100))
+        self.ship_icon.setAutoFillBackground(False)
+        self.ship_icon.setText("")
+        self.ship_icon.setPixmap(
+            QtGui.QPixmap(
+                r"C:\Users\phatl\OneDrive - VNU-HCMUS\Desktop\relative_face_recognition_app\client\frontend\ui\picture\ship.png"
+            )
+        )
+        self.ship_icon.setScaledContents(True)
+        self.ship_icon.setWordWrap(True)
+        self.ship_icon.setOpenExternalLinks(True)
+        self.ship_icon.setObjectName("ship_icon")
+        self.label_user_img.raise_()
         self.horizontalLayoutWidget.raise_()
-        self.horizontalLayoutWidget_4.raise_()
-        self.horizontalLayoutWidget_5.raise_()
-        self.horizontalLayoutWidget_3.raise_()
         self.horizontalLayoutWidget_2.raise_()
-        self.verticalLayoutWidget.raise_()
         self.verticalLayoutWidget_2.raise_()
         self.verticalLayoutWidget_3.raise_()
-        self.verticalLayoutWidget_4.raise_()
         self.verticalLayoutWidget_5.raise_()
-        self.label_user_img.raise_()
+        self.horizontalLayoutWidget_3.raise_()
+        self.verticalLayoutWidget_4.raise_()
+        self.verticalLayoutWidget.raise_()
+        self.horizontalLayoutWidget_5.raise_()
+        self.horizontalLayoutWidget_4.raise_()
+        self.astronaunt_icon.raise_()
+        self.start_icon.raise_()
+        self.line_ava.raise_()
+        self.ship_icon.raise_()
         self.horizontalLayoutWidget_7 = QtWidgets.QWidget(parent=self.centralwidget)
-        self.horizontalLayoutWidget_7.setGeometry(QtCore.QRect(450, 470, 169, 31))
+        self.horizontalLayoutWidget_7.setGeometry(QtCore.QRect(450, 480, 169, 31))
         self.horizontalLayoutWidget_7.setObjectName("horizontalLayoutWidget_7")
         self.exit_page = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_7)
         self.exit_page.setContentsMargins(0, 0, 0, 0)
@@ -359,18 +442,44 @@ class Ui_Info_Users_Page(object):
         )
         self.cancel_button.setObjectName("cancel_button")
         self.exit_page.addWidget(self.cancel_button)
-        self.title_label = QtWidgets.QLabel(parent=self.centralwidget)
-        self.title_label.setGeometry(QtCore.QRect(300, 30, 481, 27))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        self.title_label.setFont(font)
-        self.title_label.setMouseTracking(True)
-        self.title_label.setStyleSheet(
-            "background-color: qconicalgradient(cx:0, cy:0, angle:135, stop:0 rgba(255, 255, 0, 69), stop:0.375 rgba(255, 255, 0, 69), stop:0.423533 rgba(251, 255, 0, 145), stop:0.45 rgba(247, 255, 0, 208), stop:0.477581 rgba(255, 244, 71, 130), stop:0.518717 rgba(255, 218, 71, 130), stop:0.55 rgba(255, 255, 0, 255), stop:0.57754 rgba(255, 203, 0, 130), stop:0.625 rgba(255, 255, 0, 69), stop:1 rgba(255, 255, 0, 69));\n"
-            "color: rgb(0, 0, 0);"
+        self.label_6 = QtWidgets.QLabel(parent=self.centralwidget)
+        self.label_6.setGeometry(QtCore.QRect(0, 0, 1074, 555))
+        self.label_6.setMouseTracking(True)
+        self.label_6.setTabletTracking(True)
+        self.label_6.setAcceptDrops(True)
+        self.label_6.setAutoFillBackground(True)
+        self.label_6.setText("")
+        self.label_6.setPixmap(
+            QtGui.QPixmap(
+                r"C:\Users\phatl\OneDrive - VNU-HCMUS\Desktop\relative_face_recognition_app\client\frontend\ui\picture\272978352_763691.jpg"
+            )
         )
-        self.title_label.setObjectName("title_label")
+        self.label_6.setScaledContents(True)
+        self.label_6.setWordWrap(True)
+        self.label_6.setOpenExternalLinks(True)
+        self.label_6.setObjectName("label_6")
+        self.label = QtWidgets.QLabel(parent=self.centralwidget)
+        self.label.setGeometry(QtCore.QRect(480, 20, 133, 31))
+        self.label.setStyleSheet("color: rgb(255, 255, 255);")
+        self.label.setObjectName("label")
+        self.astronaunt_back = QtWidgets.QLabel(parent=self.centralwidget)
+        self.astronaunt_back.setGeometry(QtCore.QRect(890, 340, 251, 291))
+        self.astronaunt_back.setAutoFillBackground(False)
+        self.astronaunt_back.setText("")
+        self.astronaunt_back.setPixmap(
+            QtGui.QPixmap(
+                r"C:\Users\phatl\OneDrive - VNU-HCMUS\Desktop\relative_face_recognition_app\client\frontend\ui\picture\astronaunt_background.png"
+            )
+        )
+        self.astronaunt_back.setScaledContents(True)
+        self.astronaunt_back.setWordWrap(True)
+        self.astronaunt_back.setOpenExternalLinks(True)
+        self.astronaunt_back.setObjectName("astronaunt_back")
+        self.label_6.raise_()
+        self.users_info.raise_()
+        self.horizontalLayoutWidget_7.raise_()
+        self.label.raise_()
+        self.astronaunt_back.raise_()
         Info_Users_Page.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(parent=Info_Users_Page)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1074, 25))
@@ -386,32 +495,11 @@ class Ui_Info_Users_Page(object):
         self.users_info.setTitle(
             _translate("Info_Users_Page", "👨 THÔNG TIN NGƯỜI DÙNG")
         )
-        self.age_landmark.setText(_translate("Info_Users_Page", "Mốc tuổi"))
-        self.info_face_label.setText(
-            _translate("Info_Users_Page", "Đặc điểm nhận dạng")
-        )
-        self.info_face_text.setPlaceholderText(
-            _translate("Info_Users_Page", "Nêu các đặc điểm gương mặt của bạn")
-        )
-        self.allowed_label.setText(
-            _translate(
-                "Info_Users_Page", "Cho phép người dùng khác tìm kiếm thông tin của bạn"
-            )
-        )
-        self.is_allowed.setText(_translate("Info_Users_Page", "Allowed"))
-        self.ho_ten_label.setText(_translate("Info_Users_Page", "Họ và Tên"))
-        self.ho_ten.setPlaceholderText(_translate("Info_Users_Page", "Họ và Tên"))
+        self.age_landmark.setText(_translate("Info_Users_Page", "Tuổi tác"))
         self.gioi_tinh_label.setText(_translate("Info_Users_Page", "Giới tính"))
-        self.gioi_tinh_box.setCurrentText(_translate("Info_Users_Page", "Nam"))
+        self.gioi_tinh_box.setCurrentText(_translate("Info_Users_Page", "Giới tính"))
         self.gioi_tinh_box.setItemText(0, _translate("Info_Users_Page", "Nam"))
         self.gioi_tinh_box.setItemText(1, _translate("Info_Users_Page", "Nữ"))
-        self.label.setText(
-            _translate(
-                "Info_Users_Page",
-                '<html><head/><body><p align="center">HÌNH ẢNH CÁ NHÂN</p></body></html>',
-            )
-        )
-        self.download_pic.setText(_translate("Info_Users_Page", "Upload Image"))
         self.nation_label.setText(
             _translate(
                 "Info_Users_Page", "<html><head/><body><p>Quốc gia</p></body></html>"
@@ -420,53 +508,46 @@ class Ui_Info_Users_Page(object):
         self.district_label.setText(_translate("Info_Users_Page", "Quận / Huyện"))
         self.city_label.setText(_translate("Info_Users_Page", "Thành phố / Tỉnh"))
         self.ward.setText(_translate("Info_Users_Page", "Phường / Xã"))
+        self.city_box.setPlaceholderText(
+            _translate("Info_Users_Page", "Thành phố / Tỉnh")
+        )
+        self.ward_box.setPlaceholderText(_translate("Info_Users_Page", "Phường / Xã"))
+        self.ho_ten_label.setText(
+            _translate(
+                "Info_Users_Page",
+                '<html><head/><body><p><span style=" color:#ffffff;">Họ và Tên</span></p></body></html>',
+            )
+        )
+        self.ho_ten.setPlaceholderText(_translate("Info_Users_Page", "Họ và Tên"))
         self.nation_box.setPlaceholderText(_translate("Info_Users_Page", "Quốc gia"))
         self.nation_box.setItemText(0, _translate("Info_Users_Page", "Việt Nam"))
         self.district_box.setPlaceholderText(
             _translate("Info_Users_Page", "Quận / Huyện")
         )
-        self.city_box.setPlaceholderText(
-            _translate("Info_Users_Page", "Thành phố / Tỉnh")
-        )
-        self.ward_box.setPlaceholderText(_translate("Info_Users_Page", "Phường / Xã"))
-        self.apply_button.setText(_translate("Info_Users_Page", "APPLY"))
-        self.cancel_button.setText(_translate("Info_Users_Page", "CANCEL"))
-        self.title_label.setText(
+        self.hinh_anh_ca_nha.setText(
             _translate(
                 "Info_Users_Page",
-                '<html><head/><body><p align="center">💑💑 ỨNG DỤNG TÌM NGƯỜI MUỐN GẶP 💑💑</p></body></html>',
+                '<html><head/><body><p align="center">HÌNH ẢNH CÁ NHÂN</p></body></html>',
             )
         )
-
-    def display_main_user_info(
-        self,
-        user_info_name: str,
-        user_info_gender: str,
-        user_info_age: int,
-        user_info_country: str,
-        user_info_city: str,
-        user_info_district: str,
-        user_info_ward: str,
-        user_info_feature: str,
-        user_info_image: bytes,
-        user_check_is_allowed: bool,
-    ):
-        self.ho_ten.setText(user_info_name)
-        self.age_range.setValue(user_info_age)
-        self.gioi_tinh_box.setCurrentText(user_info_gender)
-        self.label_user_img.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        pixmap = QtGui.QPixmap()
-        pixmap.loadFromData(user_info_image)
-        scaled_pixmap = pixmap.scaled(
-            self.label_user_img.size(),
-            QtCore.Qt.AspectRatioMode.KeepAspectRatio,
-            QtCore.Qt.TransformationMode.SmoothTransformation,
+        self.download_pic.setText(_translate("Info_Users_Page", "Tải hình ảnh lên"))
+        self.allowed_label.setText(
+            _translate(
+                "Info_Users_Page", "Cho phép người dùng khác tìm kiếm thông tin của bạn"
+            )
         )
-        self.label_user_img.setPixmap(scaled_pixmap)
-        self.label_user_img.setScaledContents(True)
-        self.info_face_text.setText(user_info_feature)
-        self.nation_box.setPlaceholderText(user_info_country)
-        self.city_box.setPlaceholderText(user_info_city)
-        self.district_box.setPlaceholderText(user_info_district)
-        self.ward_box.setPlaceholderText(user_info_ward)
-        self.is_allowed.setChecked(user_check_is_allowed)
+        self.is_allowed.setText(_translate("Info_Users_Page", "Cho phép"))
+        self.info_face_label.setText(
+            _translate("Info_Users_Page", "Đặc điểm nhận dạng")
+        )
+        self.info_face_text.setPlaceholderText(
+            _translate("Info_Users_Page", "Nêu các đặc điểm gương mặt của bạn")
+        )
+        self.apply_button.setText(_translate("Info_Users_Page", "SAVE"))
+        self.cancel_button.setText(_translate("Info_Users_Page", "CANCEL"))
+        self.label.setText(
+            _translate(
+                "Info_Users_Page",
+                '<html><head/><body><p align="center"><span style=" font-size:14pt; font-weight:700; color:#ffffff;">FUInfo Apps</span></p></body></html>',
+            )
+        )

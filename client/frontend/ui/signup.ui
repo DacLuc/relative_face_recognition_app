@@ -35,11 +35,10 @@
      <bool>true</bool>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(170, 0, 0);
-background-color: rgb(255, 255, 255);
+     <string notr="true">color: rgb(255, 255, 255);
 border-color: rgb(255, 255, 127);
 font: 700 9pt &quot;Segoe UI&quot;;</string>
     </property>
@@ -49,10 +48,10 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
     <widget class="QWidget" name="verticalLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>30</x>
        <y>60</y>
-       <width>201</width>
-       <height>171</height>
+       <width>191</width>
+       <height>161</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="text_labe_box">
@@ -70,21 +69,22 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">color: rgb(0, 0, 0);
-font: 700 9pt &quot;Segoe UI&quot;;</string>
+         <string notr="true">font: 700 9pt &quot;Segoe UI&quot;;
+color: rgb(255, 255, 255);</string>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;TÊN ĐĂNG KÝ &lt;span style=&quot; font-style:italic; color:#aa0000;&quot;&gt;(*)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;TÊN ĐĂNG KÝ &lt;span style=&quot; font-style:italic; color:#ffff7f;&quot;&gt;(*)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QLabel" name="emai_label">
         <property name="styleSheet">
-         <string notr="true">color: rgb(0, 0, 0);</string>
+         <string notr="true">color: rgb(255, 255, 255);
+font: 700 9pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;EMAIL ĐĂNG KÝ &lt;span style=&quot; font-style:italic; color:#aa0000;&quot;&gt;(*)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;EMAIL ĐĂNG KÝ &lt;span style=&quot; font-style:italic; color:#ffff7f;&quot;&gt;(*)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -99,10 +99,11 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">color: rgb(0, 0, 0);</string>
+         <string notr="true">color: rgb(255, 255, 255);
+font: 700 9pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;NHẬP MẬT KHẨU &lt;span style=&quot; font-style:italic; color:#aa0000;&quot;&gt;(*)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;NHẬP MẬT KHẨU &lt;span style=&quot; font-style:italic; color:#ffff7f;&quot;&gt;(*)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -117,10 +118,11 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">color: rgb(0, 0, 0);</string>
+         <string notr="true">color: rgb(255, 255, 255);
+font: 700 9pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;XÁC NHẬN MẬT KHẨU &lt;span style=&quot; font-style:italic; color:#aa0000;&quot;&gt;(*)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;XÁC NHẬN MẬT KHẨU &lt;span style=&quot; font-style:italic; color:#ffff7f;&quot;&gt;(*)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -129,10 +131,10 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
     <widget class="QWidget" name="verticalLayoutWidget_2">
      <property name="geometry">
       <rect>
-       <x>240</x>
+       <x>220</x>
        <y>60</y>
-       <width>221</width>
-       <height>181</height>
+       <width>251</width>
+       <height>161</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="fill_in_user_info">
@@ -195,9 +197,9 @@ font: 9pt &quot;Segoe UI&quot;;</string>
     <widget class="QWidget" name="horizontalLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>30</x>
        <y>250</y>
-       <width>421</width>
+       <width>441</width>
        <height>28</height>
       </rect>
      </property>
@@ -216,11 +218,11 @@ font: 9pt &quot;Segoe UI&quot;;</string>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">color: rgb(0, 0, 0);
+         <string notr="true">color: rgb(255, 255, 255);
 font: 700 9pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;BẠN CÓ PHẢI &lt;span style=&quot; color:#aa0000;&quot;&gt;ROBOT&lt;/span&gt; KHÔNG ?&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;BẠN CÓ PHẢI &lt;span style=&quot; color:#ffff7f;&quot;&gt;ROBOT&lt;/span&gt; KHÔNG ?&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -235,7 +237,7 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">color: rgb(170, 0, 0);
+         <string notr="true">color: rgb(255, 255, 127);
 font: 700 9pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="text">
@@ -248,42 +250,16 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>150</x>
+       <x>170</x>
        <y>290</y>
-       <width>187</width>
+       <width>191</width>
        <height>20</height>
       </rect>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:400; font-style:italic; color:#aa0000;&quot;&gt;(*) Đây là thông tin &lt;/span&gt;&lt;span style=&quot; font-weight:400; font-style:italic; text-decoration: underline; color:#aa0000;&quot;&gt;bắt buộc.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:400; font-style:italic; color:#ffffff;&quot;&gt;(*) Đây là thông tin &lt;/span&gt;&lt;span style=&quot; font-weight:400; font-style:italic; text-decoration: underline; color:#ffffff;&quot;&gt;bắt buộc.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
-   </widget>
-   <widget class="QLabel" name="title_label">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>30</y>
-      <width>481</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="mouseTracking">
-     <bool>true</bool>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: qconicalgradient(cx:0, cy:0, angle:135, stop:0 rgba(255, 255, 0, 69), stop:0.375 rgba(255, 255, 0, 69), stop:0.423533 rgba(251, 255, 0, 145), stop:0.45 rgba(247, 255, 0, 208), stop:0.477581 rgba(255, 244, 71, 130), stop:0.518717 rgba(255, 218, 71, 130), stop:0.55 rgba(255, 255, 0, 255), stop:0.57754 rgba(255, 203, 0, 130), stop:0.625 rgba(255, 255, 0, 69), stop:1 rgba(255, 255, 0, 69));
-color: rgb(0, 0, 0);</string>
-    </property>
-    <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;💑💑 ỨNG DỤNG TÌM NGƯỜI MUỐN GẶP 💑💑&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
    </widget>
    <widget class="QWidget" name="horizontalLayoutWidget_2">
     <property name="geometry">
@@ -324,19 +300,25 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
    <widget class="QLabel" name="image_1">
     <property name="geometry">
      <rect>
-      <x>780</x>
-      <y>90</y>
-      <width>291</width>
-      <height>331</height>
+      <x>0</x>
+      <y>110</y>
+      <width>281</width>
+      <height>301</height>
      </rect>
     </property>
     <property name="text">
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>picture/icon.png</pixmap>
+     <pixmap>picture/new_icon_3.png</pixmap>
     </property>
     <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+    <property name="openExternalLinks">
      <bool>true</bool>
     </property>
    </widget>
@@ -346,7 +328,7 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
       <x>-10</x>
       <y>0</y>
       <width>1091</width>
-      <height>531</height>
+      <height>555</height>
      </rect>
     </property>
     <property name="mouseTracking">
@@ -371,7 +353,177 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>picture/Purple Galaxy Desktop Wallpaper.png</pixmap>
+     <pixmap>picture/background_4.jpg</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+    <property name="openExternalLinks">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="image_2">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>110</y>
+      <width>281</width>
+      <height>301</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>picture/new_icon_2.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+    <property name="openExternalLinks">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>30</y>
+      <width>181</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+border-color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::WinPanel</enum>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:700; color:#ffffff;&quot;&gt;FUInfo Apps&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>890</x>
+      <y>0</y>
+      <width>191</width>
+      <height>171</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>picture/planet.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+    <property name="openExternalLinks">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>360</y>
+      <width>191</width>
+      <height>171</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>picture/star_new.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+    <property name="openExternalLinks">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>0</y>
+      <width>101</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>picture/star_line.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+    <property name="openExternalLinks">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>0</y>
+      <width>101</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>picture/star_line_2.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+    <property name="openExternalLinks">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>380</y>
+      <width>161</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>picture/star_combo.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -385,9 +537,15 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
    </widget>
    <zorder>back_ground</zorder>
    <zorder>info_account</zorder>
-   <zorder>title_label</zorder>
    <zorder>horizontalLayoutWidget_2</zorder>
    <zorder>image_1</zorder>
+   <zorder>image_2</zorder>
+   <zorder>label_5</zorder>
+   <zorder>label_2</zorder>
+   <zorder>label_3</zorder>
+   <zorder>label_4</zorder>
+   <zorder>label_6</zorder>
+   <zorder>label_7</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

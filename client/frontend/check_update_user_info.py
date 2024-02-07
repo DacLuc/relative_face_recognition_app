@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file '.\ui\Check_Update_User_Info.ui'
+# Form implementation generated from reading ui file '.\ui\check_Update_User_Info.ui'
 #
 # Created by: PyQt6 UI code generator 6.6.1
 #
@@ -12,21 +12,23 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_Check_Update_User(object):
     def setupUi(self, Check_Update_User):
         Check_Update_User.setObjectName("Check_Update_User")
-        Check_Update_User.resize(748, 492)
+        Check_Update_User.resize(871, 567)
         self.groupBox = QtWidgets.QGroupBox(parent=Check_Update_User)
-        self.groupBox.setGeometry(QtCore.QRect(30, 70, 701, 351))
+        self.groupBox.setGeometry(QtCore.QRect(30, 100, 781, 391))
         self.groupBox.setStyleSheet(
-            'font: 700 9pt "Segoe UI";\n' "color: rgb(170, 0, 0);"
+            'font: 700 9pt "Segoe UI";\n' "color: rgb(255, 255, 255);"
         )
         self.groupBox.setObjectName("groupBox")
         self.image_label = QtWidgets.QLabel(parent=self.groupBox)
-        self.image_label.setGeometry(QtCore.QRect(20, 50, 191, 271))
+        self.image_label.setGeometry(QtCore.QRect(60, 80, 191, 271))
+        self.image_label.setMouseTracking(True)
+        self.image_label.setTabletTracking(True)
         self.image_label.setAcceptDrops(True)
-        self.image_label.setAutoFillBackground(True)
+        self.image_label.setAutoFillBackground(False)
         self.image_label.setStyleSheet(
             "background-color: rgb(255, 255, 255);\n" "border-color: rgb(0, 0, 0);"
         )
-        self.image_label.setFrameShape(QtWidgets.QFrame.Shape.WinPanel)
+        self.image_label.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.image_label.setText("")
         self.image_label.setPixmap(
             QtGui.QPixmap(
@@ -38,78 +40,100 @@ class Ui_Check_Update_User(object):
         self.image_label.setOpenExternalLinks(True)
         self.image_label.setObjectName("image_label")
         self.verticalLayoutWidget = QtWidgets.QWidget(parent=self.groupBox)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(230, 50, 153, 271))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(300, 80, 153, 271))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.label_box = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.label_box.setContentsMargins(0, 0, 0, 0)
         self.label_box.setObjectName("label_box")
         self.name_label = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
         self.name_label.setStyleSheet(
-            "color: rgb(0, 0, 0);\n" 'font: 700 9pt "Segoe UI";'
+            "color: rgb(255, 255, 255);\n" 'font: 700 9pt "Segoe UI";'
         )
         self.name_label.setObjectName("name_label")
         self.label_box.addWidget(self.name_label)
         self.sex_label = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
         self.sex_label.setStyleSheet(
-            "color: rgb(0, 0, 0);\n" 'font: 700 9pt "Segoe UI";'
+            "color: rgb(255, 255, 255);\n" 'font: 700 9pt "Segoe UI";'
         )
         self.sex_label.setObjectName("sex_label")
         self.label_box.addWidget(self.sex_label)
         self.age_label = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
         self.age_label.setStyleSheet(
-            "color: rgb(0, 0, 0);\n" 'font: 700 9pt "Segoe UI";'
+            "color: rgb(255, 255, 255);\n" 'font: 700 9pt "Segoe UI";'
         )
         self.age_label.setObjectName("age_label")
         self.label_box.addWidget(self.age_label)
         self.place_label = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
         self.place_label.setStyleSheet(
-            "color: rgb(0, 0, 0);\n" 'font: 700 9pt "Segoe UI";'
+            "color: rgb(255, 255, 255);\n" 'font: 700 9pt "Segoe UI";'
         )
         self.place_label.setObjectName("place_label")
         self.label_box.addWidget(self.place_label)
         self.feat_label = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
         self.feat_label.setStyleSheet(
-            "color: rgb(0, 0, 0);\n" 'font: 700 9pt "Segoe UI";'
+            "color: rgb(255, 255, 255);\n" 'font: 700 9pt "Segoe UI";'
         )
         self.feat_label.setObjectName("feat_label")
         self.label_box.addWidget(self.feat_label)
         self.verticalLayoutWidget_2 = QtWidgets.QWidget(parent=self.groupBox)
-        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(390, 50, 291, 271))
+        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(450, 80, 271, 271))
         self.verticalLayoutWidget_2.setObjectName("verticalLayoutWidget_2")
         self.output_text = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_2)
         self.output_text.setContentsMargins(0, 0, 0, 0)
         self.output_text.setObjectName("output_text")
         self.name_text = QtWidgets.QLabel(parent=self.verticalLayoutWidget_2)
-        self.name_text.setStyleSheet("color: rgb(0, 0, 0);\n" 'font: 9pt "Segoe UI";')
+        self.name_text.setStyleSheet(
+            "color: rgb(255, 255, 255);\n" 'font: 9pt "Segoe UI";'
+        )
         self.name_text.setText("")
         self.name_text.setObjectName("name_text")
         self.output_text.addWidget(self.name_text)
         self.sex_text = QtWidgets.QLabel(parent=self.verticalLayoutWidget_2)
-        self.sex_text.setStyleSheet("color: rgb(0, 0, 0);\n" 'font: 9pt "Segoe UI";')
+        self.sex_text.setStyleSheet(
+            "color: rgb(255, 255, 255);\n" 'font: 9pt "Segoe UI";'
+        )
         self.sex_text.setText("")
         self.sex_text.setObjectName("sex_text")
         self.output_text.addWidget(self.sex_text)
         self.age_text = QtWidgets.QLabel(parent=self.verticalLayoutWidget_2)
-        self.age_text.setStyleSheet("color: rgb(0, 0, 0);\n" 'font: 9pt "Segoe UI";')
+        self.age_text.setStyleSheet(
+            "color: rgb(255, 255, 255);\n" 'font: 9pt "Segoe UI";'
+        )
         self.age_text.setText("")
         self.age_text.setObjectName("age_text")
         self.output_text.addWidget(self.age_text)
         self.place_text = QtWidgets.QLabel(parent=self.verticalLayoutWidget_2)
-        self.place_text.setStyleSheet("color: rgb(0, 0, 0);\n" 'font: 9pt "Segoe UI";')
+        self.place_text.setStyleSheet(
+            "color: rgb(255, 255, 255);\n" 'font: 9pt "Segoe UI";'
+        )
         self.place_text.setText("")
         self.place_text.setObjectName("place_text")
         self.output_text.addWidget(self.place_text)
         self.feat_text = QtWidgets.QLabel(parent=self.verticalLayoutWidget_2)
-        self.feat_text.setStyleSheet("color: rgb(0, 0, 0);\n" 'font: 9pt "Segoe UI";')
+        self.feat_text.setStyleSheet(
+            "color: rgb(255, 255, 255);\n" 'font: 9pt "Segoe UI";'
+        )
         self.feat_text.setText("")
         self.feat_text.setObjectName("feat_text")
         self.output_text.addWidget(self.feat_text)
+        self.label_3 = QtWidgets.QLabel(parent=self.groupBox)
+        self.label_3.setGeometry(QtCore.QRect(30, 30, 251, 371))
+        self.label_3.setText("")
+        self.label_3.setPixmap(
+            QtGui.QPixmap(
+                r"C:\Users\phatl\OneDrive - VNU-HCMUS\Desktop\relative_face_recognition_app\client\frontend\ui\picture\line_ava.png"
+            )
+        )
+        self.label_3.setScaledContents(True)
+        self.label_3.setWordWrap(True)
+        self.label_3.setOpenExternalLinks(True)
+        self.label_3.setObjectName("label_3")
         self.exit_button = QtWidgets.QDialogButtonBox(parent=Check_Update_User)
         self.exit_button.setEnabled(True)
-        self.exit_button.setGeometry(QtCore.QRect(280, 440, 167, 29))
+        self.exit_button.setGeometry(QtCore.QRect(370, 510, 167, 29))
         self.exit_button.setMouseTracking(True)
         self.exit_button.setAcceptDrops(True)
-        self.exit_button.setAutoFillBackground(True)
+        self.exit_button.setAutoFillBackground(False)
         self.exit_button.setStyleSheet(
             "color: rgb(0, 0, 0);\n"
             'font: 700 9pt "Segoe UI";\n'
@@ -121,12 +145,42 @@ class Ui_Check_Update_User(object):
         )
         self.exit_button.setCenterButtons(True)
         self.exit_button.setObjectName("exit_button")
-        self.label_title = QtWidgets.QTextBrowser(parent=Check_Update_User)
-        self.label_title.setGeometry(QtCore.QRect(160, 20, 401, 33))
-        self.label_title.setStyleSheet(
-            "color: rgb(170, 0, 0);\n" 'font: 700 9pt "Segoe UI";'
+        self.label = QtWidgets.QLabel(parent=Check_Update_User)
+        self.label.setGeometry(QtCore.QRect(-1, 0, 901, 600))
+        self.label.setText("")
+        self.label.setPixmap(
+            QtGui.QPixmap(
+                r"C:\Users\phatl\OneDrive - VNU-HCMUS\Desktop\relative_face_recognition_app\client\frontend\ui\picture\hinh-nen-vu-tru-52.jpg"
+            )
         )
-        self.label_title.setObjectName("label_title")
+        self.label.setScaledContents(True)
+        self.label.setWordWrap(True)
+        self.label.setOpenExternalLinks(True)
+        self.label.setObjectName("label")
+        self.title_label = QtWidgets.QLabel(parent=Check_Update_User)
+        self.title_label.setGeometry(QtCore.QRect(270, 30, 351, 71))
+        self.title_label.setStyleSheet(
+            "color: rgb(255, 255, 255);\n" 'font: 700 9pt "Segoe UI";'
+        )
+        self.title_label.setFrameShape(QtWidgets.QFrame.Shape.Box)
+        self.title_label.setObjectName("title_label")
+        self.icon_image = QtWidgets.QLabel(parent=Check_Update_User)
+        self.icon_image.setGeometry(QtCore.QRect(680, 20, 191, 181))
+        self.icon_image.setText("")
+        self.icon_image.setPixmap(
+            QtGui.QPixmap(
+                r"C:\Users\phatl\OneDrive - VNU-HCMUS\Desktop\relative_face_recognition_app\client\frontend\ui\picture\—Pngtree—astronaut hug the moon universe_6625341.png"
+            )
+        )
+        self.icon_image.setScaledContents(True)
+        self.icon_image.setWordWrap(True)
+        self.icon_image.setOpenExternalLinks(True)
+        self.icon_image.setObjectName("icon_image")
+        self.label.raise_()
+        self.groupBox.raise_()
+        self.exit_button.raise_()
+        self.title_label.raise_()
+        self.icon_image.raise_()
 
         self.retranslateUi(Check_Update_User)
         QtCore.QMetaObject.connectSlotsByName(Check_Update_User)
@@ -140,46 +194,9 @@ class Ui_Check_Update_User(object):
         self.age_label.setText(_translate("Check_Update_User", "Tuổi tác:"))
         self.place_label.setText(_translate("Check_Update_User", "Quê quán:"))
         self.feat_label.setText(_translate("Check_Update_User", "Đặc điểm nhận dạng: "))
-        self.label_title.setHtml(
+        self.title_label.setText(
             _translate(
                 "Check_Update_User",
-                '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">\n'
-                '<html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">\n'
-                "p, li { white-space: pre-wrap; }\n"
-                "hr { height: 1px; border-width: 0; }\n"
-                'li.unchecked::marker { content: "\\2610"; }\n'
-                'li.checked::marker { content: "\\2612"; }\n'
-                "</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:700; font-style:normal;\">\n"
-                '<p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">️🎊️🎊 BẠN ĐÃ CẬP NHẬT THÀNH CÔNG ️🎊️🎊</p></body></html>',
+                '<html><head/><body><p align="center"><span style=" font-weight:700;">️🎊️🎊 </span><span style=" font-weight:700; color:#ffffff;">BẠN ĐÃ CẬP NHẬT THÀNH CÔNG</span><span style=" font-weight:700;"> ️🎊️🎊</span></p></body></html>',
             )
         )
-
-    def display_update_user_info(
-        self,
-        user_info_name: str,
-        user_info_gender: str,
-        user_info_age: int,
-        user_info_country: str,
-        user_info_city: str,
-        user_info_district: str,
-        user_info_ward: str,
-        user_info_feature: str,
-        user_info_image: bytes,
-    ):
-        self.name_text.setText(user_info_name)
-        self.age_text.setText(str(user_info_age))
-        self.sex_text.setText(user_info_gender)
-        self.place_text.setText(
-            f"{user_info_ward}, {user_info_district}, \n{user_info_city}, {user_info_country}"
-        )
-        self.feat_text.setText(user_info_feature)
-        self.image_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        pixmap = QtGui.QPixmap()
-        pixmap.loadFromData(user_info_image)
-        scaled_pixmap = pixmap.scaled(
-            self.image_label.size(),
-            QtCore.Qt.AspectRatioMode.KeepAspectRatio,
-            QtCore.Qt.TransformationMode.SmoothTransformation,
-        )
-        self.image_label.setPixmap(scaled_pixmap)
-        self.image_label.setScaledContents(True)

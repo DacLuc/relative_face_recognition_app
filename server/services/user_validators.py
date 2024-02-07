@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 import uuid
+from typing import Optional
 
 
 class TokenRequest(BaseModel):
@@ -20,13 +21,13 @@ class LoginRequest(BaseModel):
 
 class UserInfoRequest(BaseModel):
     id_user: uuid.UUID
-    full_name: str
-    age: int
-    gender: bool
+    full_name: Optional[str]
+    age: Optional[int]
+    gender: Optional[bool]
     id_image: uuid.UUID
-    id_country: uuid.UUID
-    id_city: uuid.UUID
-    id_district: uuid.UUID
-    id_ward: uuid.UUID
-    face_feature: str
-    is_allowed: bool
+    id_country: Optional[uuid.UUID]
+    id_city: Optional[uuid.UUID]
+    id_district: Optional[uuid.UUID]
+    id_ward: Optional[uuid.UUID]
+    face_feature: Optional[str]
+    is_allowed: Optional[bool]
