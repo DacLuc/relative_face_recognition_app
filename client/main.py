@@ -2,11 +2,13 @@ import sys
 from PyQt6 import QtWidgets, QtGui, QtCore
 import sys
 import os
-import uuid
+import numpy as np
+import math
+import cv2
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/../")
-import frontend.home_page, frontend.signup_ui, frontend.login_ui, frontend.credit_ui, frontend.menu, frontend.user_info, frontend.found_users, frontend.get_responses_image
-import frontend.check_fill_info, frontend.check_signup, frontend.check_wrong_signup, frontend.check_robot_ui, frontend.check_confirm_password, frontend.check_type, frontend.check_login, frontend.check_wrong_login, frontend.check_cancel_user_info, frontend.check_cancel_updated_user_info, frontend.check_right_update_user_info, frontend.check_wrong_update_user_info, frontend.check_upload_pic, frontend.check_finished_upload_image, frontend.check_wrong_upload_image, frontend.check_update_user_info
+import frontend.home_page, frontend.signup_ui, frontend.login_ui, frontend.credit_ui, frontend.menu, frontend.user_info, frontend.found_users, frontend.get_responses_image, frontend.results
+import frontend.check_fill_info, frontend.check_signup, frontend.check_wrong_signup, frontend.check_robot_ui, frontend.check_confirm_password, frontend.check_type, frontend.check_login, frontend.check_wrong_login, frontend.check_cancel_user_info, frontend.check_cancel_updated_user_info, frontend.check_right_update_user_info, frontend.check_wrong_update_user_info, frontend.check_upload_pic, frontend.check_finished_upload_image, frontend.check_wrong_upload_image, frontend.check_update_user_info, frontend.check_faces
 from controllers.cities_districts_wards import LocationApp
 from server.services.auth import user_auth_controller
 from client.controllers.controllers import (
@@ -14,7 +16,15 @@ from client.controllers.controllers import (
     display_main_user_info,
     display_update_user_info,
     display_user_uploaded_img,
+    display_user_info,
+    display_user_request_img,
+    transform_found_user_info,
 )
+
+from insightface.app import FaceAnalysis
+import cv2
+import numpy as np
+import pygame
 
 user_auth_controller = user_auth_controller()
 
@@ -22,7 +32,7 @@ ui = ""
 app = QtWidgets.QApplication(sys.argv)
 Mainwindow = QtWidgets.QMainWindow()
 id_image_global = None
-id_updated_image_global = None
+id_request_image_global = None
 
 
 # ----------------UI MainWindow-----------------
@@ -185,7 +195,20 @@ def user_info_controller():
             ui.nation_box, ui.city_box, ui.district_box, ui.ward_box
         )
         ui.location_app = location_app
-        ui.download_pic.clicked.connect(check_update_user_image_auth_controller)
+        user_image_info = user_auth_controller.get_image_id(id_user)
+        if user_image_info is not None:
+            ui.download_pic.setText(
+                QtCore.QCoreApplication.translate("Info_Users_Page", "Xóa ảnh đại diện")
+            )
+            ui.download_pic.clicked.connect(check_delete_user_image_auth_controller)
+            display_user_uploaded_img(
+                ui, user_auth_controller.get_user_credentials_id_from_auth_controller()
+            )
+        else:
+            ui.download_pic.setText(
+                QtCore.QCoreApplication.translate("Info_Users_Page", "Tải ảnh đại diện")
+            )
+            ui.download_pic.clicked.connect(check_upload_pic_auth_controller)
         user_info_display = print_available_user_info(user_info)
         user_info_name = user_info_display[0]
         user_info_gender = user_info_display[1]
@@ -219,12 +242,19 @@ def user_info_controller():
             ui.nation_box, ui.city_box, ui.district_box, ui.ward_box
         )
         ui.location_app = location_app
-        if id_image_global is not None:
-            display_user_uploaded_img(
-                user_auth_controller.get_user_credentials_id_from_auth_controller()
+        id_user = user_auth_controller.get_user_credentials_id_from_auth_controller()
+        user_image_info = user_auth_controller.get_image_id(id_user)
+        if user_image_info is not None:
+            ui.download_pic.setText(
+                QtCore.QCoreApplication.translate("Info_Users_Page", "Xóa ảnh đại diện")
             )
-        # download pic button
-        ui.download_pic.clicked.connect(check_upload_pic_auth_controller)
+            ui.download_pic.clicked.connect(check_delete_user_image_auth_controller)
+            display_user_uploaded_img(ui, id_user)
+        else:
+            ui.download_pic.setText(
+                QtCore.QCoreApplication.translate("Info_Users_Page", "Tải ảnh đại diện")
+            )
+            ui.download_pic.clicked.connect(check_upload_pic_auth_controller)
         # save button
         ui.apply_button.clicked.connect(check_user_info_auth_controller)
         # cancel button
@@ -241,7 +271,7 @@ def check_update_user_info_auth_controller():
         gioi_tinh = True
     else:
         gioi_tinh = False
-    id_image = id_updated_image_global
+    id_image = id_image_global
     id_country = ui.location_app.selected_country_id
     id_city = ui.location_app.selected_city_id
     id_district = ui.location_app.selected_district_id
@@ -282,26 +312,116 @@ def found_users_ui():
     global ui
     ui = frontend.found_users.Ui_Found_Users_Page()
     ui.setupUi(Mainwindow)
-    found_user_img = []
-    # ui.pushButton.clicked.connect(lambda: launch_upload_pic_ui(found_user_img))
-    ui.cancel_button.clicked.connect(menu_ui)
-    ui.location_app = LocationApp(
-        ui.nation_box, ui.city_box, ui.district_box, ui.ward_box
-    )
-    ui.apply_button.clicked.connect(
-        lambda: check_found_user_ui(
-            ui.ho_ten_box.text(),
-            str(ui.gioi_tinh.currentText()),
-            ui.age_1.isChecked(),
-            str(ui.nation_box.currentText()),
-            str(ui.city_box.currentText()),
-            str(ui.district_box.currentText()),
-            str(ui.ward_box.currentText()),
-            ui.info_face.toPlainText(),
-            found_user_img,
-        )
-    )
+    found_users_controller()
     Mainwindow.show()
+
+
+def found_users_controller():
+    id_user = user_auth_controller.get_user_credentials_id_from_auth_controller()
+    id_request_image_info = user_auth_controller.get_request_image_id(id_user)
+    if id_request_image_info is not None:
+        ui.upload_pic.setText(
+            QtCore.QCoreApplication.translate("Found_Users_Page", "Xóa ảnh đại diện")
+        )
+        ui.upload_pic.clicked.connect(check_delete_request_image_auth_controller)
+        display_user_request_img(
+            ui,
+            user_auth_controller.get_user_credentials_id_from_auth_controller(),
+        )
+    else:
+        ui.upload_pic.setText(
+            QtCore.QCoreApplication.translate("Found_Users_Page", "Tải ảnh đại diện")
+        )
+        ui.upload_pic.clicked.connect(check_upload_request_image_auth_controller)
+    ui.cancel_button.clicked.connect(menu_ui)
+    ui.apply_button.clicked.connect(check_find_user_auth_controller)
+
+
+def check_find_user_auth_controller():
+    id_user = user_auth_controller.get_user_credentials_id_from_auth_controller()
+    id_request_image = id_request_image_global
+    found_users_info = user_auth_controller.get_founders_info(id_request_image)
+    if found_users_info != 404 and found_users_info is not None:
+        json_data = transform_found_user_info(found_users_info)
+        dlg = frontend.results.ResultsWindow(json_data)
+        if dlg.exec() == QtWidgets.QDialog.DialogCode.Accepted:
+            print("User clicked OK")
+        else:
+            print("User clicked Cancel")
+    elif found_users_info == 404 and found_users_info is not None:
+        QtWidgets.QMessageBox.warning(None, "Error", "Could not find users info.")
+        print("Error: Could not find users.")
+    else:
+        QtWidgets.QMessageBox.warning(None, "Error", "Error when finding users !!!")
+
+
+def check_upload_request_image_auth_controller():
+    user_uploaded_request_img = get_response_upload_pic()
+    if user_uploaded_request_img is not None:
+        name_request_image = os.path.basename(user_uploaded_request_img)
+        if name_request_image is None:
+            check_wrong_upload_pic_ui()
+            found_users_ui()
+        else:
+            id_request_image = user_auth_controller.upload_request_image(
+                name_request_image, user_uploaded_request_img
+            )
+            global id_request_image_global
+            if id_request_image != 400 and id_request_image is not None:
+                id_request_image_global = id_request_image
+                ui.upload_pic.setText(
+                    QtCore.QCoreApplication.translate(
+                        "Found_Users_Page", "Xóa ảnh đại diện"
+                    )
+                )
+                ui.upload_pic.clicked.disconnect()
+                ui.upload_pic.clicked.connect(
+                    check_delete_request_image_auth_controller
+                )
+                check_upload_pic_ui()
+                display_user_request_img(
+                    ui,
+                    user_auth_controller.get_user_credentials_id_from_auth_controller(),
+                )
+
+            elif id_request_image == 400 and id_request_image is not None:
+                print("Error: Image has no faces or many faces.")
+                check_faces_ui()
+                found_users_ui()
+
+            else:
+                print("Error: Could not upload image.")
+                check_wrong_upload_pic_ui()
+                found_users_ui()
+    else:
+        # Handle the case where user_uploaded_img is None
+        # You might want to show a message or take appropriate action
+        print("Error: User did not upload an image.")
+        check_finished_upload_pic_ui()
+        found_users_ui()
+
+
+def check_delete_request_image_auth_controller():
+    id_user = user_auth_controller.get_user_credentials_id_from_auth_controller()
+    if user_auth_controller.delete_request_image(id_user):
+        # Update UI after deleting image
+        global id_request_image_global
+        id_request_image_global = None
+        ui.label.setPixmap(
+            QtGui.QPixmap(
+                r"C:\Users\phatl\OneDrive - VNU-HCMUS\Desktop\relative_face_recognition_app\client\frontend\ui\picture\demo_ava.jpg"
+            )
+        )
+        ui.upload_pic.setText(
+            QtCore.QCoreApplication.translate("Info_Users_Page", "Tải ảnh đại diện")
+        )
+        ui.upload_pic.clicked.disconnect()
+        ui.upload_pic.clicked.connect(check_upload_request_image_auth_controller)
+        QtWidgets.QMessageBox.information(
+            None, "Success", "Image deleted successfully."
+        )
+    else:
+        QtWidgets.QMessageBox.warning(None, "Error", "Error: Image not found.")
 
 
 # ----------------UI MainWindow-----------------
@@ -567,6 +687,16 @@ def get_response_upload_pic():
     return response
 
 
+# 5. check has faces dialog
+def check_faces_ui():
+    dlg = QtWidgets.QDialog()
+    ui = frontend.check_faces.Ui_Dialog()
+    ui.setupUi(dlg)
+    ui.exit_button.accepted.connect(dlg.accept)
+    ui.exit_button.rejected.connect(dlg.reject)
+    dlg.exec()
+
+
 # ----------------Controller-----------------
 def check_upload_pic_auth_controller():
     user_uploaded_img = get_response_upload_pic()
@@ -575,131 +705,62 @@ def check_upload_pic_auth_controller():
         if name_image is None:
             check_wrong_upload_pic_ui()
             user_info_ui()
-        id_image = user_auth_controller.upload_image(name_image, user_uploaded_img)
+        else:
+            id_image = user_auth_controller.upload_image(name_image, user_uploaded_img)
+            global id_image_global
+            if id_image != 400 and id_image is not None:
+                id_image_global = id_image
+                ui.download_pic.setText(
+                    QtCore.QCoreApplication.translate(
+                        "Info_Users_Page", "Xóa ảnh đại diện"
+                    )
+                )
+                ui.download_pic.clicked.disconnect()
+                ui.download_pic.clicked.connect(check_delete_user_image_auth_controller)
+                check_upload_pic_ui()
+                display_user_uploaded_img(
+                    ui,
+                    user_auth_controller.get_user_credentials_id_from_auth_controller(),
+                )
+
+            elif id_image == 400 and id_image is not None:
+                print("Error: Image has no faces or many faces.")
+                check_faces_ui()
+                user_info_ui()
+
+            else:
+                print("Error: Could not upload image.")
+                check_wrong_upload_pic_ui()
+                user_info_ui()
+    else:
+        # Handle the case where user_uploaded_img is None
+        # You might want to show a message or take appropriate action
+        print("Error: User did not upload an image.")
+        check_finished_upload_pic_ui()
+        user_info_ui()
+
+
+def check_delete_user_image_auth_controller():
+    id_user = user_auth_controller.get_user_credentials_id_from_auth_controller()
+    if user_auth_controller.delete_image(id_user):
+        # Update UI after deleting image
         global id_image_global
-        id_image_global = id_image
-        if id_image is not None:
-            check_upload_pic_ui()
-            display_user_uploaded_img(
-                ui, user_auth_controller.get_user_credentials_id_from_auth_controller()
+        id_image_global = None
+        ui.label_user_img.setPixmap(
+            QtGui.QPixmap(
+                r"C:\Users\phatl\OneDrive - VNU-HCMUS\Desktop\relative_face_recognition_app\client\frontend\ui\picture\demo_ava.jpg"
             )
-        else:
-            print("Error: Could not upload image.")
-            check_wrong_upload_pic_ui()
-            user_info_ui()
-    else:
-        # Handle the case where user_uploaded_img is None
-        # You might want to show a message or take appropriate action
-        print("Error: User did not upload an image.")
-        check_finished_upload_pic_ui()
-        user_info_ui()
-
-
-def check_update_user_image_auth_controller():
-    user_updated_img = get_response_upload_pic()
-    if user_updated_img is not None:
-        name_image = os.path.basename(user_updated_img)
-        if name_image is None:
-            check_wrong_upload_pic_ui()
-            user_info_ui()
-        id_user = user_auth_controller.get_user_credentials_id_from_auth_controller()
-        id_image = user_auth_controller.update_image(
-            id_user, name_image, user_updated_img
         )
-
-        global id_updated_image_global
-        id_updated_image_global = id_image
-        if id_image is not None:
-            check_upload_pic_ui()
-            display_user_uploaded_img(
-                ui, user_auth_controller.get_user_credentials_id_from_auth_controller()
-            )
-        else:
-            print("Error: Could not upload image.")
-            check_wrong_upload_pic_ui()
-            user_info_ui()
+        ui.download_pic.setText(
+            QtCore.QCoreApplication.translate("Info_Users_Page", "Tải ảnh đại diện")
+        )
+        ui.download_pic.clicked.disconnect()
+        ui.download_pic.clicked.connect(check_upload_pic_auth_controller)
+        QtWidgets.QMessageBox.information(
+            None, "Success", "Image deleted successfully."
+        )
     else:
-        # Handle the case where user_uploaded_img is None
-        # You might want to show a message or take appropriate action
-        print("Error: User did not upload an image.")
-        check_finished_upload_pic_ui()
-        user_info_ui()
-
-
-# ----------------Controller-----------------
-# Check found user auth controllers (from client layer to controller layer)
-def check_found_user_ui(
-    user_info_name=None,
-    user_info_gender=None,
-    user_info_age=None,
-    user_info_country=None,
-    user_info_city=None,
-    user_info_district=None,
-    user_info_ward=None,
-    user_info_feature=None,
-    user_info_img=None,
-):
-    print("      ===---=== BIG DATA from check_found_user_ui ===---===      ")
-    print("- user_info_name: ", user_info_name)
-    print("- user_info_gender: ", user_info_gender)
-    print("- user_info_age: ", user_info_age)
-    print("- user_info_country: ", user_info_country)
-    print("- user_info_city: ", user_info_city)
-    print("- user_info_district: ", user_info_district)
-    print("- user_info_ward: ", user_info_ward)
-    print("- user_info_feature: ", user_info_feature)
-    print("- user_info_img: ", user_info_img)
-    print("________________________________________")
-    global ui
-    ui = frontend.results.Ui_MainWindow()
-    ui.setupUi(Mainwindow)
-    display_user_info(
-        ui,
-        user_info_name,
-        user_info_gender,
-        user_info_age,
-        user_info_country,
-        user_info_city,
-        user_info_district,
-        user_info_ward,
-        user_info_feature,
-        user_info_img,
-    )
-    user_auth_controller.find_people(
-        user_info_name,
-        user_info_gender,
-        user_info_age,
-        user_info_country,
-        user_info_city,
-        user_info_district,
-        user_info_ward,
-        user_info_feature,
-        user_info_img,
-    )
-    ui.cancel_button.clicked.connect(menu_ui)
-    Mainwindow.show()
-
-
-# Display user info after finding user
-def display_user_info(
-    ui,
-    user_info_name: str,
-    user_info_gioi_tinh: str,
-    user_info_age,
-    user_info_country: str,
-    user_info_city: str,
-    user_info_district: str,
-    user_info_ward: str,
-    user_info_feature: str,
-    found_user_img,
-):
-    ui.label.setText(f"Họ tên: {user_info_name}")
-    ui.label_5.setText(f"Giới tính: {user_info_gioi_tinh}")
-    ui.label_2.setText(f"Tuổi: {user_info_age}")
-    ui.label_3.setText(
-        f"Quê quán: {user_info_ward}, {user_info_district}, {user_info_city}, {user_info_country}"
-    )
-    ui.label_4.setText(f"Đặc điểm nhận dạng: {user_info_feature}")
+        QtWidgets.QMessageBox.warning(None, "Error", "Error: Image not found.")
 
 
 def main():

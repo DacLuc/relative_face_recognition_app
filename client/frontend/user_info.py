@@ -257,7 +257,6 @@ class Ui_Info_Users_Page(object):
             'font: 9pt "Segoe UI";'
         )
         self.nation_box.setObjectName("nation_box")
-        self.nation_box.addItem("")
         self.group_1.addWidget(self.nation_box)
         self.district_box = QtWidgets.QComboBox(parent=self.verticalLayoutWidget_4)
         self.district_box.setStyleSheet(
@@ -295,7 +294,7 @@ class Ui_Info_Users_Page(object):
         self.verticalLayout.addWidget(self.download_pic)
         self.label_user_img = QtWidgets.QLabel(parent=self.users_info)
         self.label_user_img.setGeometry(QtCore.QRect(50, 50, 191, 251))
-        self.label_user_img.setAutoFillBackground(True)
+        self.label_user_img.setAutoFillBackground(False)
         self.label_user_img.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.label_user_img.setText("")
         self.label_user_img.setPixmap(
@@ -458,10 +457,6 @@ class Ui_Info_Users_Page(object):
         self.label_6.setWordWrap(True)
         self.label_6.setOpenExternalLinks(True)
         self.label_6.setObjectName("label_6")
-        self.label = QtWidgets.QLabel(parent=self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(480, 20, 133, 31))
-        self.label.setStyleSheet("color: rgb(255, 255, 255);")
-        self.label.setObjectName("label")
         self.astronaunt_back = QtWidgets.QLabel(parent=self.centralwidget)
         self.astronaunt_back.setGeometry(QtCore.QRect(890, 340, 251, 291))
         self.astronaunt_back.setAutoFillBackground(False)
@@ -475,11 +470,45 @@ class Ui_Info_Users_Page(object):
         self.astronaunt_back.setWordWrap(True)
         self.astronaunt_back.setOpenExternalLinks(True)
         self.astronaunt_back.setObjectName("astronaunt_back")
+        self.label_10 = QtWidgets.QLabel(parent=self.centralwidget)
+        self.label_10.setGeometry(QtCore.QRect(630, 0, 101, 81))
+        self.label_10.setAutoFillBackground(False)
+        self.label_10.setText("")
+        self.label_10.setPixmap(
+            QtGui.QPixmap(
+                r"C:\Users\phatl\OneDrive - VNU-HCMUS\Desktop\relative_face_recognition_app\client\frontend\ui\picture\star_line_2.png"
+            )
+        )
+        self.label_10.setScaledContents(True)
+        self.label_10.setWordWrap(True)
+        self.label_10.setOpenExternalLinks(True)
+        self.label_10.setObjectName("label_10")
+        self.label_5 = QtWidgets.QLabel(parent=self.centralwidget)
+        self.label_5.setGeometry(QtCore.QRect(460, 20, 181, 41))
+        self.label_5.setStyleSheet(
+            "color: rgb(255, 255, 255);\n" "border-color: rgb(255, 255, 255);"
+        )
+        self.label_5.setFrameShape(QtWidgets.QFrame.Shape.WinPanel)
+        self.label_5.setObjectName("label_5")
+        self.label_4 = QtWidgets.QLabel(parent=self.centralwidget)
+        self.label_4.setGeometry(QtCore.QRect(370, 0, 101, 81))
+        self.label_4.setText("")
+        self.label_4.setPixmap(
+            QtGui.QPixmap(
+                r"C:\Users\phatl\OneDrive - VNU-HCMUS\Desktop\relative_face_recognition_app\client\frontend\ui\picture\star_line.png"
+            )
+        )
+        self.label_4.setScaledContents(True)
+        self.label_4.setWordWrap(True)
+        self.label_4.setOpenExternalLinks(True)
+        self.label_4.setObjectName("label_4")
         self.label_6.raise_()
         self.users_info.raise_()
         self.horizontalLayoutWidget_7.raise_()
-        self.label.raise_()
         self.astronaunt_back.raise_()
+        self.label_10.raise_()
+        self.label_5.raise_()
+        self.label_4.raise_()
         Info_Users_Page.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(parent=Info_Users_Page)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1074, 25))
@@ -497,7 +526,7 @@ class Ui_Info_Users_Page(object):
         )
         self.age_landmark.setText(_translate("Info_Users_Page", "Tuổi tác"))
         self.gioi_tinh_label.setText(_translate("Info_Users_Page", "Giới tính"))
-        self.gioi_tinh_box.setCurrentText(_translate("Info_Users_Page", "Giới tính"))
+        self.gioi_tinh_box.setCurrentText(_translate("Info_Users_Page", "Nam"))
         self.gioi_tinh_box.setItemText(0, _translate("Info_Users_Page", "Nam"))
         self.gioi_tinh_box.setItemText(1, _translate("Info_Users_Page", "Nữ"))
         self.nation_label.setText(
@@ -520,7 +549,6 @@ class Ui_Info_Users_Page(object):
         )
         self.ho_ten.setPlaceholderText(_translate("Info_Users_Page", "Họ và Tên"))
         self.nation_box.setPlaceholderText(_translate("Info_Users_Page", "Quốc gia"))
-        self.nation_box.setItemText(0, _translate("Info_Users_Page", "Việt Nam"))
         self.district_box.setPlaceholderText(
             _translate("Info_Users_Page", "Quận / Huyện")
         )
@@ -545,7 +573,7 @@ class Ui_Info_Users_Page(object):
         )
         self.apply_button.setText(_translate("Info_Users_Page", "SAVE"))
         self.cancel_button.setText(_translate("Info_Users_Page", "CANCEL"))
-        self.label.setText(
+        self.label_5.setText(
             _translate(
                 "Info_Users_Page",
                 '<html><head/><body><p align="center"><span style=" font-size:14pt; font-weight:700; color:#ffffff;">FUInfo Apps</span></p></body></html>',

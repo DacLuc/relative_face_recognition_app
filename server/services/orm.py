@@ -1,8 +1,17 @@
 from models.user_credentials import UserCredentials
 from models.user_info import UserInfo
-from sqlmodel import Field, Session, SQLModel, create_engine, select, col
+from models.image_info import ImageInfo
+from models.request_image import RequestImage
+from models.country import Country
+from models.city import City
+from models.district import District
+from models.ward import Ward
+
+from sqlmodel import Session, select, col, func
 import sys
 import os
+import json
+import numpy as np
 
 sys.path.append("../../../../relative_face_recognition_app/server")
 from database.engine import engine
@@ -12,11 +21,19 @@ from services.orm import *
 from jose import JWTError, jwt
 from datetime import datetime, timedelta
 from passlib.context import CryptContext
+from passlib.hash import bcrypt
 from sqlalchemy.orm import sessionmaker, Session
 
 from services.user_validators import (
     LoginRequest,
 )
+
+from pgvector.sqlalchemy import Vector
+import uuid
+
+from controllers.controllers_services import FaceRecognitionController
+
+face_recognition_controller = FaceRecognitionController()
 
 
 def select_users(username, password):
@@ -41,12 +58,13 @@ def filter_users(
             # UserInfo.id_district == id_district,
             # UserInfo.id_ward == id_ward
         )
-        results = session.exec(statement)
+        results = session.execute(statement)
         return results.all()
 
 
 # Khởi tạo session để truy vấn CSDL
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
 
 # Khởi tạo biến toàn cục để lưu id người dùng
 global_id_user = None
@@ -58,7 +76,8 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 # Upload image folder
-UPLOAD_FOLDER = "images"
+UPLOAD_FOLDER = "images/user_images/"
+UPLOAD_FOLDER_REQUEST = "images/request_images/"
 
 
 # Function để set global user id
@@ -184,3 +203,52 @@ def verify_token_and_get_credentials(token: str, db: Session):
         )
 
     return credentials
+
+
+def find_similar_users(request_image_id: uuid.UUID, db: Session = Depends(get_db)):
+    print("request_image_id", request_image_id)
+    # Lấy thông tin hình ảnh yêu cầu của người dùng
+    request_image = db.query(RequestImage).filter_by(id=request_image_id).first()
+
+    print("request_image", request_image)
+
+    if not request_image:
+        return []
+
+    # Trích xuất embeddings của hình ảnh yêu cầu
+    request_embeddings = np.array(request_image.embeddings)
+
+    print("request_embeddings", request_embeddings)
+
+    # request_embeddings = request_embeddings.reshape(1, -1)
+
+    # print("request_embeddings", request_embeddings)
+
+    # Tìm kiếm các hình ảnh gần giống trong cơ sở dữ liệu
+    similar_images = []
+    for image in db.query(ImageInfo):
+        image_embeddings = np.array(image.embeddings)
+        similarity = face_recognition_controller.compare_embeddings(
+            request_embeddings, image_embeddings
+        )
+        if similarity > 0.7:
+            similar_images.append(image)
+
+    print("similar_images", similar_images)
+
+    similar_users_infos = []
+
+    # Lấy thông tin người dùng từ các hình ảnh gần giống
+    for similar_image in similar_images:
+        user_info = (
+            db.query(UserInfo)
+            .filter_by(id_image=similar_image.id, is_allowed=True)
+            .first()
+        )
+        if user_info:
+            similar_users_infos.append(user_info)
+            print("similar_user_info", user_info)
+
+    print("similar_users_infos", similar_users_infos)
+
+    return similar_users_infos

@@ -1,7 +1,6 @@
 from . import user_credentials
 from . import user_info
 from . import request_image
-from . import found_image
 from . import country
 from . import city
 from . import district

@@ -7,4 +7,4 @@ from .home_page import Ui_Home_Page
 from .check_login import Ui_check_login
 from .credit_ui import Ui_Credit_Page
 from .check_login import Ui_check_login
-from .results import Ui_MainWindow
+from .results import Ui_Results_Dialog

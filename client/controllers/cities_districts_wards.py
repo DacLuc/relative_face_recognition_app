@@ -31,6 +31,7 @@ class LocationApp(QtWidgets.QWidget):
 
         self.load_data()
 
+        self.nation_box.currentIndexChanged.connect(self.update_cities)
         self.city_box.currentIndexChanged.connect(self.update_districts)
         self.district_box.currentIndexChanged.connect(self.update_wards)
         self.ward_box.currentIndexChanged.connect(self.update_selected_ward_id)

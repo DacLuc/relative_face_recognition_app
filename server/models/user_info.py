@@ -25,7 +25,7 @@ class UserInfo(SQLModel, table=True):
     # name: day la ho va ten cua user khi nhap thong tin ca nhan chu khong phai username khi user dang nhap / dang ky
     full_name: Optional[str] = Field(nullable=True)
     # age: em khong chac nen de kieu du lieu gi -> nhung ma theo ui thi em su dung radiobutton de lua chon age-range nen anh check xem du lieu nao hop ly nhat
-    age: Optional[int] = Field(index=True, nullable=True)
+    age: Optional[int] = Field(nullable=True)
     # gender: anh chi co the lua chon mot trong hai kieu du lieu la "Nam" hay "Nu" --> thong thuong theo hoc tren truong em se de la kieu nvarchar(3) de luu du lieu nay nhung trong sqlmodel thi em khong chac nen de kieu du lieu string hay khong ?
     gender: Optional[bool] = Field(nullable=True)
     # id_image: day la id cua anh ma user nhap khi vao trang thong tin ca nhan vao app

@@ -194,7 +194,9 @@ class user_auth_controller:
                     print("Upload Image: ", json_data)
                     print("Upload Image: ", json_data["id_image"])
                     return json_data["id_image"]
-                else:
+                elif response.status_code == 400:
+                    return 400
+                elif response.status_code == 500:
                     # Handle error
                     print("Error: ", response.status_code)
                     print("Error: ", response.text)
@@ -224,6 +226,10 @@ class user_auth_controller:
                     print("Updated Image: ", json_data["id_image"])
                     return json_data["id_image"]
                 # response.status_code == 404: User info image not found -> Need to create user info image -> Then update user info image
+                elif response.status_code == 404:
+                    return 404
+                elif response.status_code == 400:
+                    return 400
                 else:
                     # Handle error
                     print("Error: ", response.status_code)
@@ -235,7 +241,35 @@ class user_auth_controller:
             return None
 
     # -------------------------
-    # Display image function
+    # Delete image function
+    def delete_image(self, user_id: uuid.UUID):
+        URL = f"http://localhost:8080/delete_user_image/{str(user_id)}"
+        response = requests.delete(url=URL, headers=self.get_auth_headers())
+        # response.status_code == 200: Success when deleting user image
+        if response.status_code == 200:
+            return True
+        else:
+            # Handle error
+            print("Error: ", response.status_code)
+            print("Error: ", response.text)
+            return False
+
+    # -------------------------
+    # Get image id function
+    def get_image_id(self, user_id: uuid.UUID):
+        URL = f"http://localhost:8080/get_user_image_by_id/{str(user_id)}"
+        response = requests.get(url=URL, headers=self.get_auth_headers())
+        # response.status_code == 200: Success when getting user image id
+        if response.status_code == 200:
+            print("Image ID: ", response.json())
+            return response.json()
+        # response.status_code == 404: User info image not found -> Need to create user info image
+        else:
+            print("Error about Image: ", response.status_code)
+            print("Error about Image Text: ", response.text)
+            return None
+
+    # -------------------------
     def display_image(self, user_id: uuid.UUID):
         try:
             URL = f"http://localhost:8080/get_user_image/{str(user_id)}"
@@ -252,8 +286,112 @@ class user_auth_controller:
             return None
 
     # -------------------------
+    def upload_request_image(self, name_image: str, image_path: str):
+        try:
+            with open(image_path, "rb") as image_file:
+                files = {"file": (name_image, image_file, "image/jpeg")}
+
+                URL = "http://localhost:8080/upload_request_image"
+                response = requests.post(
+                    url=URL,  # Send data as JSON in the request body
+                    files=files,
+                    headers=self.get_auth_headers(),
+                )
+
+                if response.status_code == 200:
+                    json_data = response.json()
+                    print("Upload Request Image: ", json_data)
+                    print("Upload Request Image: ", json_data["id_request_image"])
+                    return json_data["id_request_image"]
+                elif response.status_code == 400:
+                    return 400
+                elif response.status_code == 500:
+                    # Handle error
+                    print("Error: ", response.status_code)
+                    print("Error: ", response.text)
+                    return None
+        except Exception as e:
+            # Handle other exception
+            print(f"Error during request image upload: {e}")
+            return None
+
+    def update_request_image(
+        self, id_user: uuid.UUID, name_image: str, image_path: str
+    ):
+        try:
+            with open(image_path, "rb") as image_file:
+                files = {"file": (name_image, image_file, "image/jpeg")}
+
+                URL = f"http://localhost:8080/update_request_image/{str(id_user)}"
+                response = requests.put(
+                    url=URL,  # Send data as JSON in the request body
+                    files=files,
+                    headers=self.get_auth_headers(),
+                )
+                # response.status_code == 200: Success when updating user image
+                if response.status_code == 200:
+                    json_data = response.json()
+                    print("Updated Request Image: ", json_data)
+                    print("Updated Request Image: ", json_data["id_request_image"])
+                    return json_data["id_request_image"]
+                # response.status_code == 404: User info image not found -> Need to create user info image -> Then update user info image
+                elif response.status_code == 404:
+                    return 404
+                elif response.status_code == 400:
+                    return 400
+                else:
+                    # Handle error
+                    print("Error: ", response.status_code)
+                    print("Error: ", response.text)
+                    return None
+        except Exception as e:
+            # Handle other exception
+            print(f"Error during request image upload: {e}")
+            return None
+
+    def delete_request_image(self, user_id: uuid.UUID):
+        URL = f"http://localhost:8080/delete_request_image/{str(user_id)}"
+        response = requests.delete(url=URL, headers=self.get_auth_headers())
+        # response.status_code == 200: Success when deleting user image
+        if response.status_code == 200:
+            return True
+        else:
+            # Handle error
+            print("Error: ", response.status_code)
+            print("Error: ", response.text)
+            return False
+
+    def get_request_image_id(self, user_id: uuid.UUID):
+        URL = f"http://localhost:8080/get_request_image_by_id/{str(user_id)}"
+        response = requests.get(url=URL, headers=self.get_auth_headers())
+        # response.status_code == 200: Success when getting user image id
+        if response.status_code == 200:
+            print("Image ID: ", response.json())
+            return response.json()
+        # response.status_code == 404: User info image not found -> Need to create user info image
+        else:
+            print("Error about Image: ", response.status_code)
+            print("Error about Image Text: ", response.text)
+            return None
+
+    def display_request_image(self, user_id: uuid.UUID):
+        try:
+            URL = f"http://localhost:8080/get_request_image/{str(user_id)}"
+            response = requests.get(url=URL, headers=self.get_auth_headers())
+            if response.status_code == 200:
+                return response.content
+            else:
+                # Handle error
+                print(f"Error fetching user image: {response.status_code}")
+                return None
+        except Exception as e:
+            # Handle other exception
+            print(f"Error during image display: {e}")
+            return None
+
+    # -------------------------
     # Get country function
-    def get_country_name(self, id_country: Optional[uuid.UUID]):
+    def get_country_name(self, id_country: uuid.UUID):
         # Check if id_country is None
         if id_country is None:
             return None
@@ -273,7 +411,7 @@ class user_auth_controller:
 
     # -------------------------
     # Get city function
-    def get_city_name(self, id_city: Optional[uuid.UUID]):
+    def get_city_name(self, id_city: uuid.UUID):
         # Check if id_city is None
         if id_city is None:
             return None
@@ -293,7 +431,7 @@ class user_auth_controller:
 
     # -------------------------
     # Get district function
-    def get_district_name(self, id_district: Optional[uuid.UUID]):
+    def get_district_name(self, id_district: uuid.UUID):
         # Check if id_district is None
         if id_district is None:
             return None
@@ -313,7 +451,7 @@ class user_auth_controller:
 
     # -------------------------
     # Get ward function
-    def get_ward_name(self, id_ward: Optional[uuid.UUID]):
+    def get_ward_name(self, id_ward: uuid.UUID):
         # Check if id_ward is None
         if id_ward is None:
             return None
@@ -329,6 +467,26 @@ class user_auth_controller:
             else:
                 print("Error about Ward: ", response.status_code)
                 print("Error about Ward Text: ", response.text)
+                return None
+
+    # -------------------------
+    # Get founders info function
+    def get_founders_info(self, request_image_id: uuid.UUID):
+        if request_image_id is None:
+            print("Request Image ID is None")
+            return None
+        else:
+            URL = f"http://localhost:8080/find_similar_users/{str(request_image_id)}"
+            response = requests.get(url=URL, headers=self.get_auth_headers())
+            if response.status_code == 200:
+                json_data = response.json()
+                print("Founders Info: ", json_data)
+                return json_data
+            elif response.status_code == 404:
+                return 404
+            else:
+                print("Error about Founders Info: ", response.status_code)
+                print("Error about Founders Info Text: ", response.text)
                 return None
 
     # -------------------------
